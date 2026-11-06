@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Move Your AI Workspace Off Subscriptions to Free Local AI | Local AI Home Setup</title>
+<meta name="description" content="A step-by-step process for replacing Claude, ChatGPT or Gemini subscriptions with a free local AI workspace: Ollama, a model sized to your RAM, and Open WebUI, LibreChat or Hermes Agent.">
+<meta property="og:title" content="Move your AI workspace off subscriptions to free local AI">
+<meta property="og:description" content="The downloads, the model to pick for your RAM, the workspace app to install, and how to connect them. Plus the break-even math.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Move your AI project workspace from paid subscriptions to free local AI",
+  "totalTime": "PT1H30M",
+  "estimatedCost": {"@type": "MonetaryAmount", "currency": "USD", "value": "0"},
+  "tool": ["Ollama", "Docker Desktop", "Open WebUI, LibreChat or Hermes Agent"],
+  "step": [
+    {"@type": "HowToStep", "name": "Save your current setup", "url": "#step-1"},
+    {"@type": "HowToStep", "name": "Check your computer", "url": "#step-2"},
+    {"@type": "HowToStep", "name": "Install Ollama", "url": "#step-3"},
+    {"@type": "HowToStep", "name": "Download a model sized to your RAM", "url": "#step-4"},
+    {"@type": "HowToStep", "name": "Choose your workspace app", "url": "#step-5"},
+    {"@type": "HowToStep", "name": "Install Docker", "url": "#step-6"},
+    {"@type": "HowToStep", "name": "Install the workspace and connect it to your model", "url": "#step-7"},
+    {"@type": "HowToStep", "name": "Rebuild your project as one workspace", "url": "#step-8"},
+    {"@type": "HowToStep", "name": "Test it before you cancel", "url": "#step-9"}
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">Local AI <span>Home Setup</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#guide">Guide</a>
+      <a href="#savings">Savings</a>
+      <a href="#gear">Workspace gear</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Move your AI workspace off subscriptions and onto free local AI</h1>
+    <p class="lede">This is the whole process for replacing a paid AI plan such as Claude, ChatGPT or Gemini with a workspace that runs on your own computer. You install a free model runner, download a model that fits your memory, pick a free workspace app, connect the two, and move your project over.</p>
+    <p class="meta">Works on Mac, Windows and Linux · About 1 to 2 hours, mostly downloads · Software cost: $0 · Last checked November 6, 2026</p>
+    <p><a class="btn" href="#guide">Start the guide</a></p>
+  </div>
+
+  <nav class="toc" aria-label="On this page">
+    <strong>On this page</strong>
+    <ol>
+      <li><a href="#what-replaces-what">What replaces what</a></li>
+      <li><a href="#guide">The process, step by step</a></li>
+      <li><a href="#troubleshooting">Troubleshooting</a></li>
+      <li><a href="#savings">What you save: the break-even math</a></li>
+      <li><a href="#gear">Set up your workspace: gear and software</a></li>
+    </ol>
+  </nav>
+
+  <div class="ad-slot wide" id="ad-1" data-ad-slot="top"></div>
+
+  <section id="what-replaces-what">
+    <h2>What replaces what</h2>
+    <p>A paid AI plan bundles four things together: the model, the chat app, your projects, and sometimes an agent that does tasks for you. On a local setup each one is a separate free tool, and this guide installs them in order.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>What you pay for now</th><th>Free local replacement</th><th>Step</th></tr></thead>
+        <tbody>
+          <tr><td>The AI model (Claude, GPT, Gemini)</td><td>An open model such as Gemma, Qwen or Llama, run by <strong>Ollama</strong></td><td>3 and 4</td></tr>
+          <tr><td>The chat app in your browser</td><td><strong>Open WebUI</strong> or <strong>LibreChat</strong>, which run in <strong>Docker</strong></td><td>5 to 7</td></tr>
+          <tr><td>Projects with instructions and files</td><td>A model preset with a system prompt and a knowledge base inside the workspace app</td><td>8</td></tr>
+          <tr><td>An agent that runs tasks (like Claude Code)</td><td><strong>Hermes Agent</strong>, a free open-source agent that can use your local model</td><td>5 and 7</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><p><strong>Set your expectations first.</strong> A local model is not Claude or GPT. How fast and how capable it is depends on your computer's memory and the model you pick. Expect it to handle everyday writing, summarizing and questions about your own files well, and expect it to fall short on hard reasoning and very long inputs. Step 9 shows how to test this before you cancel anything.</p></div>
+  </section>
+
+  <p class="part-label">Part 1</p>
+  <section id="guide">
+    <h2>The process, step by step</h2>
+    <p>Do the steps in order, because each one depends on the one before it. Every step ends with a check, so you know it worked before you move on.</p>
+
+    <h3 id="step-1"><span class="step-num">1</span>Save your current setup</h3>
+    <p>Copy your project instructions and files out by hand before you change anything. The parts that make a project behave the way it does are its instructions and its files, and no AI service exports a whole project as one package you can import somewhere else.</p>
+    <ol>
+      <li>Make a folder called <code>ai-migration</code>, with one subfolder for each project you want to keep.</li>
+      <li>Open each project and copy its custom instructions into a text file named <code>instructions.md</code> in that project's subfolder.</li>
+      <li>Download each file attached to the project into a <code>files</code> subfolder, keeping the original names.</li>
+      <li>Copy anything you want to keep from the service's saved memory or personalization settings into <code>memory.md</code>.</li>
+      <li>As a backup, request the full account export. In Claude it is under Settings, then Privacy, then Export data. In ChatGPT it is under Settings, then Data controls, then Export data. For Gemini, use Google Takeout. The download link is emailed to you and expires, so save the file right away.</li>
+    </ol>
+    <p>You can skip old chats. Most of them are not worth moving, and the instructions and files are what recreate the project.</p>
+    <div class="check"><p><strong>Check:</strong> every project subfolder has an <code>instructions.md</code> and a <code>files</code> folder with every document you want the new setup to know about.</p></div>
+
+    <h3 id="step-2"><span class="step-num">2</span>Check your computer</h3>
+    <p>Find out how much memory your computer has, because it decides which models you can run. The model has to fit in memory alongside everything else you have open.</p>
+    <div class="tabs">
+      <div class="tab-list" role="tablist">
+        <button type="button" data-os="mac">Mac</button>
+        <button type="button" data-os="win">Windows</button>
+        <button type="button" data-os="linux">Linux</button>
+      </div>
+      <div class="tab-panel" data-os="mac">
+        <h4>Mac</h4>
+        <p>Open the Apple menu and choose About This Mac. Note the chip (M1 to M4 or newer, or Intel) and the memory. On Apple Silicon the graphics share that same memory, so the memory number is the one that matters. Ollama's docs ask for macOS 14 Sonoma or newer. Intel Macs work but run models on the processor only, which is much slower.</p>
+      </div>
+      <div class="tab-panel" data-os="win">
+        <h4>Windows</h4>
+        <p>Open Settings, then System, then About, and note the installed RAM. Then open Task Manager, choose Performance, and click GPU to see your graphics card and its dedicated memory. A recent NVIDIA card with 8 GB or more of its own memory makes local models much faster. Without one, models still run on the processor, just slower.</p>
+      </div>
+      <div class="tab-panel" data-os="linux">
+        <h4>Linux</h4>
+        <p>Run <code>free -h</code> to see your memory. If you have an NVIDIA card, <code>nvidia-smi</code> shows its model and memory. As on Windows, the card's own memory decides how big a model runs fast.</p>
+      </div>
+    </div>
+    <p>Free up disk space too. Keep at least 20 GB free for the apps and your first model, and plan for several more gigabytes for each extra model.</p>
+    <div class="check"><p><strong>Check:</strong> you know your memory (RAM, and graphics memory on a PC) and you have 20 GB or more free.</p></div>
+
+    <h3 id="step-3"><span class="step-num">3</span>Install Ollama</h3>
+    <p>Ollama is the free program that downloads AI models and runs them on your computer. Every workspace app in this guide talks to your model through Ollama, so it goes in first. Get it from <a href="https://ollama.com/download" rel="noopener">ollama.com/download</a>.</p>
+    <div class="tabs">
+      <div class="tab-list" role="tablist">
+        <button type="button" data-os="mac">Mac</button>
+        <button type="button" data-os="win">Windows</button>
+        <button type="button" data-os="linux">Linux</button>
+      </div>
+      <div class="tab-panel" data-os="mac">
+        <h4>Mac</h4>
+        <ol>
+          <li>Download the Mac version, open the file, and drag Ollama into Applications.</li>
+          <li>Open Ollama from Applications. If it asks to add its command to your system, allow it.</li>
+          <li>On Apple Silicon it uses the graphics automatically. There are no drivers to install.</li>
+        </ol>
+      </div>
+      <div class="tab-panel" data-os="win">
+        <h4>Windows</h4>
+        <ol>
+          <li>Download the Windows installer and run it.</li>
+          <li>Ollama starts in the background and shows an icon near the clock.</li>
+          <li>If you have an NVIDIA card, keep its driver up to date so Ollama can use it.</li>
+        </ol>
+      </div>
+      <div class="tab-panel" data-os="linux">
+        <h4>Linux</h4>
+        <p>Run the official install script:</p>
+        <div class="code"><pre><code>curl -fsSL https://ollama.com/install.sh | sh</code></pre></div>
+      </div>
+    </div>
+    <p>Then open a terminal (Terminal on Mac, PowerShell on Windows) and check it:</p>
+    <div class="code"><pre><code>ollama --version</code></pre></div>
+    <div class="check"><p><strong>Check:</strong> the terminal prints a version number. If it says the command is not found, close the terminal, open it again and retry.</p></div>
+
+    <h3 id="step-4"><span class="step-num">4</span>Download a model sized to your memory</h3>
+    <p>Pick a model whose download is no bigger than about half your memory. A model that is too big either will not load or answers painfully slowly. On a PC with a graphics card, size it to the card's memory for full speed. Bigger versions of the same model are smarter but slower, so start in your row and move up or down after you try it.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Your memory</th><th>Aim for a download of</th><th>Models to start with</th></tr></thead>
+        <tbody>
+          <tr><td>8 GB</td><td>up to about 4 GB</td><td><code>qwen3:4b</code> (2.5 GB)</td></tr>
+          <tr><td>16 GB</td><td>up to about 8 GB</td><td><code>qwen3:8b</code> (5.2 GB) or <code>gemma4:12b</code> (about 8 GB)</td></tr>
+          <tr><td>32 GB</td><td>up to about 16 GB</td><td><code>qwen3:14b</code> (9.3 GB) or <code>gemma4:26b</code> (16 to 19 GB, a tight fit)</td></tr>
+          <tr><td>48 GB or more</td><td>20 GB and up</td><td><code>gemma4:31b</code> (about 20 GB) or <code>qwen3:30b</code> (19 GB)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="meta">Sizes are from the Ollama library pages, checked November 6, 2026. They are starting suggestions, not benchmarks. Models change often, so check <a href="https://ollama.com/library" rel="noopener">ollama.com/library</a> for what is current.</p>
+    <p>Download and try the model in your terminal. Replace the name with the one from your row:</p>
+    <div class="code"><pre><code>ollama run qwen3:8b</code></pre></div>
+    <p>The first run downloads the model, which can take several minutes. Then a chat opens in the terminal. Ask it something, and type <code>/bye</code> to leave. These two commands show what you have downloaded and what is loaded right now:</p>
+    <div class="code"><pre><code>ollama list
+ollama ps</code></pre></div>
+    <div class="check"><p><strong>Check:</strong> the model answers a question at a speed you can live with. If replies crawl, pick a smaller model.</p></div>
+  </section>
+
+  <div class="ad-slot" id="ad-2" data-ad-slot="mid-guide"></div>
+
+  <section>
+    <h3 id="step-5"><span class="step-num">5</span>Choose your workspace app</h3>
+    <p>The workspace app is the window you work in every day, and it replaces the Claude or ChatGPT website. All of these are free and all of them can use the model you just downloaded. Pick one to start. You can add another later, since they all share the same Ollama models.</p>
+    <div class="cards">
+      <div class="card pick">
+        <span class="tag">Start here</span>
+        <h4>Open WebUI</h4>
+        <p>The closest thing to a Claude project. A chat window in your browser with model presets, a system prompt per preset, and knowledge bases you upload files to.</p>
+        <p><strong>Needs:</strong> Docker. <strong>Best for:</strong> most people.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Free</span>
+        <h4>LibreChat</h4>
+        <p>A ChatGPT-style chat window that can switch between your local model and any paid service you keep, in one place.</p>
+        <p><strong>Needs:</strong> Docker and Git. <strong>Best for:</strong> people mixing local and cloud models.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Free</span>
+        <h4>Hermes Agent</h4>
+        <p>An open-source agent from Nous Research that does tasks rather than just chatting. It runs in the terminal and can also connect to apps like Telegram or Discord.</p>
+        <p><strong>Needs:</strong> no Docker, but a larger model. <strong>Best for:</strong> replacing a coding or task agent.</p>
+      </div>
+    </div>
+    <p>Prefer a regular desktop app over a browser window? LM Studio and AnythingLLM are free desktop apps that skip Docker. This guide covers the three above because they give you a full project workspace, but those two are good options if Docker gives you trouble.</p>
+    <div class="check"><p><strong>Check:</strong> you have picked one app. If you are not sure, pick Open WebUI.</p></div>
+
+    <h3 id="step-6"><span class="step-num">6</span>Install Docker (for Open WebUI or LibreChat)</h3>
+    <p>Docker runs the workspace app in a sealed box, so it installs the same way on every computer and does not touch the rest of your system. Skip this step if you chose Hermes Agent only. Docker Desktop is free for personal use and small businesses. Check <a href="https://www.docker.com/pricing/" rel="noopener">Docker's pricing page</a> if you use it for a larger company.</p>
+    <div class="tabs">
+      <div class="tab-list" role="tablist">
+        <button type="button" data-os="mac">Mac</button>
+        <button type="button" data-os="win">Windows</button>
+        <button type="button" data-os="linux">Linux</button>
+      </div>
+      <div class="tab-panel" data-os="mac">
+        <h4>Mac</h4>
+        <p>Download <a href="https://docs.docker.com/desktop/setup/install/mac-install/" rel="noopener">Docker Desktop for Mac</a>, choosing the Apple Silicon or Intel version to match your chip. Drag it into Applications, open it, and wait until it says Docker is running.</p>
+      </div>
+      <div class="tab-panel" data-os="win">
+        <h4>Windows</h4>
+        <p>Download <a href="https://docs.docker.com/desktop/setup/install/windows-install/" rel="noopener">Docker Desktop for Windows</a> and run the installer. Keep the WSL 2 option selected when it asks. Restart if prompted, then open Docker Desktop and wait until it says Docker is running.</p>
+      </div>
+      <div class="tab-panel" data-os="linux">
+        <h4>Linux</h4>
+        <p>Install <a href="https://docs.docker.com/engine/install/" rel="noopener">Docker Engine</a> using the instructions for your distribution, which include the Compose plugin that LibreChat needs.</p>
+      </div>
+    </div>
+    <div class="code"><pre><code>docker --version</code></pre></div>
+    <div class="check"><p><strong>Check:</strong> the command prints a version, and Docker Desktop (on Mac and Windows) shows it is running. Ollama must also still be running.</p></div>
+
+    <h3 id="step-7"><span class="step-num">7</span>Install the workspace and connect it to your model</h3>
+    <p>Follow the part for the app you picked. In each case the app finds your model by talking to Ollama at port 11434 on your own computer. From inside Docker that address is <code>host.docker.internal:11434</code>, and from outside Docker it is <code>localhost:11434</code>.</p>
+
+    <h4>Option A: Open WebUI</h4>
+    <p>Run this one command in your terminal. It downloads Open WebUI, starts it, and points it at Ollama on your computer. This is the method Open WebUI's own docs recommend.</p>
+    <div class="code"><pre><code>docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main</code></pre></div>
+    <ol>
+      <li>Wait a minute or two, then open <a href="http://localhost:3000">http://localhost:3000</a> in your browser.</li>
+      <li>Create an account. It lives only on your computer, not online. The first account you create is the admin.</li>
+      <li>Start a new chat and choose your model from the menu at the top.</li>
+    </ol>
+    <p>If the model menu is empty, open Admin Panel, then Settings, then Connections, and set the Ollama address to <code>http://host.docker.internal:11434</code>.</p>
+    <div class="note"><p><strong>Linux:</strong> Ollama only listens to your own machine by default, so the container may not reach it. The simplest fix is to run Open WebUI on the host network instead, then open <code>http://localhost:8080</code>:</p></div>
+    <div class="code"><pre><code>docker run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main</code></pre></div>
+    <div class="check"><p><strong>Check:</strong> you can chat with your model in the browser.</p></div>
+
+    <h4>Option B: LibreChat</h4>
+    <p>LibreChat installs from its code repository, so you also need <a href="https://git-scm.com/downloads" rel="noopener">Git</a>. Run these in your terminal, one at a time. On Windows, use <code>copy .env.example .env</code> for the third line.</p>
+    <div class="code"><pre><code>git clone https://github.com/LibreChat-AI/LibreChat.git
+cd LibreChat
+cp .env.example .env
+cp docker-compose.override.yml.example docker-compose.override.yml</code></pre></div>
+    <p>Now tell LibreChat about Ollama. Create a file named <code>librechat.yaml</code> in the LibreChat folder with this in it. The API key can be any word, because Ollama ignores it.</p>
+    <div class="code"><pre><code>version: 1.2.1
+endpoints:
+  custom:
+    - name: "Ollama"
+      apiKey: "ollama"
+      baseURL: "http://host.docker.internal:11434/v1/"
+      models:
+        default: ["qwen3:8b"]
+        fetch: true
+      titleConvo: true
+      titleModel: "current_model"</code></pre></div>
+    <p>Open <code>docker-compose.override.yml</code> and make sure the lines that mount <code>librechat.yaml</code> are not commented out (remove the <code>#</code> in front of them). Then start it:</p>
+    <div class="code"><pre><code>docker compose up -d</code></pre></div>
+    <ol>
+      <li>The first start takes a few minutes. Then open <a href="http://localhost:3080">http://localhost:3080</a>.</li>
+      <li>Click Sign up and create your account. The first account is the admin.</li>
+      <li>Pick Ollama from the endpoint menu, then your model.</li>
+    </ol>
+    <p>Edited the YAML file later? Restart with <code>docker compose down</code> and then <code>docker compose up -d</code>.</p>
+    <div class="check"><p><strong>Check:</strong> Ollama appears in the endpoint menu and your model answers.</p></div>
+
+    <h4>Option C: Hermes Agent</h4>
+    <p>Hermes needs a bigger model and a bigger working memory (its "context") than plain chat, because an agent reads tool results as it works. Its docs suggest <code>gemma4:31b</code>, which needs around 24 GB of memory or more. Install it with the command for your system:</p>
+    <div class="tabs">
+      <div class="tab-list" role="tablist">
+        <button type="button" data-os="mac">Mac</button>
+        <button type="button" data-os="win">Windows</button>
+        <button type="button" data-os="linux">Linux</button>
+      </div>
+      <div class="tab-panel" data-os="mac">
+        <h4>Mac</h4>
+        <div class="code"><pre><code>curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+source ~/.zshrc</code></pre></div>
+      </div>
+      <div class="tab-panel" data-os="win">
+        <h4>Windows (PowerShell)</h4>
+        <div class="code"><pre><code>iex (irm https://hermes-agent.nousresearch.com/install.ps1)</code></pre></div>
+        <p>Close and reopen PowerShell afterwards.</p>
+      </div>
+      <div class="tab-panel" data-os="linux">
+        <h4>Linux</h4>
+        <div class="code"><pre><code>curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+source ~/.bashrc</code></pre></div>
+      </div>
+    </div>
+    <p>Then give your model a bigger context. Ollama's default context is small, and Hermes' docs say agent work needs at least 64,000 tokens. Make a plain text file named <code>Modelfile</code> with these two lines:</p>
+    <div class="code"><pre><code>FROM gemma4:31b
+PARAMETER num_ctx 64000</code></pre></div>
+    <p>In the same folder, build a copy of the model with that setting:</p>
+    <div class="code"><pre><code>ollama create gemma4-64k -f Modelfile</code></pre></div>
+    <p>Now connect Hermes to it. Run <code>hermes setup</code>, choose Custom Endpoint, and enter:</p>
+    <ul>
+      <li>Base URL: <code>http://localhost:11434/v1</code></li>
+      <li>API key: leave it empty</li>
+      <li>Model: <code>gemma4-64k</code></li>
+    </ul>
+    <p>Then start it with <code>hermes</code>.</p>
+    <div class="check"><p><strong>Check:</strong> Hermes answers using your local model. A bigger context uses more memory, so if it becomes very slow, lower <code>num_ctx</code> or use a smaller model.</p></div>
+
+    <h3 id="step-8"><span class="step-num">8</span>Rebuild your project as one workspace</h3>
+    <p>Recreate each old project as a preset: your local model plus your instructions plus your files, saved under the project's name. Here is how in Open WebUI, which has the closest match to a Claude project.</p>
+    <ol>
+      <li><strong>Add your files.</strong> Click your profile icon, then Workspace, then Knowledge, then create a new knowledge base. Name it after your project and upload everything from that project's <code>files</code> folder.</li>
+      <li><strong>Add your instructions.</strong> Go to Workspace, then Models, and create a new model. Give it your project's name, choose your downloaded model as the base, and paste <code>instructions.md</code> into the System Prompt box.</li>
+      <li><strong>Attach the knowledge.</strong> In the same screen, attach the knowledge base from the first step, and save.</li>
+      <li><strong>Add your memory.</strong> Paste anything from <code>memory.md</code> that should always apply onto the end of the system prompt.</li>
+    </ol>
+    <p>Your project now appears in the model menu of every new chat. In LibreChat, the matching feature is Agents, where you set instructions and attach files. In Hermes, paste your instructions into its config or first message, and point it at your project folder.</p>
+    <p>Read your old instructions through as you paste them, and cut lines that mention features the new setup does not have, such as artifacts or connected apps.</p>
+    <div class="check"><p><strong>Check:</strong> start a chat with your project preset and ask it to restate the project brief in its own words. Then ask something only one of your files can answer.</p></div>
+
+    <h3 id="step-9"><span class="step-num">9</span>Test it before you cancel</h3>
+    <p>Run your five most common real tasks on the new setup before you cancel your subscription. A local setup covers everyday work well and falls short on the hardest tasks, and only your own tasks can tell you which side you are on.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Task</th><th>Typical local result</th></tr></thead>
+        <tbody>
+          <tr><td>Drafting, rewriting, summarizing</td><td>Usually good enough for everyday use</td></tr>
+          <tr><td>Questions about your own files</td><td>Works once the knowledge base is set up; quality depends on the model</td></tr>
+          <tr><td>Brainstorming and outlines</td><td>Usually good</td></tr>
+          <tr><td>Hard multi-step reasoning or math</td><td>Often noticeably weaker than the top paid models</td></tr>
+          <tr><td>Large codebases or very long documents</td><td>Limited by how much text the model can hold at once</td></tr>
+          <tr><td>Speed</td><td>Set by your computer, not a server</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>What you gain:</strong> no monthly fee, no usage limits, and your files never leave your computer. Once set up, it works without the internet.</p>
+    <p><strong>What you give up:</strong> the extras around the model, such as artifacts, synced projects across devices, and connected apps. Some have local versions, but you set them up yourself.</p>
+    <p><strong>The middle path:</strong> keep a free account with a cloud AI for the few tasks where the local model disappoints, and do everything else locally. You drop the paid plan but keep a fallback.</p>
+    <div class="check"><p><strong>Check:</strong> your everyday tasks work. Now you can cancel the paid plan with confidence.</p></div>
+  </section>
+
+  <section id="troubleshooting">
+    <h2>Troubleshooting</h2>
+    <p>Most problems come from one of three things: Ollama is not running, Docker is not running, or the model is too big for your memory.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Problem</th><th>What to do</th></tr></thead>
+        <tbody>
+          <tr><td><code>ollama</code> command not found</td><td>Close and reopen the terminal. If it persists, open the Ollama app again and allow it to add its command.</td></tr>
+          <tr><td>Workspace loads but shows no models</td><td>Make sure Ollama is running. In Open WebUI, set the Ollama address under Admin Panel, Settings, Connections to <code>http://host.docker.internal:11434</code>. On Linux, use the host-network command in Step 7.</td></tr>
+          <tr><td>The localhost page will not open</td><td>Open Docker Desktop and check that the container is running. Give it a minute or two after starting.</td></tr>
+          <tr><td>Port already in use</td><td>For Open WebUI, change <code>-p 3000:8080</code> to <code>-p 3001:8080</code> and open <code>localhost:3001</code>.</td></tr>
+          <tr><td>Replies are very slow, or the model will not load</td><td>Switch to a smaller model, or close other heavy apps.</td></tr>
+          <tr><td>The model forgets things in long chats or long files</td><td>Its context is too small. Raise <code>num_ctx</code> as in Option C, if your memory allows.</td></tr>
+          <tr><td>Disk is filling up</td><td>Run <code>ollama list</code>, then remove models you don't use with <code>ollama rm</code> and the model name.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Updating Open WebUI later:</strong> run <code>docker pull ghcr.io/open-webui/open-webui:main</code>, remove the old container with <code>docker rm -f open-webui</code>, and run the Step 7 command again. Your chats and presets live in the <code>open-webui</code> volume, so they stay.</p>
+  </section>
+
+  <p class="part-label">Part 2</p>
+  <article class="blog" id="savings">
+    <h2>What you save by leaving AI subscriptions: the break-even math</h2>
+    <p><strong>The short answer:</strong> if you run local AI on a computer you already own, you save the full subscription from the first month. If you buy hardware for it, you save money only after the hardware pays for itself, and that can take years if you are replacing a $20 plan.</p>
+
+    <h3>What people pay now</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Plan</th><th>Per month</th><th>Per year</th></tr></thead>
+        <tbody>
+          <tr><td>Claude Pro, billed monthly</td><td>$20</td><td>$240</td></tr>
+          <tr><td>Claude Pro, billed annually</td><td>about $17</td><td>$200</td></tr>
+          <tr><td>Claude Max 5x</td><td>$100</td><td>$1,200</td></tr>
+          <tr><td>Claude Max 20x</td><td>$200</td><td>$2,400</td></tr>
+          <tr><td>ChatGPT Plus</td><td>$20</td><td>$240</td></tr>
+          <tr><td>ChatGPT Pro, lowest tier</td><td>$100</td><td>$1,200</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="meta">US list prices, checked October 2026. Prices change, so check the provider's own pricing page.</p>
+
+    <h3>The $0 route</h3>
+    <p>Everything in <a href="#guide">the guide above</a> is free: Ollama, the models, Docker Desktop for personal use, and every workspace app. If your current computer has 16 GB of memory or more, you can run a useful model today, and your only costs are your setup time and a little electricity.</p>
+
+    <h3>If you buy hardware</h3>
+    <p>Months to break even is the hardware cost divided by the monthly plan you cancel. The hardware amounts below are examples, not product quotes, and they leave out electricity and your time.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Scenario</th><th>Hardware</th><th>Plan replaced</th><th>Break even</th></tr></thead>
+        <tbody>
+          <tr><td>Use the computer you own</td><td>$0</td><td>$20 a month</td><td>Right away</td></tr>
+          <tr><td>Modest upgrade</td><td>$600</td><td>$20 a month</td><td>30 months</td></tr>
+          <tr><td>Modest upgrade</td><td>$600</td><td>$100 a month</td><td>6 months</td></tr>
+          <tr><td>AI desktop</td><td>$2,000</td><td>$200 a month</td><td>10 months</td></tr>
+          <tr><td>AI desktop</td><td>$2,000</td><td>$20 a month</td><td>100 months</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The last row is the honest one. Buying an expensive machine to replace a $20 plan does not pay off. Hardware makes sense for heavy users on the $100 and $200 plans, or for people who want privacy and no limits more than they want the savings.</p>
+
+    <div class="calc" id="calc">
+      <h3 style="margin-top:0">Work out your own break-even</h3>
+      <div class="calc-grid">
+        <div>
+          <label for="calc-plan">Your current plan</label>
+          <select id="calc-plan">
+            <option value="">Choose, or type below</option>
+            <option value="20">$20 a month (Pro or Plus)</option>
+            <option value="17">$17 a month (Pro, annual)</option>
+            <option value="100">$100 a month</option>
+            <option value="200">$200 a month</option>
+          </select>
+        </div>
+        <div>
+          <label for="calc-monthly">You pay each month ($)</label>
+          <input id="calc-monthly" type="number" min="0" step="1" value="20" inputmode="decimal">
+        </div>
+        <div>
+          <label for="calc-hw">Hardware you will buy ($)</label>
+          <input id="calc-hw" type="number" min="0" step="50" value="0" inputmode="decimal">
+        </div>
+        <div>
+          <label for="calc-power">Extra electricity a month ($)</label>
+          <input id="calc-power" type="number" min="0" step="1" value="3" inputmode="decimal">
+        </div>
+      </div>
+      <p class="calc-out" id="calc-out" aria-live="polite">Turn on JavaScript to use the calculator.</p>
+      <p class="meta" style="margin:0">Electricity depends on your power rates and how many hours a day you use it. The $3 default is an example; check your own bill.</p>
+    </div>
+
+    <h3>What you give up</h3>
+    <p>A local model is not Claude or GPT, so the saving only counts if the local model does the work you need. That is why the guide ends with a test before you cancel. If it handles your everyday tasks, keep a free cloud account for the hard ones and pocket the difference.</p>
+  </article>
+
+  <div class="ad-slot" id="ad-3" data-ad-slot="after-savings"></div>
+
+  <p class="part-label">Part 3</p>
+  <section id="gear">
+    <h2>Set up your workspace: gear and software</h2>
+    <p>You do not need to buy anything to follow this guide. Each category below starts with the free option, then lists paid upgrades for people who want a dedicated setup. Paid items are labeled as paid.</p>
+
+    <div class="disclosure"><strong>How this site earns money:</strong> some links in this section are affiliate links. If you buy through them, I earn a commission at no extra cost to you. I only list products I would use myself, and the free option is always listed first. <a href="disclosure.html">Read the full disclosure</a>.</div>
+
+    <div class="gear-cat">
+      <h3>Computer to run your models</h3>
+      <div class="cards">
+        <div class="card">
+          <span class="tag">Free</span>
+          <h4>The computer you own</h4>
+          <p>Any Mac with Apple Silicon or a PC with 16 GB of memory runs a useful model. Start here, and buy only if Step 9 shows you need more.</p>
+        </div>
+        <div class="card">
+          <span class="tag paid">Paid</span>
+          <h4>Mac with lots of memory</h4>
+          <p>On Apple Silicon, memory is shared with the graphics, so memory is the spec to pay for. Aim for 32 GB or more for bigger models.</p>
+          <div class="slot"><a href="#" rel="sponsored noopener" data-aff="mac">[Affiliate link: Mac mini / Mac Studio]</a></div>
+        </div>
+        <div class="card">
+          <span class="tag paid">Paid</span>
+          <h4>PC with an NVIDIA graphics card</h4>
+          <p>The card's own memory decides model size. 12 GB or more on the card is a good target, with 32 GB of system memory.</p>
+          <div class="slot"><a href="#" rel="sponsored noopener" data-aff="pc">[Affiliate link: AI desktop / mini PC]</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gear-cat">
+      <h3>Monitor</h3>
+      <div class="cards">
+        <div class="card">
+          <span class="tag">Free</span>
+          <h4>Your laptop screen, or a TV</h4>
+          <p>A TV with an HDMI input works as a second screen for chat and documents side by side.</p>
+        </div>
+        <div class="card">
+          <span class="tag paid">Paid</span>
+          <h4>A 27-inch monitor</h4>
+          <p>Room for the chat window next to the files you are working on. 1440p is a comfortable size for text.</p>
+          <div class="slot"><a href="#" rel="sponsored noopener" data-aff="monitor">[Affiliate link: 27-inch monitor]</a></div>
+        </div>
+        <div class="card">
+          <span class="tag paid">Paid</span>
+          <h4>Monitor arm</h4>
+          <p>Frees desk space and puts the screen at eye level.</p>
+          <div class="slot"><a href="#" rel="sponsored noopener" data-aff="arm">[Affiliate link: monitor arm]</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gear-cat">
+      <h3>Keyboard and mouse</h3>
+      <div class="cards">
+        <div class="card">
+          <span class="tag">Free</span>
+          <h4>The built-in ones</h4>
+          <p>Your laptop's keyboard and trackpad are fine for this whole guide.</p>
+        </div>
+        <div class="card">
+          <span class="tag paid">Paid</span>
+          <h4>A comfortable keyboard</h4>
+          <p>If you type prompts all day, a full-size or ergonomic keyboard is the upgrade you will feel most.</p>
+          <div class="slot"><a href="#" rel="sponsored noopener" data-aff="keyboard">[Affiliate link: keyboard]</a></div>
+        </div>
+        <div class="card">
+          <span class="tag paid">Paid</span>
+          <h4>An ergonomic mouse</h4>
+          <p>A vertical or contoured mouse helps with long sessions.</p>
+          <div class="slot"><a href="#" rel="sponsored noopener" data-aff="mouse">[Affiliate link: mouse]</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gear-cat">
+      <h3>Storage for models</h3>
+      <div class="cards">
+        <div class="card">
+          <span class="tag">Free</span>
+          <h4>Your internal drive</h4>
+          <p>Delete models you don't use with <code>ollama rm</code> to keep space free.</p>
+        </div>
+        <div class="card">
+          <span class="tag paid">Paid</span>
+          <h4>Fast external SSD</h4>
+          <p>Models are large files. A fast USB-C SSD of 1 TB or more holds a library of them, and backs up your workspace.</p>
+          <div class="slot"><a href="#" rel="sponsored noopener" data-aff="ssd">[Affiliate link: external SSD]</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gear-cat">
+      <h3>Software</h3>
+      <div class="cards">
+        <div class="card">
+          <span class="tag">Free</span>
+          <h4>The tools in this guide</h4>
+          <p>Ollama, Open WebUI, LibreChat, Hermes Agent, LM Studio and AnythingLLM are all free. You need nothing else to get started.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Free</span>
+          <h4>A code and notes editor</h4>
+          <p>A free editor such as VS Code is handy for editing your instructions, Modelfiles and config files.</p>
+        </div>
+        <div class="card">
+          <span class="tag paid">Paid</span>
+          <h4>Cloud GPU rental, by the hour</h4>
+          <p>For the rare job your computer can't handle, rent a powerful GPU for a few hours instead of buying one.</p>
+          <div class="slot"><a href="#" rel="sponsored noopener" data-aff="gpu-cloud">[Affiliate link: GPU rental]</a></div>
+        </div>
+        <div class="card">
+          <span class="tag paid">Paid</span>
+          <h4>Pay-as-you-go API credits</h4>
+          <p>LibreChat can mix your local model with a paid model you only pay for when you use it, which is often far less than a monthly plan.</p>
+          <div class="slot"><a href="#" rel="sponsored noopener" data-aff="api">[Affiliate link: API provider]</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ad-slot" id="ad-4" data-ad-slot="before-footer"></div>
+
+  <section class="support" id="support">
+    <h2>Support this guide</h2>
+    <p>This guide is free, and I keep it updated as the tools change. If it saved you a subscription, you can chip in to cover the time it takes.</p>
+    <p><a class="btn" href="#" data-placeholder="donation">[Donation link]</a></p>
+  </section>
+
+  <section>
+    <h2>Sources</h2>
+    <p class="meta">Checked November 6, 2026. Tools update often; if a step here no longer matches what you see, the official docs below are the authority.</p>
+    <ul class="sources">
+      <li><a href="https://ollama.com/download" rel="noopener">Ollama downloads</a> and <a href="https://docs.ollama.com/macos" rel="noopener">Ollama macOS docs</a>, for install steps and system requirements</li>
+      <li><a href="https://ollama.com/library/qwen3" rel="noopener">Ollama library: Qwen3</a> and <a href="https://ollama.com/library/gemma4" rel="noopener">Ollama library: Gemma 4</a>, for model sizes</li>
+      <li><a href="https://docs.openwebui.com/" rel="noopener">Open WebUI docs</a>, for the Docker install and workspace features</li>
+      <li><a href="https://www.librechat.ai/docs/local/docker" rel="noopener">LibreChat: Docker install</a> and <a href="https://www.librechat.ai/docs/quick_start/custom_endpoints" rel="noopener">LibreChat: custom endpoints</a>, for the install and Ollama config</li>
+      <li><a href="https://hermes-agent.nousresearch.com/docs/getting-started/quickstart" rel="noopener">Hermes Agent quickstart</a> and <a href="https://hermes-agent.nousresearch.com/docs/guides/local-ollama-setup" rel="noopener">Hermes Agent: local Ollama setup</a>, for install, model and context settings</li>
+      <li><a href="https://docs.docker.com/desktop/" rel="noopener">Docker Desktop docs</a>, for install on each system</li>
+      <li>Plan prices from provider pricing pages as summarized by Dupple, chudi.dev and BenchLM, October 2026</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="disclosure.html">Affiliate disclosure</a>
+      <a href="privacy.html">Privacy policy</a>
+      <a href="#support">Support this guide</a>
+    </nav>
+    <p>© <span id="year">2026</span> Local AI Home Setup. Not affiliated with Anthropic, OpenAI, Google, Ollama, Docker, Open WebUI, LibreChat or Nous Research. Product names belong to their owners.</p>
+  </div>
+</footer>
+<script src="assets/app.js"></script>
+</body>
+</html>

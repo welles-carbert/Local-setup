@@ -1,4 +1,4 @@
-# Local AI Home Setup
+# Local Setup
 
 A static site (plain HTML, CSS and JS, no build step) with a step-by-step guide to moving an AI workspace from paid subscriptions to free local AI.
 

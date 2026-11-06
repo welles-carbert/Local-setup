@@ -11,7 +11,7 @@ This file sits outside `docs/`, so GitHub Pages does not publish it.
 | 9 affiliate links | index.html, gear section | `data-aff=` |
 | 4 ad slots | index.html | `class="ad-slot` (ids ad-1 to ad-4) |
 | Site domain | robots.txt, sitemap.xml | `SITE_DOMAIN` |
-| Site name (working name "Local AI Home Setup") | every page header, footer, titles | `Home Setup` |
+| Site name: Local Setup (chosen by Welles) | every page header, footer, titles | `Local Setup` |
 | Analytics service name, once chosen | privacy.html | "Analytics" section |
 | Affiliate program names, once joined | disclosure.html | "Programs this site may take part in" |
 

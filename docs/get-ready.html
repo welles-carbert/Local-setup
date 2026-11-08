@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get ready | Local Setup</title>
+<meta name="description" content="Save your current AI setup and check your computer before you install anything.">
+<link rel="stylesheet" href="assets/style.css?v=3">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">Local Setup</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="get-ready.html">Guide</a>
+      <a href="savings.html">Savings</a>
+      <a href="home-setup.html">Home setup</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<div class="page-head">
+  <p class="progress">Part 1 of 6</p>
+  <h1>Get ready</h1>
+  <p class="lede">Two steps before you install anything: copy your projects out of your paid service, and find out what your computer can run.</p>
+</div>
+<div class="ad-slot" data-ad-slot="banner-1"></div>
+    <h2 id="step-1"><span class="step-num">1</span>Save your current setup</h2>
+    <p>Copy your project instructions and files out by hand before you change anything. The parts that make a project behave the way it does are its instructions and its files, and no AI service exports a whole project as one package you can import somewhere else.</p>
+    <ol>
+      <li>Make a folder called <code>ai-migration</code>, with one subfolder for each project you want to keep.</li>
+      <li>Open each project and copy its custom instructions into a text file named <code>instructions.md</code> in that project's subfolder.</li>
+      <li>Download each file attached to the project into a <code>files</code> subfolder, keeping the original names.</li>
+      <li>Copy anything you want to keep from the service's saved memory or personalization settings into <code>memory.md</code>.</li>
+      <li>As a backup, request the full account export. In Claude it is under Settings, then Privacy, then Export data. In ChatGPT it is under Settings, then Data controls, then Export data. For Gemini, use Google Takeout. The download link is emailed to you and expires, so save the file right away.</li>
+    </ol>
+    <p>You can skip old chats. Most of them are not worth moving, and the instructions and files are what recreate the project.</p>
+    <div class="check"><p><strong>Check:</strong> every project subfolder has an <code>instructions.md</code> and a <code>files</code> folder with every document you want the new setup to know about.</p></div>
+
+    <div class="ad-slot" data-ad-slot="banner-2"></div>
+<h2 id="step-2"><span class="step-num">2</span>Check your computer</h2>
+    <p>Find out how much memory your computer has, because it decides which models you can run. The model has to fit in memory alongside everything else you have open.</p>
+    <div class="tabs">
+      <div class="tab-list" role="tablist">
+        <button type="button" data-os="mac">Mac</button>
+        <button type="button" data-os="win">Windows</button>
+        <button type="button" data-os="linux">Linux</button>
+      </div>
+      <div class="tab-panel" data-os="mac">
+        <h4>Mac</h4>
+        <p>Open the Apple menu and choose About This Mac. Note the chip (M1 to M4 or newer, or Intel) and the memory. On Apple Silicon the graphics share that same memory, so the memory number is the one that matters. Ollama's docs ask for macOS 14 Sonoma or newer. Intel Macs work but run models on the processor only, which is much slower.</p>
+      </div>
+      <div class="tab-panel" data-os="win">
+        <h4>Windows</h4>
+        <p>Open Settings, then System, then About, and note the installed RAM. Then open Task Manager, choose Performance, and click GPU to see your graphics card and its dedicated memory. A recent NVIDIA card with 8 GB or more of its own memory makes local models much faster. Without one, models still run on the processor, just slower.</p>
+      </div>
+      <div class="tab-panel" data-os="linux">
+        <h4>Linux</h4>
+        <p>Run <code>free -h</code> to see your memory. If you have an NVIDIA card, <code>nvidia-smi</code> shows its model and memory. As on Windows, the card's own memory decides how big a model runs fast.</p>
+      </div>
+    </div>
+    <p>Free up disk space too. Keep at least 20 GB free for the apps and your first model, and plan for several more gigabytes for each extra model.</p>
+    <div class="check"><p><strong>Check:</strong> you know your memory (RAM, and graphics memory on a PC) and you have 20 GB or more free.</p></div>
+
+<div class="ad-slot" data-ad-slot="banner-3"></div>
+<nav class="pager" aria-label="Guide pages">
+  <a class="next" href="install-ollama.html"><span>Next</span>Install Ollama and a model →</a>
+  <a class="back" href="index.html">← Back to the overview</a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="disclosure.html">Affiliate disclosure</a>
+      <a href="privacy.html">Privacy policy</a>
+      <a href="index.html#support">Support this guide</a>
+    </nav>
+    <p>© <span id="year">2026</span> Local Setup. Not affiliated with Anthropic, OpenAI, Google, Ollama, Docker, Open WebUI, LibreChat or Nous Research.</p>
+  </div>
+</footer>
+<div class="ad-sticky" data-ad-slot="banner-sticky"></div>
+<script src="assets/app.js?v=3"></script>
+</body>
+</html>

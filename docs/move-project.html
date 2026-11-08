@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Move your project and test it | Local Setup</title>
+<meta name="description" content="Rebuild your old project in the new workspace and test it before you cancel.">
+<link rel="stylesheet" href="assets/style.css?v=3">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">Local Setup</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="get-ready.html">Guide</a>
+      <a href="savings.html">Savings</a>
+      <a href="home-setup.html">Home setup</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<div class="page-head">
+  <p class="progress">Part 4 of 6</p>
+  <h1>Move your project and test it</h1>
+  <p class="lede">Recreate your old project in the new workspace, then test it on your real work before you cancel your subscription.</p>
+</div>
+<div class="ad-slot" data-ad-slot="banner-1"></div>
+    <h2 id="step-8"><span class="step-num">8</span>Rebuild your project as one workspace</h2>
+    <p>Recreate each old project as a preset: your local model plus your instructions plus your files, saved under the project's name. Here is how in Open WebUI, which has the closest match to a Claude project.</p>
+    <ol>
+      <li><strong>Add your files.</strong> Click your profile icon, then Workspace, then Knowledge, then create a new knowledge base. Name it after your project and upload everything from that project's <code>files</code> folder.</li>
+      <li><strong>Add your instructions.</strong> Go to Workspace, then Models, and create a new model. Give it your project's name, choose your downloaded model as the base, and paste <code>instructions.md</code> into the System Prompt box.</li>
+      <li><strong>Attach the knowledge.</strong> In the same screen, attach the knowledge base from the first step, and save.</li>
+      <li><strong>Add your memory.</strong> Paste anything from <code>memory.md</code> that should always apply onto the end of the system prompt.</li>
+    </ol>
+    <p>Your project now appears in the model menu of every new chat. In LibreChat, the matching feature is Agents, where you set instructions and attach files. In Hermes, paste your instructions into its config or first message, and point it at your project folder.</p>
+    <p>Read your old instructions through as you paste them, and cut lines that mention features the new setup does not have, such as artifacts or connected apps.</p>
+    <div class="check"><p><strong>Check:</strong> start a chat with your project preset and ask it to restate the project brief in its own words. Then ask something only one of your files can answer.</p></div>
+
+    <div class="ad-slot" data-ad-slot="banner-2"></div>
+<h2 id="step-9"><span class="step-num">9</span>Test it before you cancel</h2>
+    <p>Run your five most common real tasks on the new setup before you cancel your subscription. A local setup covers everyday work well and falls short on the hardest tasks, and only your own tasks can tell you which side you are on.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Task</th><th>Typical local result</th></tr></thead>
+        <tbody>
+          <tr><td>Drafting, rewriting, summarizing</td><td>Usually good enough for everyday use</td></tr>
+          <tr><td>Questions about your own files</td><td>Works once the knowledge base is set up; quality depends on the model</td></tr>
+          <tr><td>Brainstorming and outlines</td><td>Usually good</td></tr>
+          <tr><td>Hard multi-step reasoning or math</td><td>Often noticeably weaker than the top paid models</td></tr>
+          <tr><td>Large codebases or very long documents</td><td>Limited by how much text the model can hold at once</td></tr>
+          <tr><td>Speed</td><td>Set by your computer, not a server</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>What you gain:</strong> no monthly fee, no usage limits, and your files never leave your computer. Once set up, it works without the internet.</p>
+    <p><strong>What you give up:</strong> the extras around the model, such as artifacts, synced projects across devices, and connected apps. Some have local versions, but you set them up yourself.</p>
+    <p><strong>The middle path:</strong> keep a free account with a cloud AI for the few tasks where the local model disappoints, and do everything else locally. You drop the paid plan but keep a fallback.</p>
+    <div class="check"><p><strong>Check:</strong> your everyday tasks work. Now you can cancel the paid plan with confidence.</p></div>
+  <section id="troubleshooting">
+    <h2>Troubleshooting</h2>
+    <p>Most problems come from one of three things: Ollama is not running, Docker is not running, or the model is too big for your memory.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Problem</th><th>What to do</th></tr></thead>
+        <tbody>
+          <tr><td><code>ollama</code> command not found</td><td>Close and reopen the terminal. If it persists, open the Ollama app again and allow it to add its command.</td></tr>
+          <tr><td>Workspace loads but shows no models</td><td>Make sure Ollama is running. In Open WebUI, set the Ollama address under Admin Panel, Settings, Connections to <code>http://host.docker.internal:11434</code>. On Linux, use the host-network command in <a href="workspace.html#step-7">Step 7</a>.</td></tr>
+          <tr><td>The localhost page will not open</td><td>Open Docker Desktop and check that the container is running. Give it a minute or two after starting.</td></tr>
+          <tr><td>Port already in use</td><td>For Open WebUI, change <code>-p 3000:8080</code> to <code>-p 3001:8080</code> and open <code>localhost:3001</code>.</td></tr>
+          <tr><td>Replies are very slow, or the model will not load</td><td>Switch to a smaller model, or close other heavy apps.</td></tr>
+          <tr><td>The model forgets things in long chats or long files</td><td>Its context is too small. Raise <code>num_ctx</code> as in <a href="workspace.html#step-7">Option C</a>, if your memory allows.</td></tr>
+          <tr><td>Disk is filling up</td><td>Run <code>ollama list</code>, then remove models you don't use with <code>ollama rm</code> and the model name.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Updating Open WebUI later:</strong> run <code>docker pull ghcr.io/open-webui/open-webui:main</code>, remove the old container with <code>docker rm -f open-webui</code>, and run the Step 7 command again. Your chats and presets live in the <code>open-webui</code> volume, so they stay.</p>
+  </section>
+<div class="ad-slot" data-ad-slot="banner-3"></div>
+<nav class="pager" aria-label="Guide pages">
+  <a class="next" href="savings.html"><span>Next</span>What you save →</a>
+  <a class="back" href="workspace.html">← Back: Set up your workspace app</a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="disclosure.html">Affiliate disclosure</a>
+      <a href="privacy.html">Privacy policy</a>
+      <a href="index.html#support">Support this guide</a>
+    </nav>
+    <p>© <span id="year">2026</span> Local Setup. Not affiliated with Anthropic, OpenAI, Google, Ollama, Docker, Open WebUI, LibreChat or Nous Research.</p>
+  </div>
+</footer>
+<div class="ad-sticky" data-ad-slot="banner-sticky"></div>
+<script src="assets/app.js?v=3"></script>
+</body>
+</html>

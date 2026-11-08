@@ -8,8 +8,8 @@ This file sits outside `docs/`, so GitHub Pages does not publish it.
 |---|---|---|
 | Contact email (a site-specific address is better than a personal one) | contact.html, privacy.html | `CONTACT_EMAIL` |
 | Donation link (for example Buy Me a Coffee) | index.html, Support box | `data-placeholder="donation"` |
-| 9 affiliate links | index.html, gear section | `data-aff=` |
-| 4 ad slots | index.html | `class="ad-slot` (ids ad-1 to ad-4) |
+| 9 affiliate links | home-setup.html | `data-aff=` |
+| 4 ad spaces per guide page: 3 in the content plus 1 sticky bottom banner | every guide page | `data-ad-slot=` |
 | Site domain | robots.txt, sitemap.xml | `SITE_DOMAIN` |
 | Site name: Local Setup (chosen by Welles) | every page header, footer, titles | `Local Setup` |
 | Analytics service name, once chosen | privacy.html | "Analytics" section |

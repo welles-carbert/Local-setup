@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Install Ollama and a model | Local Setup</title>
+<meta name="description" content="Install the free model runner and download a model that fits your memory.">
+<link rel="stylesheet" href="assets/style.css?v=3">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">Local Setup</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="get-ready.html">Guide</a>
+      <a href="savings.html">Savings</a>
+      <a href="home-setup.html">Home setup</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<div class="page-head">
+  <p class="progress">Part 2 of 6</p>
+  <h1>Install Ollama and a model</h1>
+  <p class="lede">Ollama is the free program that runs AI models on your computer. Install it, then download a model sized to your memory.</p>
+</div>
+<div class="ad-slot" data-ad-slot="banner-1"></div>
+    <h2 id="step-3"><span class="step-num">3</span>Install Ollama</h2>
+    <p>Ollama is the free program that downloads AI models and runs them on your computer. Every workspace app in this guide talks to your model through Ollama, so it goes in first. Get it from <a href="https://ollama.com/download" rel="noopener">ollama.com/download</a>.</p>
+    <div class="tabs">
+      <div class="tab-list" role="tablist">
+        <button type="button" data-os="mac">Mac</button>
+        <button type="button" data-os="win">Windows</button>
+        <button type="button" data-os="linux">Linux</button>
+      </div>
+      <div class="tab-panel" data-os="mac">
+        <h4>Mac</h4>
+        <ol>
+          <li>Download the Mac version, open the file, and drag Ollama into Applications.</li>
+          <li>Open Ollama from Applications. If it asks to add its command to your system, allow it.</li>
+          <li>On Apple Silicon it uses the graphics automatically. There are no drivers to install.</li>
+        </ol>
+      </div>
+      <div class="tab-panel" data-os="win">
+        <h4>Windows</h4>
+        <ol>
+          <li>Download the Windows installer and run it.</li>
+          <li>Ollama starts in the background and shows an icon near the clock.</li>
+          <li>If you have an NVIDIA card, keep its driver up to date so Ollama can use it.</li>
+        </ol>
+      </div>
+      <div class="tab-panel" data-os="linux">
+        <h4>Linux</h4>
+        <p>Run the official install script:</p>
+        <div class="code"><pre><code>curl -fsSL https://ollama.com/install.sh | sh</code></pre></div>
+      </div>
+    </div>
+    <p>Then open a terminal (Terminal on Mac, PowerShell on Windows) and check it:</p>
+    <div class="code"><pre><code>ollama --version</code></pre></div>
+    <div class="check"><p><strong>Check:</strong> the terminal prints a version number. If it says the command is not found, close the terminal, open it again and retry.</p></div>
+
+    <div class="ad-slot" data-ad-slot="banner-2"></div>
+<h2 id="step-4"><span class="step-num">4</span>Download a model sized to your memory</h2>
+    <p>Pick a model whose download is no bigger than about half your memory. A model that is too big either will not load or answers painfully slowly. On a PC with a graphics card, size it to the card's memory for full speed. Bigger versions of the same model are smarter but slower, so start in your row and move up or down after you try it.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Your memory</th><th>Aim for a download of</th><th>Models to start with</th></tr></thead>
+        <tbody>
+          <tr><td>8 GB</td><td>up to about 4 GB</td><td><code>qwen3:4b</code> (2.5 GB)</td></tr>
+          <tr><td>16 GB</td><td>up to about 8 GB</td><td><code>qwen3:8b</code> (5.2 GB) or <code>gemma4:12b</code> (about 8 GB)</td></tr>
+          <tr><td>32 GB</td><td>up to about 16 GB</td><td><code>qwen3:14b</code> (9.3 GB) or <code>gemma4:26b</code> (16 to 19 GB, a tight fit)</td></tr>
+          <tr><td>48 GB or more</td><td>20 GB and up</td><td><code>gemma4:31b</code> (about 20 GB) or <code>qwen3:30b</code> (19 GB)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="meta">Sizes are from the Ollama library pages, checked November 6, 2026. They are starting suggestions, not benchmarks. Models change often, so check <a href="https://ollama.com/library" rel="noopener">ollama.com/library</a> for what is current.</p>
+    <p>Download and try the model in your terminal. Replace the name with the one from your row:</p>
+    <div class="code"><pre><code>ollama run qwen3:8b</code></pre></div>
+    <p>The first run downloads the model, which can take several minutes. Then a chat opens in the terminal. Ask it something, and type <code>/bye</code> to leave. These two commands show what you have downloaded and what is loaded right now:</p>
+    <div class="code"><pre><code>ollama list
+ollama ps</code></pre></div>
+    <div class="check"><p><strong>Check:</strong> the model answers a question at a speed you can live with. If replies crawl, pick a smaller model.</p></div>
+<div class="ad-slot" data-ad-slot="banner-3"></div>
+<nav class="pager" aria-label="Guide pages">
+  <a class="next" href="workspace.html"><span>Next</span>Set up your workspace app →</a>
+  <a class="back" href="get-ready.html">← Back: Get ready</a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="disclosure.html">Affiliate disclosure</a>
+      <a href="privacy.html">Privacy policy</a>
+      <a href="index.html#support">Support this guide</a>
+    </nav>
+    <p>© <span id="year">2026</span> Local Setup. Not affiliated with Anthropic, OpenAI, Google, Ollama, Docker, Open WebUI, LibreChat or Nous Research.</p>
+  </div>
+</footer>
+<div class="ad-sticky" data-ad-slot="banner-sticky"></div>
+<script src="assets/app.js?v=3"></script>
+</body>
+</html>

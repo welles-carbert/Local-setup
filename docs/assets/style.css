@@ -148,3 +148,19 @@ main > h2:first-of-type, .page-head + .ad-slot + h2 { margin-top: 40px; }
 .ad-sticky { position: fixed; left: 0; right: 0; bottom: 0; height: 60px; background: #fff; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: center; color: #999; font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; z-index: 10; }
 .ad-sticky::before { content: "Advertisement"; }
 @media (min-width: 760px) { .ad-sticky { height: 90px; } }
+
+/* Bigger tap targets on phones */
+.site-footer nav a, .site-nav a { display: inline-block; padding: 8px 0; }
+.site-footer nav { gap: 0 20px; }
+.copy { padding: 6px 12px; font-size: .8rem; }
+.slot a { display: inline-block; padding: 10px 0; }
+.pager .back { display: inline-block; padding: 8px 0; }
+
+/* Phones: less empty space up top so the reader sees content before the first ad */
+@media (max-width: 600px) {
+  .site-header .wrap { padding-top: 10px; padding-bottom: 6px; gap: 0 18px; }
+  .site-nav { gap: 0 16px; }
+  .page-head { padding-top: 24px; }
+  .page-head h1 { font-size: 1.6rem; }
+  .ad-slot { margin: 32px 0; min-height: 100px; }
+}

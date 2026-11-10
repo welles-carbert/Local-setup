@@ -5,7 +5,73 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Set up your workspace app | Local Setup</title>
 <meta name="description" content="Pick Open WebUI, LibreChat or Hermes Agent, install it, and connect it to your model.">
-<link rel="stylesheet" href="assets/style.css?v=3">
+<link rel="canonical" href="https://welles-carbert.github.io/Local-setup/workspace.html">
+<meta property="og:url" content="https://welles-carbert.github.io/Local-setup/workspace.html">
+<link rel="stylesheet" href="assets/style.css?v=4">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Local Setup",
+     "item": "https://welles-carbert.github.io/Local-setup/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Set up your workspace app",
+     "item": "https://welles-carbert.github.io/Local-setup/workspace.html"
+    }
+   ]
+  },
+  {
+   "@type": "HowTo",
+   "name": "Set up your workspace app",
+   "description": "Pick Open WebUI, LibreChat or Hermes Agent, install it, and connect it to your model.",
+   "url": "https://welles-carbert.github.io/Local-setup/workspace.html",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "name": "Choose your workspace app",
+     "url": "https://welles-carbert.github.io/Local-setup/workspace.html#step-5"
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Install Docker (for Open WebUI or LibreChat)",
+     "url": "https://welles-carbert.github.io/Local-setup/workspace.html#step-6"
+    },
+    {
+     "@type": "HowToStep",
+     "name": "Install the workspace and connect it to your model",
+     "url": "https://welles-carbert.github.io/Local-setup/workspace.html#step-7"
+    }
+   ]
+  },
+  {
+   "@type": "TechArticle",
+   "headline": "Set up your workspace app",
+   "description": "Pick Open WebUI, LibreChat or Hermes Agent, install it, and connect it to your model.",
+   "url": "https://welles-carbert.github.io/Local-setup/workspace.html",
+   "dateModified": "2026-11-10",
+   "author": {
+    "@type": "Organization",
+    "name": "Local Setup",
+    "url": "https://welles-carbert.github.io/Local-setup/"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Local Setup",
+    "url": "https://welles-carbert.github.io/Local-setup/"
+   }
+  }
+ ]
+}
+</script>
 </head>
 <body>
 <header class="site-header">
@@ -25,6 +91,7 @@
   <h1>Set up your workspace app</h1>
   <p class="lede">The workspace app is the window you work in every day. Pick one, install it, and connect it to the model you downloaded.</p>
 </div>
+<!-- AD SPOT 1 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-1"></div>
     <h2 id="step-5"><span class="step-num">5</span>Choose your workspace app</h2>
     <p>The workspace app is the window you work in every day, and it replaces the Claude or ChatGPT website. All of these are free and all of them can use the model you just downloaded. Pick one to start. You can add another later, since they all share the same Ollama models.</p>
@@ -75,7 +142,8 @@
     <div class="code"><pre><code>docker --version</code></pre></div>
     <div class="check"><p><strong>Check:</strong> the command prints a version, and Docker Desktop (on Mac and Windows) shows it is running. Ollama must also still be running.</p></div>
 
-    <div class="ad-slot" data-ad-slot="banner-2"></div>
+    <!-- AD SPOT 2 of 3: paste ad code inside this div -->
+<div class="ad-slot" data-ad-slot="banner-2"></div>
 <h2 id="step-7"><span class="step-num">7</span>Install the workspace and connect it to your model</h2>
     <p>Follow the part for the app you picked. In each case the app finds your model by talking to Ollama at port 11434 on your own computer. From inside Docker that address is <code>host.docker.internal:11434</code>, and from outside Docker it is <code>localhost:11434</code>.</p>
 
@@ -158,6 +226,7 @@ PARAMETER num_ctx 64000</code></pre></div>
     <p>Then start it with <code>hermes</code>.</p>
     <div class="check"><p><strong>Check:</strong> Hermes answers using your local model. A bigger context uses more memory, so if it becomes very slow, lower <code>num_ctx</code> or use a smaller model.</p></div>
 
+<!-- AD SPOT 3 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-3"></div>
 <nav class="pager" aria-label="Guide pages">
   <a class="next" href="move-project.html"><span>Next</span>Move your project and test it →</a>
@@ -171,12 +240,12 @@ PARAMETER num_ctx 64000</code></pre></div>
       <a href="contact.html">Contact</a>
       <a href="disclosure.html">Affiliate disclosure</a>
       <a href="privacy.html">Privacy policy</a>
-      <a href="index.html#support">Support this guide</a>
     </nav>
     <p>© <span id="year">2026</span> Local Setup. Not affiliated with Anthropic, OpenAI, Google, Ollama, Docker, Open WebUI, LibreChat or Nous Research.</p>
   </div>
 </footer>
+<!-- AD SPOT 4 (sticky bottom banner): paste ad code inside this div -->
 <div class="ad-sticky" data-ad-slot="banner-sticky"></div>
-<script src="assets/app.js?v=3"></script>
+<script src="assets/app.js?v=4"></script>
 </body>
 </html>

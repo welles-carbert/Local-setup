@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What AI model can my computer run? | Local Setup</title>
+<meta name="description" content="Check which open AI models will run fast on your computer, which will run slowly, and which will not fit.">
+<link rel="canonical" href="https://welles-carbert.github.io/Local-setup/what-can-i-run.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="What AI model can my computer run? | Local Setup">
+<meta property="og:description" content="Check which open AI models will run fast on your computer, which will run slowly, and which will not fit.">
+<meta property="og:url" content="https://welles-carbert.github.io/Local-setup/what-can-i-run.html">
+<link rel="stylesheet" href="assets/style.css?v=5">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Local Setup",
+     "item": "https://welles-carbert.github.io/Local-setup/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Hardware checker",
+     "item": "https://welles-carbert.github.io/Local-setup/what-can-i-run.html"
+    }
+   ]
+  },
+  {
+   "@type": "WebApplication",
+   "name": "Local AI Hardware Checker | Local Setup",
+   "url": "https://welles-carbert.github.io/Local-setup/what-can-i-run.html",
+   "applicationCategory": "UtilitiesApplication",
+   "operatingSystem": "All",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What happens if I try to run an AI model that is too large for my memory?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Your computer will either fail to load the model with an out-of-memory error, or it will spill into hard drive swap space. Swapping makes text generation painfully slow, often delivering only one word every several seconds."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does my computer processor (CPU) matter if I have enough RAM?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, but memory capacity and memory bandwidth matter more. On Macs, Apple Silicon chips include high-speed unified memory. On Windows and Linux PCs without a dedicated graphics card, modern CPUs run small models decently, but generation is significantly slower than with an NVIDIA GPU."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I increase my graphics memory (VRAM) without buying a new PC?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "On standard PCs, VRAM is soldered directly onto your graphics card and cannot be upgraded independently. To get more VRAM, you replace the graphics card. On Apple Silicon Macs, memory is shared, but it is fixed at purchase time and cannot be expanded later."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">Local Setup</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="get-ready.html">Guide</a>
+      <a href="what-can-i-run.html">Can I run it?</a>
+      <a href="cost-calculator.html">Calculator</a>
+      <a href="savings.html">Savings</a>
+      <a href="home-setup.html">Home setup</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<div class="page-head">
+  <h1>What can my computer run?</h1>
+  <p class="lede">Choose your computer type and memory below to see which models will answer quickly, which will feel sluggish, and where to start.</p>
+</div>
+
+<!-- AD SPOT 1 of 3: paste ad code inside this div -->
+<div class="ad-slot" data-ad-slot="banner-1"></div>
+
+<section id="hardware-checker" class="calc" aria-labelledby="tool-heading">
+  <h2 id="tool-heading" style="margin-top:0; font-size:1.25rem;">Check your computer's specs</h2>
+  <div class="calc-grid">
+    <div>
+      <label for="hw-type">Computer type</label>
+      <select id="hw-type">
+        <option value="mac">Mac with Apple Silicon (M1, M2, M3, M4)</option>
+        <option value="nvidia">Windows or Linux with NVIDIA graphics</option>
+        <option value="cpu">Computer with no graphics card (Intel/AMD integrated)</option>
+      </select>
+    </div>
+    <div>
+      <label for="hw-ram">System memory (RAM)</label>
+      <select id="hw-ram">
+        <option value="8">8 GB RAM</option>
+        <option value="16" selected>16 GB RAM</option>
+        <option value="24">24 GB RAM</option>
+        <option value="32">32 GB RAM</option>
+        <option value="48">48 GB RAM</option>
+        <option value="64">64 GB RAM or more</option>
+      </select>
+    </div>
+    <div id="vram-group" style="display:none;">
+      <label for="hw-vram">Graphics card memory (VRAM)</label>
+      <select id="hw-vram">
+        <option value="4">4 GB VRAM</option>
+        <option value="6">6 GB VRAM</option>
+        <option value="8" selected>8 GB VRAM</option>
+        <option value="12">12 GB VRAM</option>
+        <option value="16">16 GB VRAM</option>
+        <option value="24">24 GB VRAM</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="hw-result" class="calc-out" aria-live="polite" style="margin-top:24px;">
+    <p>Loading recommendations...</p>
+  </div>
+
+  <div class="note" style="margin-top:20px;">
+    <p><strong>How this rule works:</strong> an AI model must fit into your computer's fastest memory alongside the text of your conversation. If a model fits completely in memory with room to spare, it runs fast. If it slightly exceeds memory, your computer offloads layers to slower RAM or disk swap. Sizing your download to roughly half your available memory leaves comfortable space for your operating system and conversation context.</p>
+  </div>
+</section>
+
+<!-- AD SPOT 2 of 3: paste ad code inside this div -->
+<div class="ad-slot" data-ad-slot="banner-2"></div>
+
+<section id="faq">
+  <h2>Frequently asked questions</h2>
+  <h3>What happens if I try to run an AI model that is too large for my memory?</h3>
+  <p>Your computer will either fail to load the model with an out-of-memory error, or it will spill into hard drive swap space. Swapping makes text generation painfully slow, often delivering only one word every several seconds.</p>
+
+  <h3>Does my computer processor (CPU) matter if I have enough RAM?</h3>
+  <p>Yes, but memory capacity and memory bandwidth matter more. On Macs, Apple Silicon chips include high-speed unified memory. On Windows and Linux PCs without a dedicated graphics card, modern CPUs run small models decently, but generation is significantly slower than with an NVIDIA GPU.</p>
+
+  <h3>Can I increase my graphics memory (VRAM) without buying a new PC?</h3>
+  <p>On standard PCs, VRAM is soldered directly onto your graphics card and cannot be upgraded independently. To get more VRAM, you replace the graphics card. On Apple Silicon Macs, memory is shared, but it is fixed at purchase time and cannot be expanded later.</p>
+</section>
+
+<nav class="pager" aria-label="Related guide pages">
+  <a class="next" href="install-ollama.html"><span>Ready to install?</span>Download Ollama and your model →</a>
+  <a class="back" href="get-ready.html">← Back to Step 2: Check your computer</a>
+</nav>
+
+<!-- AD SPOT 3 of 3: paste ad code inside this div -->
+<div class="ad-slot" data-ad-slot="banner-3"></div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="disclosure.html">Affiliate disclosure</a>
+      <a href="privacy.html">Privacy policy</a>
+    </nav>
+    <p>© <span id="year">2026</span> Local Setup. Not affiliated with Anthropic, OpenAI, Google, Ollama, Docker, Open WebUI, LibreChat or Nous Research.</p>
+  </div>
+</footer>
+<!-- AD SPOT 4 (sticky bottom banner): paste ad code inside this div -->
+<div class="ad-sticky" data-ad-slot="banner-sticky"></div>
+<script src="assets/app.js?v=5"></script>
+</body>
+</html>

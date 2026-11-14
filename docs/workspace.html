@@ -6,8 +6,11 @@
 <title>Set up your workspace app | Local Setup</title>
 <meta name="description" content="Pick Open WebUI, LibreChat or Hermes Agent, install it, and connect it to your model.">
 <link rel="canonical" href="https://welles-carbert.github.io/Local-setup/workspace.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Set up your workspace app | Local Setup">
+<meta property="og:description" content="Pick Open WebUI, LibreChat or Hermes Agent, install it, and connect it to your model.">
 <meta property="og:url" content="https://welles-carbert.github.io/Local-setup/workspace.html">
-<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/style.css?v=5">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -34,6 +37,7 @@
    "name": "Set up your workspace app",
    "description": "Pick Open WebUI, LibreChat or Hermes Agent, install it, and connect it to your model.",
    "url": "https://welles-carbert.github.io/Local-setup/workspace.html",
+   "totalTime": "PT30M",
    "step": [
     {
      "@type": "HowToStep",
@@ -68,6 +72,43 @@
     "name": "Local Setup",
     "url": "https://welles-carbert.github.io/Local-setup/"
    }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Why is Docker required for Open WebUI and LibreChat?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Docker packages the entire web server, database, and front-end interface into a self-contained container. It ensures the software runs reliably across Mac, Windows, and Linux without requiring manual dependency installs."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does Open WebUI store my chats or files on the internet?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. When running Open WebUI locally, your chat history, accounts, and uploaded documents stay on your machine inside a local Docker volume. No telemetry or conversation data is sent out."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I access Open WebUI from my phone or laptop on home Wi-Fi?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Instead of browsing to localhost:3000, navigate to your host computer's local network IP address (e.g. http://192.168.1.50:3000) from any phone or tablet connected to your home Wi-Fi."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What can I use if I do not want to install Docker?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "If you want to skip Docker entirely, download LM Studio or AnythingLLM. Both are standalone desktop apps with simple installers that connect directly to your local models."
+     }
+    }
+   ]
   }
  ]
 }
@@ -79,6 +120,8 @@
     <a class="brand" href="index.html">Local Setup</a>
     <nav class="site-nav" aria-label="Main">
       <a href="get-ready.html">Guide</a>
+      <a href="what-can-i-run.html">Can I run it?</a>
+      <a href="cost-calculator.html">Calculator</a>
       <a href="savings.html">Savings</a>
       <a href="home-setup.html">Home setup</a>
       <a href="about.html">About</a>
@@ -87,87 +130,158 @@
 </header>
 <main class="wrap">
 <div class="page-head">
-  <p class="progress">Part 3 of 6</p>
+  <div class="progress-meta">
+    <span>Part 3 of 6</span>
+    <span>Takes about 20 to 30 minutes</span>
+  </div>
+  <div class="progress-track" aria-hidden="true"><div class="progress-fill" style="width: 50%;"></div></div>
   <h1>Set up your workspace app</h1>
   <p class="lede">The workspace app is the window you work in every day. Pick one, install it, and connect it to the model you downloaded.</p>
 </div>
+
+<nav class="on-this-page" aria-label="Steps on this page">
+  <strong>On this page</strong>
+  <ol>
+    <li><a href="#step-5">Step 5: Choose your workspace app</a></li>
+    <li><a href="#step-6">Step 6: Install Docker</a></li>
+    <li><a href="#step-7">Step 7: Install the workspace and connect it</a></li>
+    <li><a href="#faq">Frequently asked questions</a></li>
+  </ol>
+</nav>
+
 <!-- AD SPOT 1 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-1"></div>
-    <h2 id="step-5"><span class="step-num">5</span>Choose your workspace app</h2>
-    <p>The workspace app is the window you work in every day, and it replaces the Claude or ChatGPT website. All of these are free and all of them can use the model you just downloaded. Pick one to start. You can add another later, since they all share the same Ollama models.</p>
-    <div class="cards">
-      <div class="card pick">
-        <span class="tag">Start here</span>
-        <h4>Open WebUI</h4>
-        <p>The closest thing to a Claude project. A chat window in your browser with model presets, a system prompt per preset, and knowledge bases you upload files to.</p>
-        <p><strong>Needs:</strong> Docker. <strong>Best for:</strong> most people.</p>
-      </div>
-      <div class="card">
-        <span class="tag">Free</span>
-        <h4>LibreChat</h4>
-        <p>A ChatGPT-style chat window that can switch between your local model and any paid service you keep, in one place.</p>
-        <p><strong>Needs:</strong> Docker and Git. <strong>Best for:</strong> people mixing local and cloud models.</p>
-      </div>
-      <div class="card">
-        <span class="tag">Free</span>
-        <h4>Hermes Agent</h4>
-        <p>An open-source agent from Nous Research that does tasks rather than just chatting. It runs in the terminal and can also connect to apps like Telegram or Discord.</p>
-        <p><strong>Needs:</strong> no Docker, but a larger model. <strong>Best for:</strong> replacing a coding or task agent.</p>
-      </div>
-    </div>
-    <p>Prefer a regular desktop app over a browser window? LM Studio and AnythingLLM are free desktop apps that skip Docker. This guide covers the three above because they give you a full project workspace, but those two are good options if Docker gives you trouble.</p>
-    <div class="check"><p><strong>Check:</strong> you have picked one app. If you are not sure, pick Open WebUI.</p></div>
 
-    <h2 id="step-6"><span class="step-num">6</span>Install Docker (for Open WebUI or LibreChat)</h2>
-    <p>Docker runs the workspace app in a sealed box, so it installs the same way on every computer and does not touch the rest of your system. Skip this step if you chose Hermes Agent only. Docker Desktop is free for personal use and small businesses. Check <a href="https://www.docker.com/pricing/" rel="noopener">Docker's pricing page</a> if you use it for a larger company.</p>
-    <div class="tabs">
-      <div class="tab-list" role="tablist">
-        <button type="button" data-os="mac">Mac</button>
-        <button type="button" data-os="win">Windows</button>
-        <button type="button" data-os="linux">Linux</button>
-      </div>
-      <div class="tab-panel" data-os="mac">
-        <h4>Mac</h4>
-        <p>Download <a href="https://docs.docker.com/desktop/setup/install/mac-install/" rel="noopener">Docker Desktop for Mac</a>, choosing the Apple Silicon or Intel version to match your chip. Drag it into Applications, open it, and wait until it says Docker is running.</p>
-      </div>
-      <div class="tab-panel" data-os="win">
-        <h4>Windows</h4>
-        <p>Download <a href="https://docs.docker.com/desktop/setup/install/windows-install/" rel="noopener">Docker Desktop for Windows</a> and run the installer. Keep the WSL 2 option selected when it asks. Restart if prompted, then open Docker Desktop and wait until it says Docker is running.</p>
-      </div>
-      <div class="tab-panel" data-os="linux">
-        <h4>Linux</h4>
-        <p>Install <a href="https://docs.docker.com/engine/install/" rel="noopener">Docker Engine</a> using the instructions for your distribution, which include the Compose plugin that LibreChat needs.</p>
-      </div>
-    </div>
-    <div class="code"><pre><code>docker --version</code></pre></div>
-    <div class="check"><p><strong>Check:</strong> the command prints a version, and Docker Desktop (on Mac and Windows) shows it is running. Ollama must also still be running.</p></div>
+<section>
+  <h2 id="step-5"><span class="step-num">5</span>Choose your workspace app</h2>
+  <p>The workspace app provides the chat interface in your browser, replacing the web interfaces of Claude or ChatGPT. All three options below are free and connect directly to Ollama. If you are unsure, choose Open WebUI.</p>
 
-    <!-- AD SPOT 2 of 3: paste ad code inside this div -->
+  <div class="cards">
+    <div class="card pick">
+      <span class="tag">Recommended</span>
+      <h4>Open WebUI</h4>
+      <p>The closest direct replacement for a Claude project. Runs in your browser with custom model presets, system prompts, chat tagging, and document knowledge bases.</p>
+      <p><strong>Requires:</strong> Docker. <strong>Best for:</strong> general desktop productivity and project workflows.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Free</span>
+      <h4>LibreChat</h4>
+      <p>A multi-model chat interface designed to look like ChatGPT. Can switch between your local Ollama models and external APIs (OpenAI, Anthropic, Mistral) in one place.</p>
+      <p><strong>Requires:</strong> Docker and Git. <strong>Best for:</strong> power users who want local models alongside pay-as-you-go cloud keys.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Free</span>
+      <h4>Hermes Agent</h4>
+      <p>An autonomous agent from Nous Research designed for running multi-step tasks, shell commands, and terminal scripting.</p>
+      <p><strong>Requires:</strong> a larger model (31b+) and command line comfort. <strong>Best for:</strong> replacing terminal coding agents.</p>
+    </div>
+  </div>
+  <p><strong>Prefer a standard desktop app without Docker?</strong> Download <a href="https://lmstudio.ai" rel="noopener">LM Studio</a> or <a href="https://useanything.com" rel="noopener">AnythingLLM</a>. Both install like ordinary apps. This guide focuses on Open WebUI because its knowledge base system mirrors Claude projects most closely.</p>
+  <div class="check"><p><strong>Check:</strong> you have decided which app to install. (Most readers choose Open WebUI).</p></div>
+</section>
+
+<section>
+  <h2 id="step-6"><span class="step-num">6</span>Install Docker (for Open WebUI or LibreChat)</h2>
+  <p>Docker runs your workspace app in an isolated software container. It ensures Open WebUI sets up cleanly on any operating system without complex manual package installations. Docker Desktop is free for personal, educational, and small business use.</p>
+
+  <div class="tabs">
+    <div class="tab-list" role="tablist">
+      <button type="button" data-os="mac">Mac</button>
+      <button type="button" data-os="win">Windows</button>
+      <button type="button" data-os="linux">Linux</button>
+    </div>
+    <div class="tab-panel" data-os="mac">
+      <h4>Mac</h4>
+      <ol>
+        <li>Download <a href="https://docs.docker.com/desktop/setup/install/mac-install/" rel="noopener">Docker Desktop for Mac</a>. Select <strong>Apple Silicon</strong> (M1-M4) or <strong>Intel</strong> to match your Mac chip.</li>
+        <li>Open the <code>.dmg</code> file and drag the Docker icon into your <code>Applications</code> folder.</li>
+        <li>Open Docker from Applications. Accept the service agreement. Wait until the whale icon in your top menu bar shows a green dot indicating "Docker Desktop is running."</li>
+      </ol>
+    </div>
+    <div class="tab-panel" data-os="win">
+      <h4>Windows</h4>
+      <ol>
+        <li>Download <a href="https://docs.docker.com/desktop/setup/install/windows-install/" rel="noopener">Docker Desktop for Windows</a>.</li>
+        <li>Run the installer. Ensure the checkbox for <strong>Use WSL 2 instead of Hyper-V</strong> is checked.</li>
+        <li>Restart your PC when prompted by the installer.</li>
+        <li>Launch Docker Desktop from the Start menu. Wait until the bottom-left status indicator turns green with "Engine running."</li>
+      </ol>
+    </div>
+    <div class="tab-panel" data-os="linux">
+      <h4>Linux</h4>
+      <p>Install the standard Docker Engine and Compose plugin for your distribution from <a href="https://docs.docker.com/engine/install/" rel="noopener">docs.docker.com/engine/install</a>, then start the service:</p>
+      <div class="code"><pre><code>sudo systemctl enable --now docker</code></pre></div>
+    </div>
+  </div>
+
+  <p>Test that Docker is ready by opening your terminal and running:</p>
+  <div class="code"><pre><code>docker --version</code></pre></div>
+  <p><strong>What normal looks like:</strong> the command prints <code>Docker version 27.x.x</code> (or newer) and exits cleanly.</p>
+
+  <div class="note">
+    <p><strong>If this goes wrong:</strong></p>
+    <ul>
+      <li><strong>Windows WSL 2 error ("WSL 2 installation is incomplete"):</strong> open PowerShell as Administrator and run <code>wsl --update</code>, then restart your computer.</li>
+      <li><strong>"Cannot connect to the Docker daemon":</strong> Docker Desktop is not fully booted. Open the Docker Desktop application and wait 30 seconds for the engine to initialize.</li>
+    </ul>
+  </div>
+  <div class="check"><p><strong>Check:</strong> running <code>docker --version</code> returns a version number, and Docker Desktop shows the engine is running.</p></div>
+</section>
+
+<!-- AD SPOT 2 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-2"></div>
-<h2 id="step-7"><span class="step-num">7</span>Install the workspace and connect it to your model</h2>
-    <p>Follow the part for the app you picked. In each case the app finds your model by talking to Ollama at port 11434 on your own computer. From inside Docker that address is <code>host.docker.internal:11434</code>, and from outside Docker it is <code>localhost:11434</code>.</p>
 
-    <h3>Option A: Open WebUI</h3>
-    <p>Run this one command in your terminal. It downloads Open WebUI, starts it, and points it at Ollama on your computer. This is the method Open WebUI's own docs recommend.</p>
-    <div class="code"><pre><code>docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main</code></pre></div>
-    <ol>
-      <li>Wait a minute or two, then open <a href="http://localhost:3000">http://localhost:3000</a> in your browser.</li>
-      <li>Create an account. It lives only on your computer, not online. The first account you create is the admin.</li>
-      <li>Start a new chat and choose your model from the menu at the top.</li>
-    </ol>
-    <p>If the model menu is empty, open Admin Panel, then Settings, then Connections, and set the Ollama address to <code>http://host.docker.internal:11434</code>.</p>
-    <div class="note"><p><strong>Linux:</strong> Ollama only listens to your own machine by default, so the container may not reach it. The simplest fix is to run Open WebUI on the host network instead, then open <code>http://localhost:8080</code>:</p></div>
-    <div class="code"><pre><code>docker run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main</code></pre></div>
-    <div class="check"><p><strong>Check:</strong> you can chat with your model in the browser.</p></div>
+<section>
+  <h2 id="step-7"><span class="step-num">7</span>Install the workspace and connect it to your model</h2>
+  <p>Follow the instructions for your selected app. All apps talk to Ollama over local port <code>11434</code>.</p>
 
-    <h3>Option B: LibreChat</h3>
-    <p>LibreChat installs from its code repository, so you also need <a href="https://git-scm.com/downloads" rel="noopener">Git</a>. Run these in your terminal, one at a time. On Windows, use <code>copy .env.example .env</code> for the third line.</p>
-    <div class="code"><pre><code>git clone https://github.com/LibreChat-AI/LibreChat.git
+  <h3>Option A: Open WebUI (Recommended)</h3>
+  <p>Open your terminal and run the official start command:</p>
+
+  <div class="tabs">
+    <div class="tab-list" role="tablist">
+      <button type="button" data-os="mac">Mac / Windows</button>
+      <button type="button" data-os="linux">Linux</button>
+    </div>
+    <div class="tab-panel" data-os="mac">
+      <h4>Mac / Windows</h4>
+      <div class="code"><pre><code>docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main</code></pre></div>
+    </div>
+    <div class="tab-panel" data-os="linux">
+      <h4>Linux</h4>
+      <p>On Linux, Docker runs directly on the host network so it can communicate with Ollama listening on <code>127.0.0.1</code>:</p>
+      <div class="code"><pre><code>docker run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main</code></pre></div>
+      <p class="meta">On Linux with host network, Open WebUI will be reached at <code>http://localhost:8080</code> instead of <code>3000</code>.</p>
+    </div>
+  </div>
+
+  <p><strong>What normal looks like:</strong> Docker downloads the Open WebUI container image and prints a long string of letters and numbers (the container ID). Wait about 60 seconds for the internal server to start.</p>
+
+  <ol>
+    <li>Open your web browser and go to <a href="http://localhost:3000">http://localhost:3000</a> (or <a href="http://localhost:8080">http://localhost:8080</a> on Linux).</li>
+    <li>Click <strong>Sign up</strong>. Enter any name, email, and password. This account is entirely local to your computer and never leaves your machine. The first account created becomes the Admin.</li>
+    <li>Once logged in, look at the top model selection dropdown. Click it; your downloaded model (e.g. <code>qwen3:8b</code>) should appear automatically.</li>
+    <li>Type a message into the chat bar and hit send.</li>
+  </ol>
+
+  <div class="note">
+    <p><strong>If this goes wrong:</strong></p>
+    <ul>
+      <li><strong>The browser says "Unable to connect" or "Site can't be reached":</strong> Open Docker Desktop, click <strong>Containers</strong>, and check if <code>open-webui</code> is green. If it is yellow or stopped, wait a minute or click the Play icon.</li>
+      <li><strong>Model menu is empty:</strong> Ollama is either closed or unreachable. Make sure the Ollama menu icon is visible. In Open WebUI, go to <strong>User Profile (bottom left)</strong> → <strong>Admin Panel</strong> → <strong>Settings</strong> → <strong>Connections</strong>. Verify the Ollama URL is set to <code>http://host.docker.internal:11434</code> (or <code>http://localhost:11434</code> on Linux) and click the refresh icon.</li>
+      <li><strong>Port 3000 is already in use:</strong> change <code>-p 3000:8080</code> in the run command to <code>-p 3005:8080</code>, then open <code>http://localhost:3005</code>.</li>
+    </ul>
+  </div>
+  <div class="check"><p><strong>Check:</strong> you can open Open WebUI in your browser and receive a generated response from your model.</p></div>
+
+  <h3>Option B: LibreChat</h3>
+  <p>If you prefer LibreChat, clone its repository and configure its connection to Ollama:</p>
+  <div class="code"><pre><code>git clone https://github.com/LibreChat-AI/LibreChat.git
 cd LibreChat
 cp .env.example .env
 cp docker-compose.override.yml.example docker-compose.override.yml</code></pre></div>
-    <p>Now tell LibreChat about Ollama. Create a file named <code>librechat.yaml</code> in the LibreChat folder with this in it. The API key can be any word, because Ollama ignores it.</p>
-    <div class="code"><pre><code>version: 1.2.1
+  <p>Create a file named <code>librechat.yaml</code> in the <code>LibreChat</code> directory with this configuration:</p>
+  <div class="code"><pre><code>version: 1.2.1
 endpoints:
   custom:
     - name: "Ollama"
@@ -178,58 +292,65 @@ endpoints:
         fetch: true
       titleConvo: true
       titleModel: "current_model"</code></pre></div>
-    <p>Open <code>docker-compose.override.yml</code> and make sure the lines that mount <code>librechat.yaml</code> are not commented out (remove the <code>#</code> in front of them). Then start it:</p>
-    <div class="code"><pre><code>docker compose up -d</code></pre></div>
-    <ol>
-      <li>The first start takes a few minutes. Then open <a href="http://localhost:3080">http://localhost:3080</a>.</li>
-      <li>Click Sign up and create your account. The first account is the admin.</li>
-      <li>Pick Ollama from the endpoint menu, then your model.</li>
-    </ol>
-    <p>Edited the YAML file later? Restart with <code>docker compose down</code> and then <code>docker compose up -d</code>.</p>
-    <div class="check"><p><strong>Check:</strong> Ollama appears in the endpoint menu and your model answers.</p></div>
+  <p>Start LibreChat using Docker Compose:</p>
+  <div class="code"><pre><code>docker compose up -d</code></pre></div>
+  <p>Open <a href="http://localhost:3080">http://localhost:3080</a>, create your local account, and select Ollama from the model endpoint picker.</p>
 
-    <h3>Option C: Hermes Agent</h3>
-    <p>Hermes needs a bigger model and a bigger working memory (its "context") than plain chat, because an agent reads tool results as it works. Its docs suggest <code>gemma4:31b</code>, which needs around 24 GB of memory or more. Install it with the command for your system:</p>
-    <div class="tabs">
-      <div class="tab-list" role="tablist">
-        <button type="button" data-os="mac">Mac</button>
-        <button type="button" data-os="win">Windows</button>
-        <button type="button" data-os="linux">Linux</button>
-      </div>
-      <div class="tab-panel" data-os="mac">
-        <h4>Mac</h4>
-        <div class="code"><pre><code>curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
-source ~/.zshrc</code></pre></div>
-      </div>
-      <div class="tab-panel" data-os="win">
-        <h4>Windows (PowerShell)</h4>
-        <div class="code"><pre><code>iex (irm https://hermes-agent.nousresearch.com/install.ps1)</code></pre></div>
-        <p>Close and reopen PowerShell afterwards.</p>
-      </div>
-      <div class="tab-panel" data-os="linux">
-        <h4>Linux</h4>
-        <div class="code"><pre><code>curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
-source ~/.bashrc</code></pre></div>
-      </div>
+  <h3>Option C: Hermes Agent</h3>
+  <p>Hermes Agent is a command-line agent tool. Install it using the script for your system:</p>
+
+  <div class="tabs">
+    <div class="tab-list" role="tablist">
+      <button type="button" data-os="mac">Mac</button>
+      <button type="button" data-os="win">Windows</button>
+      <button type="button" data-os="linux">Linux</button>
     </div>
-    <p>Then give your model a bigger context. Ollama's default context is small, and Hermes' docs say agent work needs at least 64,000 tokens. Make a plain text file named <code>Modelfile</code> with these two lines:</p>
-    <div class="code"><pre><code>FROM gemma4:31b
+    <div class="tab-panel" data-os="mac">
+      <h4>Mac</h4>
+      <div class="code"><pre><code>curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+source ~/.zshrc</code></pre></div>
+    </div>
+    <div class="tab-panel" data-os="win">
+      <h4>Windows (PowerShell)</h4>
+      <div class="code"><pre><code>iex (irm https://hermes-agent.nousresearch.com/install.ps1)</code></pre></div>
+      <p>Restart PowerShell after installation.</p>
+    </div>
+    <div class="tab-panel" data-os="linux">
+      <h4>Linux</h4>
+      <div class="code"><pre><code>curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+source ~/.bashrc</code></pre></div>
+    </div>
+  </div>
+
+  <p>Agents require an expanded context window to hold multi-step tool calls. Create a file named <code>Modelfile</code> with:</p>
+  <div class="code"><pre><code>FROM gemma4:31b
 PARAMETER num_ctx 64000</code></pre></div>
-    <p>In the same folder, build a copy of the model with that setting:</p>
-    <div class="code"><pre><code>ollama create gemma4-64k -f Modelfile</code></pre></div>
-    <p>Now connect Hermes to it. Run <code>hermes setup</code>, choose Custom Endpoint, and enter:</p>
-    <ul>
-      <li>Base URL: <code>http://localhost:11434/v1</code></li>
-      <li>API key: leave it empty</li>
-      <li>Model: <code>gemma4-64k</code></li>
-    </ul>
-    <p>Then start it with <code>hermes</code>.</p>
-    <div class="check"><p><strong>Check:</strong> Hermes answers using your local model. A bigger context uses more memory, so if it becomes very slow, lower <code>num_ctx</code> or use a smaller model.</p></div>
+  <p>Build the customized model and run the setup wizard:</p>
+  <div class="code"><pre><code>ollama create gemma4-64k -f Modelfile
+hermes setup</code></pre></div>
+  <p>Choose <strong>Custom Endpoint</strong>, set Base URL to <code>http://localhost:11434/v1</code>, leave API key blank, and set model to <code>gemma4-64k</code>. Launch Hermes anytime by typing <code>hermes</code> in your terminal.</p>
+</section>
+
+<section id="faq">
+  <h2>Frequently asked questions</h2>
+  <h3>Why is Docker required for Open WebUI and LibreChat?</h3>
+  <p>Docker packages the entire web server, database, and front-end interface into a self-contained container. It ensures the software runs reliably across Mac, Windows, and Linux without requiring manual dependency installs.</p>
+
+  <h3>Does Open WebUI store my chats or files on the internet?</h3>
+  <p>No. When running Open WebUI locally, your chat history, accounts, and uploaded documents stay on your machine inside a local Docker volume. No telemetry or conversation data is sent out.</p>
+
+  <h3>Can I access Open WebUI from my phone or laptop on home Wi-Fi?</h3>
+  <p>Yes. Instead of browsing to localhost:3000, navigate to your host computer's local network IP address (e.g. <code>http://192.168.1.50:3000</code>) from any phone or tablet connected to your home Wi-Fi.</p>
+
+  <h3>What can I use if I do not want to install Docker?</h3>
+  <p>If you want to skip Docker entirely, download LM Studio or AnythingLLM. Both are standalone desktop apps with simple installers that connect directly to your local models.</p>
+</section>
 
 <!-- AD SPOT 3 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-3"></div>
+
 <nav class="pager" aria-label="Guide pages">
-  <a class="next" href="move-project.html"><span>Next</span>Move your project and test it →</a>
+  <a class="next" href="move-project.html"><span>Next step</span>Move your project and test it →</a>
   <a class="back" href="install-ollama.html">← Back: Install Ollama and a model</a>
 </nav>
 </main>
@@ -246,6 +367,6 @@ PARAMETER num_ctx 64000</code></pre></div>
 </footer>
 <!-- AD SPOT 4 (sticky bottom banner): paste ad code inside this div -->
 <div class="ad-sticky" data-ad-slot="banner-sticky"></div>
-<script src="assets/app.js?v=4"></script>
+<script src="assets/app.js?v=5"></script>
 </body>
 </html>

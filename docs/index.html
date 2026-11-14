@@ -4,10 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Move Your AI Workspace Off Subscriptions to Free Local AI | Local Setup</title>
-<meta name="description" content="A step-by-step process for replacing Claude, ChatGPT or Gemini subscriptions with a free local AI workspace: Ollama, a model sized to your RAM, and Open WebUI, LibreChat or Hermes Agent.">
+<meta name="description" content="A step-by-step process for replacing Claude, ChatGPT or Gemini subscriptions with a free local AI workspace: Ollama, a model sized to your RAM, and Open WebUI.">
 <link rel="canonical" href="https://welles-carbert.github.io/Local-setup/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Move Your AI Workspace Off Subscriptions to Free Local AI | Local Setup">
+<meta property="og:description" content="A step-by-step process for replacing Claude, ChatGPT or Gemini subscriptions with a free local AI workspace: Ollama, a model sized to your RAM, and Open WebUI.">
 <meta property="og:url" content="https://welles-carbert.github.io/Local-setup/">
-<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/style.css?v=5">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -78,6 +81,51 @@
      "url": "https://welles-carbert.github.io/Local-setup/move-project.html"
     }
    ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Can a local model really replace a $20-a-month subscription?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "For drafting, rewriting, summarizing, brainstorming, and querying your own documents, yes. Modern open models run locally handle everyday desktop tasks well. Top commercial cloud models still perform better at advanced coding, multi-step math, and massive context analysis."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do I need a high-end graphics card to run AI locally?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Any Apple Silicon Mac (M1 through M4) runs local models directly from unified system memory. On Windows and Linux, a dedicated NVIDIA card makes generation faster, but models will still run on your main CPU and RAM alone."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is it completely free to run AI on my computer?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Ollama, open-weight models, Docker Desktop for personal use, and workspace apps like Open WebUI are open source or free for personal use. Your only expense is the electricity your computer uses while generating text."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does local AI work offline without an internet connection?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Once you complete the one-time download of your chosen model and workspace app, everything processes entirely on your physical machine. You can disconnect Wi-Fi and continue chatting."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Will running local AI slow down my other applications?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "While generating a reply, a local model will use processor or graphics capacity and hold its working size in memory. When idle, Ollama unloads the model from memory after five minutes by default so your machine returns to normal speed."
+     }
+    }
+   ]
   }
  ]
 }
@@ -89,6 +137,8 @@
     <a class="brand" href="index.html">Local Setup</a>
     <nav class="site-nav" aria-label="Main">
       <a href="get-ready.html">Guide</a>
+      <a href="what-can-i-run.html">Can I run it?</a>
+      <a href="cost-calculator.html">Calculator</a>
       <a href="savings.html">Savings</a>
       <a href="home-setup.html">Home setup</a>
       <a href="about.html">About</a>
@@ -96,52 +146,104 @@
   </div>
 </header>
 <main class="wrap">
-<div class="page-head">
-  <h1>Move your AI workspace off subscriptions and onto free local AI</h1>
-  <p class="lede">This guide replaces a paid AI plan such as Claude, ChatGPT or Gemini with a free workspace that runs on your own computer. It takes about an hour or two, mostly waiting for downloads, and the software costs nothing.</p>
-  <p class="meta">Works on Mac, Windows and Linux · Last checked November 6, 2026</p>
+<div class="hero">
+  <h1>Move your AI workspace off subscriptions to free local AI</h1>
+  <p class="lede">Replace paid monthly plans like Claude, ChatGPT or Gemini with a private workspace on your own computer. The software costs nothing, your files stay on your disk, and you can test everything before canceling.</p>
+
+  <div class="glance-grid">
+    <div class="glance-item">
+      <strong>Software Cost</strong>
+      <span>$0 free</span>
+    </div>
+    <div class="glance-item">
+      <strong>You Save</strong>
+      <span>$240–$2,400/yr</span>
+    </div>
+    <div class="glance-item">
+      <strong>Setup Time</strong>
+      <span>1 to 2 hours</span>
+    </div>
+    <div class="glance-item">
+      <strong>Hardware</strong>
+      <span>Mac M1+ or 16GB PC</span>
+    </div>
+  </div>
+
+  <p>
+    <a class="btn-start" href="get-ready.html">Start the guide →</a>
+    <span style="display:inline-block; margin-left:14px; font-size:.95rem;">or <a href="what-can-i-run.html">check your specs</a> · <a href="cost-calculator.html">compare costs</a></span>
+  </p>
+  <p class="meta">Works on Mac, Windows and Linux · Last checked November 10, 2026</p>
 </div>
+
 <!-- AD SPOT 1 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-1"></div>
-    <h2>What replaces what</h2>
-    <p>A paid AI plan bundles four things together: the model, the chat app, your projects, and sometimes an agent that does tasks for you. On a local setup each one is a separate free tool, and this guide installs them in order.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>What you pay for now</th><th>Free local replacement</th><th>Step</th></tr></thead>
-        <tbody>
-          <tr><td>The AI model (Claude, GPT, Gemini)</td><td>An open model such as Gemma, Qwen or Llama, run by <strong>Ollama</strong></td><td>3 and 4</td></tr>
-          <tr><td>The chat app in your browser</td><td><strong>Open WebUI</strong> or <strong>LibreChat</strong>, which run in <strong>Docker</strong></td><td>5 to 7</td></tr>
-          <tr><td>Projects with instructions and files</td><td>A model preset with a system prompt and a knowledge base inside the workspace app</td><td>8</td></tr>
-          <tr><td>An agent that runs tasks (like Claude Code)</td><td><strong>Hermes Agent</strong>, a free open-source agent that can use your local model</td><td>5 and 7</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="note"><p><strong>Set your expectations first.</strong> A local model is not Claude or GPT. How fast and how capable it is depends on your computer's memory and the model you pick. Expect it to handle everyday writing, summarizing and questions about your own files well, and expect it to fall short on hard reasoning and very long inputs. Step 9 shows how to test this before you cancel anything.</p></div>
-<h2>The guide, one page at a time</h2>
-<ol class="steps">
-  <li><a href="get-ready.html">Get ready</a><br><span>Save your current AI setup and check your computer before you install anything.</span></li>
-  <li><a href="install-ollama.html">Install Ollama and a model</a><br><span>Install the free model runner and download a model that fits your memory.</span></li>
-  <li><a href="workspace.html">Set up your workspace app</a><br><span>Pick Open WebUI, LibreChat or Hermes Agent, install it, and connect it to your model.</span></li>
-  <li><a href="move-project.html">Move your project and test it</a><br><span>Rebuild your old project in the new workspace and test it before you cancel.</span></li>
-  <li><a href="savings.html">What you save</a><br><span>The break-even math, with a calculator for your own numbers.</span></li>
-  <li><a href="home-setup.html">Build your own home setup</a><br><span>The gear and software for a dedicated local AI workspace, free options first.</span></li>
-</ol>
-<nav class="pager"><a class="next" href="get-ready.html"><span>Start here</span>Get ready →</a></nav>
+
+<section>
+  <h2>What replaces what</h2>
+  <p>A paid AI plan bundles four things together: the model, the chat app, your projects, and sometimes an agent that does tasks for you. On a local setup each one is a separate free tool, and this guide installs them in order.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>What you pay for now</th><th>Free local replacement</th><th>Guide step</th></tr></thead>
+      <tbody>
+        <tr><td>The AI model (Claude, GPT, Gemini)</td><td>An open model such as Gemma, Qwen or Llama, run by <strong>Ollama</strong></td><td>Steps 3 and 4</td></tr>
+        <tr><td>The chat app in your browser</td><td><strong>Open WebUI</strong> or <strong>LibreChat</strong>, which run in <strong>Docker</strong></td><td>Steps 5 to 7</td></tr>
+        <tr><td>Projects with instructions and files</td><td>A model preset with a system prompt and a knowledge base inside the workspace app</td><td>Step 8</td></tr>
+        <tr><td>An agent that runs tasks (like Claude Code)</td><td><strong>Hermes Agent</strong>, a free open-source agent that can use your local model</td><td>Steps 5 and 7</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note"><p><strong>Set your expectations first.</strong> A local model is not Claude or GPT. How fast and how capable it is depends on your computer's memory and the model you pick. Expect it to handle everyday writing, summarizing and questions about your own files well, and expect it to fall short on hard reasoning and very long inputs. Step 9 shows how to test this before you cancel anything.</p></div>
+</section>
+
+<section>
+  <h2>The guide, one page at a time</h2>
+  <ol class="steps">
+    <li><a href="get-ready.html">Get ready</a><br><span>Save your current AI setup and check your computer before you install anything. (15 minutes)</span></li>
+    <li><a href="install-ollama.html">Install Ollama and a model</a><br><span>Install the free model runner and download a model that fits your memory. (15 to 30 minutes)</span></li>
+    <li><a href="workspace.html">Set up your workspace app</a><br><span>Pick Open WebUI, LibreChat or Hermes Agent, install it, and connect it to your model. (20 to 30 minutes)</span></li>
+    <li><a href="move-project.html">Move your project and test it</a><br><span>Rebuild your old project in the new workspace and test it before you cancel. (20 minutes)</span></li>
+    <li><a href="savings.html">What you save</a><br><span>The break-even math, with a calculator for your own numbers.</span></li>
+    <li><a href="home-setup.html">Build your own home setup</a><br><span>The gear and software for a dedicated local AI workspace, free options first.</span></li>
+  </ol>
+  <nav class="pager"><a class="next" href="get-ready.html"><span>Step 1 of 6</span>Get ready →</a></nav>
+</section>
+
 <!-- AD SPOT 2 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-2"></div>
-  <section>
-    <h2>Sources</h2>
-    <p class="meta">Checked November 6, 2026. Tools update often; if a step here no longer matches what you see, the official docs below are the authority.</p>
-    <ul class="sources">
-      <li><a href="https://ollama.com/download" rel="noopener">Ollama downloads</a> and <a href="https://docs.ollama.com/macos" rel="noopener">Ollama macOS docs</a>, for install steps and system requirements</li>
-      <li><a href="https://ollama.com/library/qwen3" rel="noopener">Ollama library: Qwen3</a> and <a href="https://ollama.com/library/gemma4" rel="noopener">Ollama library: Gemma 4</a>, for model sizes</li>
-      <li><a href="https://docs.openwebui.com/" rel="noopener">Open WebUI docs</a>, for the Docker install and workspace features</li>
-      <li><a href="https://www.librechat.ai/docs/local/docker" rel="noopener">LibreChat: Docker install</a> and <a href="https://www.librechat.ai/docs/quick_start/custom_endpoints" rel="noopener">LibreChat: custom endpoints</a>, for the install and Ollama config</li>
-      <li><a href="https://hermes-agent.nousresearch.com/docs/getting-started/quickstart" rel="noopener">Hermes Agent quickstart</a> and <a href="https://hermes-agent.nousresearch.com/docs/guides/local-ollama-setup" rel="noopener">Hermes Agent: local Ollama setup</a>, for install, model and context settings</li>
-      <li><a href="https://docs.docker.com/desktop/" rel="noopener">Docker Desktop docs</a>, for install on each system</li>
-      <li>Plan prices from provider pricing pages as summarized by Dupple, chudi.dev and BenchLM, October 2026</li>
-    </ul>
-  </section>
+
+<section id="faq">
+  <h2>Frequently asked questions</h2>
+  <h3>Can a local model really replace a $20-a-month subscription?</h3>
+  <p>For drafting, rewriting, summarizing, brainstorming, and querying your own documents, yes. Modern open models run locally handle everyday desktop tasks well. Top commercial cloud models still perform better at advanced coding, multi-step math, and massive context analysis.</p>
+
+  <h3>Do I need a high-end graphics card to run AI locally?</h3>
+  <p>No. Any Apple Silicon Mac (M1 through M4) runs local models directly from unified system memory. On Windows and Linux, a dedicated NVIDIA card makes generation faster, but models will still run on your main CPU and RAM alone.</p>
+
+  <h3>Is it completely free to run AI on my computer?</h3>
+  <p>Yes. Ollama, open-weight models, Docker Desktop for personal use, and workspace apps like Open WebUI are open source or free for personal use. Your only expense is the electricity your computer uses while generating text.</p>
+
+  <h3>Does local AI work offline without an internet connection?</h3>
+  <p>Yes. Once you complete the one-time download of your chosen model and workspace app, everything processes entirely on your physical machine. You can disconnect Wi-Fi and continue chatting.</p>
+
+  <h3>Will running local AI slow down my other applications?</h3>
+  <p>While generating a reply, a local model will use processor or graphics capacity and hold its working size in memory. When idle, Ollama unloads the model from memory after five minutes by default so your machine returns to normal speed.</p>
+</section>
+
+<section>
+  <h2>Sources</h2>
+  <p class="meta">Checked November 10, 2026. Tools update often; if a step here no longer matches what you see, the official docs below are the authority.</p>
+  <ul class="sources">
+    <li><a href="https://ollama.com/download" rel="noopener">Ollama downloads</a> and <a href="https://docs.ollama.com/macos" rel="noopener">Ollama macOS docs</a>, for install steps and system requirements</li>
+    <li><a href="https://ollama.com/library/qwen3" rel="noopener">Ollama library: Qwen3</a> and <a href="https://ollama.com/library/gemma4" rel="noopener">Ollama library: Gemma 4</a>, for model sizes</li>
+    <li><a href="https://docs.openwebui.com/" rel="noopener">Open WebUI docs</a>, for the Docker install and workspace features</li>
+    <li><a href="https://www.librechat.ai/docs/local/docker" rel="noopener">LibreChat: Docker install</a> and <a href="https://www.librechat.ai/docs/quick_start/custom_endpoints" rel="noopener">LibreChat: custom endpoints</a>, for the install and Ollama config</li>
+    <li><a href="https://hermes-agent.nousresearch.com/docs/getting-started/quickstart" rel="noopener">Hermes Agent quickstart</a> and <a href="https://hermes-agent.nousresearch.com/docs/guides/local-ollama-setup" rel="noopener">Hermes Agent: local Ollama setup</a>, for install, model and context settings</li>
+    <li><a href="https://docs.docker.com/desktop/" rel="noopener">Docker Desktop docs</a>, for install on each system</li>
+    <li>Plan prices from provider pricing pages as summarized by Dupple, chudi.dev and BenchLM, October 2026</li>
+  </ul>
+</section>
+
 <!-- AD SPOT 3 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-3"></div>
 </main>
@@ -158,6 +260,6 @@
 </footer>
 <!-- AD SPOT 4 (sticky bottom banner): paste ad code inside this div -->
 <div class="ad-sticky" data-ad-slot="banner-sticky"></div>
-<script src="assets/app.js?v=4"></script>
+<script src="assets/app.js?v=5"></script>
 </body>
 </html>

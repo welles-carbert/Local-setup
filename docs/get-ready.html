@@ -6,8 +6,11 @@
 <title>Get ready | Local Setup</title>
 <meta name="description" content="Save your current AI setup and check your computer before you install anything.">
 <link rel="canonical" href="https://welles-carbert.github.io/Local-setup/get-ready.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Get ready | Local Setup">
+<meta property="og:description" content="Save your current AI setup and check your computer before you install anything.">
 <meta property="og:url" content="https://welles-carbert.github.io/Local-setup/get-ready.html">
-<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/style.css?v=5">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -34,6 +37,7 @@
    "name": "Get ready",
    "description": "Save your current AI setup and check your computer before you install anything.",
    "url": "https://welles-carbert.github.io/Local-setup/get-ready.html",
+   "totalTime": "PT15M",
    "step": [
     {
      "@type": "HowToStep",
@@ -63,6 +67,43 @@
     "name": "Local Setup",
     "url": "https://welles-carbert.github.io/Local-setup/"
    }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Do I need to export all my old chat history?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Most chat logs are not worth migrating. What gives a project its specific behavior and answers are its instructions and attached reference files. Focus on saving those."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What if my computer has less than 16 GB of RAM?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "An 8 GB machine can still run smaller models like qwen3:4b. They answer quickly for writing drafts and short summaries, though they are less capable at complex reasoning and deep knowledge extraction."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Will saving my projects change anything in my paid account?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Copying out text files and downloading attachments changes nothing in your existing accounts. Leave your subscription active until you finish testing in Step 9."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How much free hard drive space do I actually need?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Keep at least 20 GB free. Ollama and Docker take a few gigabytes, and each downloaded model takes between 3 GB and 20 GB of storage."
+     }
+    }
+   ]
   }
  ]
 }
@@ -74,6 +115,8 @@
     <a class="brand" href="index.html">Local Setup</a>
     <nav class="site-nav" aria-label="Main">
       <a href="get-ready.html">Guide</a>
+      <a href="what-can-i-run.html">Can I run it?</a>
+      <a href="cost-calculator.html">Calculator</a>
       <a href="savings.html">Savings</a>
       <a href="home-setup.html">Home setup</a>
       <a href="about.html">About</a>
@@ -82,54 +125,124 @@
 </header>
 <main class="wrap">
 <div class="page-head">
-  <p class="progress">Part 1 of 6</p>
+  <div class="progress-meta">
+    <span>Part 1 of 6</span>
+    <span>Takes about 15 minutes</span>
+  </div>
+  <div class="progress-track" aria-hidden="true"><div class="progress-fill" style="width: 17%;"></div></div>
   <h1>Get ready</h1>
   <p class="lede">Two steps before you install anything: copy your projects out of your paid service, and find out what your computer can run.</p>
 </div>
+
+<nav class="on-this-page" aria-label="Steps on this page">
+  <strong>On this page</strong>
+  <ol>
+    <li><a href="#step-1">Step 1: Save your current setup</a></li>
+    <li><a href="#step-2">Step 2: Check your computer</a></li>
+    <li><a href="#faq">Frequently asked questions</a></li>
+  </ol>
+</nav>
+
 <!-- AD SPOT 1 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-1"></div>
-    <h2 id="step-1"><span class="step-num">1</span>Save your current setup</h2>
-    <p>Copy your project instructions and files out by hand before you change anything. The parts that make a project behave the way it does are its instructions and its files, and no AI service exports a whole project as one package you can import somewhere else.</p>
-    <ol>
-      <li>Make a folder called <code>ai-migration</code>, with one subfolder for each project you want to keep.</li>
-      <li>Open each project and copy its custom instructions into a text file named <code>instructions.md</code> in that project's subfolder.</li>
-      <li>Download each file attached to the project into a <code>files</code> subfolder, keeping the original names.</li>
-      <li>Copy anything you want to keep from the service's saved memory or personalization settings into <code>memory.md</code>.</li>
-      <li>As a backup, request the full account export. In Claude it is under Settings, then Privacy, then Export data. In ChatGPT it is under Settings, then Data controls, then Export data. For Gemini, use Google Takeout. The download link is emailed to you and expires, so save the file right away.</li>
-    </ol>
-    <p>You can skip old chats. Most of them are not worth moving, and the instructions and files are what recreate the project.</p>
-    <div class="check"><p><strong>Check:</strong> every project subfolder has an <code>instructions.md</code> and a <code>files</code> folder with every document you want the new setup to know about.</p></div>
 
-    <!-- AD SPOT 2 of 3: paste ad code inside this div -->
+<section>
+  <h2 id="step-1"><span class="step-num">1</span>Save your current setup</h2>
+  <p>Copy your project instructions and files out by hand before you change anything. The parts that make a project behave the way it does are its custom instructions and its reference files. No AI service exports a whole project as one universal file you can import somewhere else.</p>
+  <ol>
+    <li>Make a folder on your computer called <code>ai-migration</code>, with one subfolder for each project you want to keep.</li>
+    <li>Open each project in Claude, ChatGPT or your service, and copy its custom instructions into a text file named <code>instructions.md</code> inside that project's folder.</li>
+    <li>Download each file attached to the project into a <code>files</code> subfolder, keeping the original names.</li>
+    <li>Copy anything you want to keep from the service's saved memory or personalization settings into a file named <code>memory.md</code>.</li>
+    <li>As a safety backup, request the full account export from your service:
+      <ul>
+        <li><strong>Claude:</strong> Settings → Privacy → Export data.</li>
+        <li><strong>ChatGPT:</strong> Settings → Data controls → Export data.</li>
+        <li><strong>Gemini:</strong> Go to <a href="https://takeout.google.com" rel="noopener">Google Takeout</a> and select Gemini Apps.</li>
+      </ul>
+      The download link is emailed to you and expires after a short window, so save the ZIP file to your disk when it arrives.
+    </li>
+  </ol>
+  <p><strong>What normal looks like:</strong> inside your <code>ai-migration</code> folder, you see cleanly named folders for each project. Inside each project folder sits an <code>instructions.md</code> text file and a <code>files/</code> folder containing your PDFs, notes, or spreadsheets.</p>
+
+  <div class="note">
+    <p><strong>If this goes wrong:</strong> if an export link from Anthropic or OpenAI never arrives, check your spam folder. If attachments cannot be downloaded in bulk from a project screen, open the file preview and save them individually.</p>
+  </div>
+  <div class="check"><p><strong>Check:</strong> every project subfolder has an <code>instructions.md</code> and a <code>files</code> folder with every document you want the new setup to know about.</p></div>
+</section>
+
+<!-- AD SPOT 2 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-2"></div>
-<h2 id="step-2"><span class="step-num">2</span>Check your computer</h2>
-    <p>Find out how much memory your computer has, because it decides which models you can run. The model has to fit in memory alongside everything else you have open.</p>
-    <div class="tabs">
-      <div class="tab-list" role="tablist">
-        <button type="button" data-os="mac">Mac</button>
-        <button type="button" data-os="win">Windows</button>
-        <button type="button" data-os="linux">Linux</button>
-      </div>
-      <div class="tab-panel" data-os="mac">
-        <h4>Mac</h4>
-        <p>Open the Apple menu and choose About This Mac. Note the chip (M1 to M4 or newer, or Intel) and the memory. On Apple Silicon the graphics share that same memory, so the memory number is the one that matters. Ollama's docs ask for macOS 14 Sonoma or newer. Intel Macs work but run models on the processor only, which is much slower.</p>
-      </div>
-      <div class="tab-panel" data-os="win">
-        <h4>Windows</h4>
-        <p>Open Settings, then System, then About, and note the installed RAM. Then open Task Manager, choose Performance, and click GPU to see your graphics card and its dedicated memory. A recent NVIDIA card with 8 GB or more of its own memory makes local models much faster. Without one, models still run on the processor, just slower.</p>
-      </div>
-      <div class="tab-panel" data-os="linux">
-        <h4>Linux</h4>
-        <p>Run <code>free -h</code> to see your memory. If you have an NVIDIA card, <code>nvidia-smi</code> shows its model and memory. As on Windows, the card's own memory decides how big a model runs fast.</p>
-      </div>
+
+<section>
+  <h2 id="step-2"><span class="step-num">2</span>Check your computer</h2>
+  <p>Find out how much memory your computer has, because memory decides which models you can run. The model has to fit into memory alongside your operating system and web browser.</p>
+
+  <div class="tabs">
+    <div class="tab-list" role="tablist">
+      <button type="button" data-os="mac">Mac</button>
+      <button type="button" data-os="win">Windows</button>
+      <button type="button" data-os="linux">Linux</button>
     </div>
-    <p>Free up disk space too. Keep at least 20 GB free for the apps and your first model, and plan for several more gigabytes for each extra model.</p>
-    <div class="check"><p><strong>Check:</strong> you know your memory (RAM, and graphics memory on a PC) and you have 20 GB or more free.</p></div>
+    <div class="tab-panel" data-os="mac">
+      <h4>Mac</h4>
+      <p>Click the Apple menu in the top-left corner and choose <strong>About This Mac</strong> (or System Settings → General → About). Note two numbers:</p>
+      <ul>
+        <li><strong>Chip:</strong> Apple Silicon (M1, M2, M3, M4 or Pro/Max/Ultra) or Intel. Apple Silicon uses unified memory shared between CPU and graphics, making it ideal for local AI. Intel Macs run models on the CPU only, which is much slower.</li>
+        <li><strong>Memory:</strong> 8 GB, 16 GB, 24 GB, 36 GB, 48 GB, 64 GB, or more.</li>
+        <li><strong>Operating system:</strong> macOS 14 Sonoma or newer is recommended by Ollama's documentation.</li>
+      </ul>
+    </div>
+    <div class="tab-panel" data-os="win">
+      <h4>Windows</h4>
+      <p>Open <strong>Settings</strong> → <strong>System</strong> → <strong>About</strong>, and look at <strong>Installed RAM</strong> (e.g. 16.0 GB). Then check your graphics card:</p>
+      <ol>
+        <li>Press <code>Ctrl + Shift + Esc</code> to open Task Manager.</li>
+        <li>Click the <strong>Performance</strong> tab on the left.</li>
+        <li>Click <strong>GPU</strong> at the bottom of the list. Look at the card name (e.g. NVIDIA GeForce RTX 4070) and note the <strong>Dedicated GPU memory</strong> (e.g. 12.0 GB).</li>
+      </ol>
+      <p>An NVIDIA graphics card with 8 GB or more of dedicated VRAM runs local models at high speeds. If your GPU shows Intel Iris or AMD integrated graphics sharing system memory, models will run on the main CPU and RAM, which is slower but fully functional.</p>
+    </div>
+    <div class="tab-panel" data-os="linux">
+      <h4>Linux</h4>
+      <p>Open a terminal window and run:</p>
+      <div class="code"><pre><code>free -h</code></pre></div>
+      <p>Look at the <code>Mem: total</code> column. If you have an NVIDIA card installed, run:</p>
+      <div class="code"><pre><code>nvidia-smi</code></pre></div>
+      <p>Look for the total VRAM listed under <code>Memory-Usage</code> (e.g. 12288MiB).</p>
+    </div>
+  </div>
+
+  <p>Not sure which models match your hardware? Use the <a href="what-can-i-run.html">hardware checker tool</a> to get an instant recommendation for your specific RAM and GPU.</p>
+
+  <p>Free up disk space too. You need at least <strong>20 GB of free drive space</strong> for Docker, Ollama, and your first model. Check this in Finder on Mac, File Explorer on Windows, or using <code>df -h</code> on Linux.</p>
+
+  <div class="note">
+    <p><strong>If this goes wrong:</strong> if your disk has less than 20 GB free, empty your Downloads and Trash or run your system's built-in storage clean-up tool before continuing. Trying to download a 5 GB model on a drive with 3 GB free will freeze the installation midway.</p>
+  </div>
+  <div class="check"><p><strong>Check:</strong> you wrote down your total RAM (and dedicated GPU memory if on PC), and verified you have 20 GB or more of free disk space.</p></div>
+</section>
+
+<section id="faq">
+  <h2>Frequently asked questions</h2>
+  <h3>Do I need to export all my old chat history?</h3>
+  <p>No. Most chat logs are not worth migrating. What gives a project its specific behavior and answers are its instructions and attached reference files. Focus on saving those.</p>
+
+  <h3>What if my computer has less than 16 GB of RAM?</h3>
+  <p>An 8 GB machine can still run smaller models like <code>qwen3:4b</code>. They answer quickly for writing drafts and short summaries, though they are less capable at complex reasoning and deep knowledge extraction.</p>
+
+  <h3>Will saving my projects change anything in my paid account?</h3>
+  <p>No. Copying out text files and downloading attachments changes nothing in your existing accounts. Leave your subscription active until you finish testing in Step 9.</p>
+
+  <h3>How much free hard drive space do I actually need?</h3>
+  <p>Keep at least 20 GB free. Ollama and Docker take a few gigabytes, and each downloaded model takes between 3 GB and 20 GB of storage.</p>
+</section>
 
 <!-- AD SPOT 3 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-3"></div>
+
 <nav class="pager" aria-label="Guide pages">
-  <a class="next" href="install-ollama.html"><span>Next</span>Install Ollama and a model →</a>
+  <a class="next" href="install-ollama.html"><span>Next step</span>Install Ollama and a model →</a>
   <a class="back" href="index.html">← Back to the overview</a>
 </nav>
 </main>
@@ -146,6 +259,6 @@
 </footer>
 <!-- AD SPOT 4 (sticky bottom banner): paste ad code inside this div -->
 <div class="ad-sticky" data-ad-slot="banner-sticky"></div>
-<script src="assets/app.js?v=4"></script>
+<script src="assets/app.js?v=5"></script>
 </body>
 </html>

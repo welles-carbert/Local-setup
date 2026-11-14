@@ -6,8 +6,11 @@
 <title>Move your project and test it | Local Setup</title>
 <meta name="description" content="Rebuild your old project in the new workspace and test it before you cancel.">
 <link rel="canonical" href="https://welles-carbert.github.io/Local-setup/move-project.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Move your project and test it | Local Setup">
+<meta property="og:description" content="Rebuild your old project in the new workspace and test it before you cancel.">
 <meta property="og:url" content="https://welles-carbert.github.io/Local-setup/move-project.html">
-<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/style.css?v=5">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -34,6 +37,7 @@
    "name": "Move your project and test it",
    "description": "Rebuild your old project in the new workspace and test it before you cancel.",
    "url": "https://welles-carbert.github.io/Local-setup/move-project.html",
+   "totalTime": "PT25M",
    "step": [
     {
      "@type": "HowToStep",
@@ -63,6 +67,43 @@
     "name": "Local Setup",
     "url": "https://welles-carbert.github.io/Local-setup/"
    }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Can local AI search and read my PDF, Word, and text files?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Open WebUI features a built-in retrieval-augmented generation (RAG) system. When you upload PDFs, text, Markdown, or spreadsheets to a Knowledge collection, it chunks and embeds them locally to pull relevant facts into chat."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What is context length and why does it matter for my files?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Context length is the total amount of text a model can hold in its active memory during a conversation. If you upload a book or have a very long conversation, smaller context windows may cause the model to lose track of earlier details."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "When should I keep a free cloud account instead of cancelling fully?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Keep a free tier account on Claude or ChatGPT for rare, highly demanding tasks: solving hard programming bugs, verifying legal/financial language, or generating complex charts that local models struggle with."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How do I back up my Open WebUI chats and knowledge bases?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "All data is saved inside the Docker volume named 'open-webui'. You can also export individual chats, presets, and documents directly from the Open WebUI Settings and Workspace screens."
+     }
+    }
+   ]
   }
  ]
 }
@@ -74,6 +115,8 @@
     <a class="brand" href="index.html">Local Setup</a>
     <nav class="site-nav" aria-label="Main">
       <a href="get-ready.html">Guide</a>
+      <a href="what-can-i-run.html">Can I run it?</a>
+      <a href="cost-calculator.html">Calculator</a>
       <a href="savings.html">Savings</a>
       <a href="home-setup.html">Home setup</a>
       <a href="about.html">About</a>
@@ -82,68 +125,147 @@
 </header>
 <main class="wrap">
 <div class="page-head">
-  <p class="progress">Part 4 of 6</p>
+  <div class="progress-meta">
+    <span>Part 4 of 6</span>
+    <span>Takes about 20 to 25 minutes</span>
+  </div>
+  <div class="progress-track" aria-hidden="true"><div class="progress-fill" style="width: 67%;"></div></div>
   <h1>Move your project and test it</h1>
   <p class="lede">Recreate your old project in the new workspace, then test it on your real work before you cancel your subscription.</p>
 </div>
+
+<nav class="on-this-page" aria-label="Steps on this page">
+  <strong>On this page</strong>
+  <ol>
+    <li><a href="#step-8">Step 8: Rebuild your project as one workspace</a></li>
+    <li><a href="#step-9">Step 9: Test it before you cancel</a></li>
+    <li><a href="#troubleshooting">Troubleshooting common issues</a></li>
+    <li><a href="#faq">Frequently asked questions</a></li>
+  </ol>
+</nav>
+
 <!-- AD SPOT 1 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-1"></div>
-    <h2 id="step-8"><span class="step-num">8</span>Rebuild your project as one workspace</h2>
-    <p>Recreate each old project as a preset: your local model plus your instructions plus your files, saved under the project's name. Here is how in Open WebUI, which has the closest match to a Claude project.</p>
-    <ol>
-      <li><strong>Add your files.</strong> Click your profile icon, then Workspace, then Knowledge, then create a new knowledge base. Name it after your project and upload everything from that project's <code>files</code> folder.</li>
-      <li><strong>Add your instructions.</strong> Go to Workspace, then Models, and create a new model. Give it your project's name, choose your downloaded model as the base, and paste <code>instructions.md</code> into the System Prompt box.</li>
-      <li><strong>Attach the knowledge.</strong> In the same screen, attach the knowledge base from the first step, and save.</li>
-      <li><strong>Add your memory.</strong> Paste anything from <code>memory.md</code> that should always apply onto the end of the system prompt.</li>
-    </ol>
-    <p>Your project now appears in the model menu of every new chat. In LibreChat, the matching feature is Agents, where you set instructions and attach files. In Hermes, paste your instructions into its config or first message, and point it at your project folder.</p>
-    <p>Read your old instructions through as you paste them, and cut lines that mention features the new setup does not have, such as artifacts or connected apps.</p>
-    <div class="check"><p><strong>Check:</strong> start a chat with your project preset and ask it to restate the project brief in its own words. Then ask something only one of your files can answer.</p></div>
 
-    <!-- AD SPOT 2 of 3: paste ad code inside this div -->
+<section>
+  <h2 id="step-8"><span class="step-num">8</span>Rebuild your project as one workspace</h2>
+  <p>In Claude or ChatGPT, a "Project" or "Custom GPT" bundles three elements: a base model, custom instructions, and reference documents. Rebuilding this inside Open WebUI takes about five minutes per project.</p>
+
+  <ol>
+    <li>
+      <strong>Upload your reference files:</strong>
+      <ul>
+        <li>In Open WebUI, click <strong>Workspace</strong> in the left sidebar, then click <strong>Knowledge</strong>.</li>
+        <li>Click the <strong>+</strong> button to create a new Knowledge collection. Name it after your project (for example, <code>Client Q4 Project</code>).</li>
+        <li>Drag and drop all files from your <code>ai-migration/[project]/files/</code> folder into the collection.</li>
+        <li>Wait for the processing bar to finish indexing each file.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Create your custom model preset:</strong>
+      <ul>
+        <li>In the sidebar, click <strong>Workspace</strong>, then click <strong>Models</strong>.</li>
+        <li>Click the <strong>+</strong> button to create a custom model.</li>
+        <li>Set the <strong>Name</strong> to your project name.</li>
+        <li>Under <strong>Base Model</strong>, choose the local model you downloaded (e.g. <code>qwen3:8b</code>).</li>
+        <li>Open your <code>instructions.md</code> file, copy its text, and paste it into the <strong>System Prompt</strong> field.</li>
+        <li>If you have global memory notes from <code>memory.md</code>, paste them at the bottom of the System Prompt under an <code>### Additional Context</code> header.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Attach the Knowledge collection:</strong>
+      <ul>
+        <li>Scroll down to the <strong>Knowledge</strong> section on the same screen.</li>
+        <li>Select the collection you created in step 1.</li>
+        <li>Click <strong>Save &amp; Create</strong> at the bottom.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <p><strong>What normal looks like:</strong> click <strong>New Chat</strong> in the sidebar. In the model selector at the top of the chat, your custom project model appears with its custom name. When selected, it automatically applies your instructions and has access to your reference files.</p>
+
+  <div class="note">
+    <p><strong>If this goes wrong:</strong></p>
+    <ul>
+      <li><strong>File upload fails or hangs:</strong> very large PDFs (over 50 MB) can choke the local embedding parser. Convert large PDFs to clean plain text or Markdown files first, then re-upload.</li>
+      <li><strong>Model ignores the knowledge documents:</strong> in Open WebUI, you can force document retrieval by typing <code>#</code> followed by the knowledge base name in your chat prompt.</li>
+      <li><strong>Old instructions cause errors:</strong> review your pasted instructions and remove lines referencing proprietary cloud features like Claude Artifacts, Code Interpreter, or OpenAI DALL-E image generation.</li>
+    </ul>
+  </div>
+  <div class="check"><p><strong>Check:</strong> start a new chat with your project preset. Ask it: "Summarize the primary purpose of this project and list three specific facts from the attached reference documents." It should cite your files accurately.</p></div>
+</section>
+
+<!-- AD SPOT 2 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-2"></div>
-<h2 id="step-9"><span class="step-num">9</span>Test it before you cancel</h2>
-    <p>Run your five most common real tasks on the new setup before you cancel your subscription. A local setup covers everyday work well and falls short on the hardest tasks, and only your own tasks can tell you which side you are on.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Task</th><th>Typical local result</th></tr></thead>
-        <tbody>
-          <tr><td>Drafting, rewriting, summarizing</td><td>Usually good enough for everyday use</td></tr>
-          <tr><td>Questions about your own files</td><td>Works once the knowledge base is set up; quality depends on the model</td></tr>
-          <tr><td>Brainstorming and outlines</td><td>Usually good</td></tr>
-          <tr><td>Hard multi-step reasoning or math</td><td>Often noticeably weaker than the top paid models</td></tr>
-          <tr><td>Large codebases or very long documents</td><td>Limited by how much text the model can hold at once</td></tr>
-          <tr><td>Speed</td><td>Set by your computer, not a server</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p><strong>What you gain:</strong> no monthly fee, no usage limits, and your files never leave your computer. Once set up, it works without the internet.</p>
-    <p><strong>What you give up:</strong> the extras around the model, such as artifacts, synced projects across devices, and connected apps. Some have local versions, but you set them up yourself.</p>
-    <p><strong>The middle path:</strong> keep a free account with a cloud AI for the few tasks where the local model disappoints, and do everything else locally. You drop the paid plan but keep a fallback.</p>
-    <div class="check"><p><strong>Check:</strong> your everyday tasks work. Now you can cancel the paid plan with confidence.</p></div>
-  <section id="troubleshooting">
-    <h2>Troubleshooting</h2>
-    <p>Most problems come from one of three things: Ollama is not running, Docker is not running, or the model is too big for your memory.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Problem</th><th>What to do</th></tr></thead>
-        <tbody>
-          <tr><td><code>ollama</code> command not found</td><td>Close and reopen the terminal. If it persists, open the Ollama app again and allow it to add its command.</td></tr>
-          <tr><td>Workspace loads but shows no models</td><td>Make sure Ollama is running. In Open WebUI, set the Ollama address under Admin Panel, Settings, Connections to <code>http://host.docker.internal:11434</code>. On Linux, use the host-network command in <a href="workspace.html#step-7">Step 7</a>.</td></tr>
-          <tr><td>The localhost page will not open</td><td>Open Docker Desktop and check that the container is running. Give it a minute or two after starting.</td></tr>
-          <tr><td>Port already in use</td><td>For Open WebUI, change <code>-p 3000:8080</code> to <code>-p 3001:8080</code> and open <code>localhost:3001</code>.</td></tr>
-          <tr><td>Replies are very slow, or the model will not load</td><td>Switch to a smaller model, or close other heavy apps.</td></tr>
-          <tr><td>The model forgets things in long chats or long files</td><td>Its context is too small. Raise <code>num_ctx</code> as in <a href="workspace.html#step-7">Option C</a>, if your memory allows.</td></tr>
-          <tr><td>Disk is filling up</td><td>Run <code>ollama list</code>, then remove models you don't use with <code>ollama rm</code> and the model name.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p><strong>Updating Open WebUI later:</strong> run <code>docker pull ghcr.io/open-webui/open-webui:main</code>, remove the old container with <code>docker rm -f open-webui</code>, and run the Step 7 command again. Your chats and presets live in the <code>open-webui</code> volume, so they stay.</p>
-  </section>
+
+<section>
+  <h2 id="step-9"><span class="step-num">9</span>Test it before you cancel</h2>
+  <p>Before canceling your paid subscription, test your local setup against your five most common daily tasks. A local setup handles writing, editing, and private document questions well, but can struggle with large-scale programming or difficult mathematical logic.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Task</th><th>What to expect locally</th><th>How to evaluate</th></tr></thead>
+      <tbody>
+        <tr><td>Drafting, editing, rewriting</td><td>Fast and fluent</td><td>Check tone, formatting, and adherence to your style guidelines.</td></tr>
+        <tr><td>Searching and querying your files</td><td>Accurate when documents are clear</td><td>Ask specific questions that can only be answered by your reference files.</td></tr>
+        <tr><td>Brainstorming &amp; outlining</td><td>Comparable to commercial models</td><td>Check creativity, organization, and variety of ideas.</td></tr>
+        <tr><td>Hard coding and complex debugging</td><td>Good for functions, weaker on large codebases</td><td>Run tests on generated code; verify edge cases manually.</td></tr>
+        <tr><td>Complex math &amp; multi-step logic</td><td>Noticeably weaker than top cloud models</td><td>Double-check calculations and multi-step reasoning chains.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><strong>Trade-offs to weigh:</strong></p>
+  <ul>
+    <li><strong>What you gain:</strong> $0 monthly subscription fee, complete document privacy, no message caps or peak-hour rate limits, and full offline operation.</li>
+    <li><strong>What you lose:</strong> automatic cloud synchronization across your phone and tablet, proprietary artifact sandboxes, and the raw reasoning depth of the largest frontier models.</li>
+    <li><strong>The hybrid approach:</strong> many people downgrade to the free tiers of Claude or ChatGPT. They use their local setup for 90% of daily private work, and fall back to free cloud chats only when they hit a tough math or coding problem.</li>
+  </ul>
+  <div class="check"><p><strong>Check:</strong> your daily workflow passes testing. You can now visit your provider's account page and safely cancel your paid subscription.</p></div>
+</section>
+
+<section id="troubleshooting">
+  <h2>Troubleshooting common issues</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Symptom</th><th>Root Cause</th><th>Solution</th></tr></thead>
+      <tbody>
+        <tr><td><code>ollama</code> command not found</td><td>Terminal path not loaded</td><td>Restart your terminal. On Mac, open Ollama from Applications and allow command installation.</td></tr>
+        <tr><td>Open WebUI shows no models</td><td>Ollama closed or Docker network blocked</td><td>Verify the Ollama menu icon is active. Check Admin Panel → Settings → Connections → set URL to <code>http://host.docker.internal:11434</code>.</td></tr>
+        <tr><td><code>localhost:3000</code> does not open</td><td>Docker container stopped</td><td>Open Docker Desktop, inspect the Containers list, and ensure <code>open-webui</code> is running.</td></tr>
+        <tr><td>Port collision error</td><td>Port 3000 used by another app</td><td>Run container with <code>-p 3001:8080</code> and browse to <code>localhost:3001</code>.</td></tr>
+        <tr><td>Model generation is extremely slow</td><td>Model exceeds RAM capacity</td><td>Stop model. Run <code>ollama rm [model]</code> and switch to a smaller parameter model (e.g. <code>qwen3:4b</code>).</td></tr>
+        <tr><td>Model forgets earlier chat messages</td><td>Context window filled</td><td>Start a fresh conversation thread, or increase context length using a custom Modelfile.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>How to update Open WebUI in the future:</strong></p>
+  <div class="code"><pre><code>docker pull ghcr.io/open-webui/open-webui:main
+docker rm -f open-webui
+docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main</code></pre></div>
+  <p class="meta">Your chats, files, and custom model presets are saved inside the <code>open-webui</code> Docker volume, so they are preserved when updating container images.</p>
+</section>
+
+<section id="faq">
+  <h2>Frequently asked questions</h2>
+  <h3>Can local AI search and read my PDF, Word, and text files?</h3>
+  <p>Yes. Open WebUI features a built-in retrieval-augmented generation (RAG) system. When you upload PDFs, text, Markdown, or spreadsheets to a Knowledge collection, it chunks and embeds them locally to pull relevant facts into chat.</p>
+
+  <h3>What is context length and why does it matter for my files?</h3>
+  <p>Context length is the total amount of text a model can hold in its active memory during a conversation. If you upload a book or have a very long conversation, smaller context windows may cause the model to lose track of earlier details.</p>
+
+  <h3>When should I keep a free cloud account instead of cancelling fully?</h3>
+  <p>Keep a free tier account on Claude or ChatGPT for rare, highly demanding tasks: solving hard programming bugs, verifying legal/financial language, or generating complex charts that local models struggle with.</p>
+
+  <h3>How do I back up my Open WebUI chats and knowledge bases?</h3>
+  <p>All data is saved inside the Docker volume named <code>open-webui</code>. You can also export individual chats, presets, and documents directly from the Open WebUI Settings and Workspace screens.</p>
+</section>
+
 <!-- AD SPOT 3 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-3"></div>
+
 <nav class="pager" aria-label="Guide pages">
-  <a class="next" href="savings.html"><span>Next</span>What you save →</a>
+  <a class="next" href="savings.html"><span>Next step</span>What you save →</a>
   <a class="back" href="workspace.html">← Back: Set up your workspace app</a>
 </nav>
 </main>
@@ -160,6 +282,6 @@
 </footer>
 <!-- AD SPOT 4 (sticky bottom banner): paste ad code inside this div -->
 <div class="ad-sticky" data-ad-slot="banner-sticky"></div>
-<script src="assets/app.js?v=4"></script>
+<script src="assets/app.js?v=5"></script>
 </body>
 </html>

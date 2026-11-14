@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local AI vs paid AI: cost calculator | Local Setup</title>
+<meta name="description" content="Calculate your break-even time and compare 1-year and 2-year costs between paid AI subscriptions and local AI.">
+<link rel="canonical" href="https://welles-carbert.github.io/Local-setup/cost-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Local AI vs paid AI: cost calculator | Local Setup">
+<meta property="og:description" content="Calculate your break-even time and compare 1-year and 2-year costs between paid AI subscriptions and local AI.">
+<meta property="og:url" content="https://welles-carbert.github.io/Local-setup/cost-calculator.html">
+<link rel="stylesheet" href="assets/style.css?v=5">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Local Setup",
+     "item": "https://welles-carbert.github.io/Local-setup/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Cost calculator",
+     "item": "https://welles-carbert.github.io/Local-setup/cost-calculator.html"
+    }
+   ]
+  },
+  {
+   "@type": "WebApplication",
+   "name": "Local AI vs Paid AI Cost Calculator | Local Setup",
+   "url": "https://welles-carbert.github.io/Local-setup/cost-calculator.html",
+   "applicationCategory": "FinanceApplication",
+   "operatingSystem": "All",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "How much electricity does running a local AI model actually consume?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "For typical desktop use (1 to 3 hours of active generation daily), an Apple Silicon Mac adds approximately $1 to $2 per month to your electric bill. A desktop PC with a dedicated NVIDIA graphics card adds approximately $3 to $7 per month depending on your local kilowatt-hour rate."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does hardware lose value over two years?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, computer hardware depreciates over time. However, unlike subscription fees which leave you with nothing once cancelled, physical computers retain resale value and can perform general desktop tasks, gaming, or file storage."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What if I only use AI tools occasionally throughout the week?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "If you only need AI assistance a few times a week, a flat $20 monthly subscription is poor value. Running a free model on your current computer costs zero dollars, while pay-as-you-go API credits typically cost less than $1 per month for light use."
+     }
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">Local Setup</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="get-ready.html">Guide</a>
+      <a href="what-can-i-run.html">Can I run it?</a>
+      <a href="cost-calculator.html">Calculator</a>
+      <a href="savings.html">Savings</a>
+      <a href="home-setup.html">Home setup</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<div class="page-head">
+  <h1>Local AI vs paid AI: cost calculator</h1>
+  <p class="lede">Compare what you pay for an AI subscription against the one-time hardware cost and electricity of running models on your own computer.</p>
+</div>
+
+<!-- AD SPOT 1 of 3: paste ad code inside this div -->
+<div class="ad-slot" data-ad-slot="banner-1"></div>
+
+<section id="full-calc" class="calc" aria-labelledby="calc-heading">
+  <h2 id="calc-heading" style="margin-top:0; font-size:1.25rem;">Compare your costs</h2>
+  <div class="calc-grid">
+    <div>
+      <label for="fcalc-plan">Select your current plan</label>
+      <select id="fcalc-plan">
+        <option value="">Choose a plan, or type below</option>
+        <option value="20" selected>$20 / month (Claude Pro or ChatGPT Plus)</option>
+        <option value="17">$17 / month (Claude Pro annual plan)</option>
+        <option value="100">$100 / month (Claude Team / Max 5x tier)</option>
+        <option value="200">$200 / month (Claude Max 20x / ChatGPT Pro)</option>
+      </select>
+    </div>
+    <div>
+      <label for="fcalc-monthly">Monthly subscription ($)</label>
+      <input id="fcalc-monthly" type="number" min="0" step="1" value="20" inputmode="decimal">
+    </div>
+    <div>
+      <label for="fcalc-hw">Hardware purchase cost ($)</label>
+      <input id="fcalc-hw" type="number" min="0" step="50" value="0" inputmode="decimal">
+    </div>
+    <div>
+      <label for="fcalc-power">Your monthly electricity estimate ($)</label>
+      <input id="fcalc-power" type="number" min="0" step="1" value="3" inputmode="decimal">
+    </div>
+  </div>
+
+  <div id="fcalc-result" class="calc-out" aria-live="polite" style="margin-top:24px;">
+    <p>Loading calculation...</p>
+  </div>
+
+  <div class="note" style="margin-top:18px;">
+    <p><strong>Note on electricity:</strong> the $3 default is an example for a machine running 1 to 2 hours of daily model generation. Enter $0 if you want to compare subscription fees against hardware only.</p>
+  </div>
+</section>
+
+<!-- AD SPOT 2 of 3: paste ad code inside this div -->
+<div class="ad-slot" data-ad-slot="banner-2"></div>
+
+<section>
+  <h2>Current plan rates reference</h2>
+  <p>These are the standard commercial subscription tiers used in the calculator above.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Service &amp; Plan</th><th>Monthly Cost</th><th>1-Year Total</th><th>2-Year Total</th></tr></thead>
+      <tbody>
+        <tr><td>Claude Pro (monthly)</td><td>$20</td><td>$240</td><td>$480</td></tr>
+        <tr><td>Claude Pro (annual)</td><td>about $17</td><td>$200</td><td>$400</td></tr>
+        <tr><td>Claude Team / Max (5x tier)</td><td>$100</td><td>$1,200</td><td>$2,400</td></tr>
+        <tr><td>Claude Max (20x tier)</td><td>$200</td><td>$2,400</td><td>$4,800</td></tr>
+        <tr><td>ChatGPT Plus</td><td>$20</td><td>$240</td><td>$480</td></tr>
+        <tr><td>ChatGPT Pro (power tier)</td><td>$200</td><td>$2,400</td><td>$4,800</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="meta">List prices checked October 2026. Verify current terms on each provider's official pricing page.</p>
+</section>
+
+<section id="faq">
+  <h2>Frequently asked questions</h2>
+  <h3>How much electricity does running a local AI model actually consume?</h3>
+  <p>For typical desktop use (1 to 3 hours of active generation daily), an Apple Silicon Mac adds approximately $1 to $2 per month to your electric bill. A desktop PC with a dedicated NVIDIA graphics card adds approximately $3 to $7 per month depending on your local kilowatt-hour rate.</p>
+
+  <h3>Does hardware lose value over two years?</h3>
+  <p>Yes, computer hardware depreciates over time. However, unlike subscription fees which leave you with nothing once cancelled, physical computers retain resale value and can perform general desktop tasks, gaming, or file storage.</p>
+
+  <h3>What if I only use AI tools occasionally throughout the week?</h3>
+  <p>If you only need AI assistance a few times a week, a flat $20 monthly subscription is poor value. Running a free model on your current computer costs zero dollars, while pay-as-you-go API credits typically cost less than $1 per month for light use.</p>
+</section>
+
+<nav class="pager" aria-label="Related guide pages">
+  <a class="next" href="savings.html"><span>Read the full analysis</span>What you save: the complete breakdown →</a>
+  <a class="back" href="index.html">← Back to the overview</a>
+</nav>
+
+<!-- AD SPOT 3 of 3: paste ad code inside this div -->
+<div class="ad-slot" data-ad-slot="banner-3"></div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="Footer">
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="disclosure.html">Affiliate disclosure</a>
+      <a href="privacy.html">Privacy policy</a>
+    </nav>
+    <p>© <span id="year">2026</span> Local Setup. Not affiliated with Anthropic, OpenAI, Google, Ollama, Docker, Open WebUI, LibreChat or Nous Research.</p>
+  </div>
+</footer>
+<!-- AD SPOT 4 (sticky bottom banner): paste ad code inside this div -->
+<div class="ad-sticky" data-ad-slot="banner-sticky"></div>
+<script src="assets/app.js?v=5"></script>
+</body>
+</html>

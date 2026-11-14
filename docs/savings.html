@@ -6,8 +6,11 @@
 <title>What you save | Local Setup</title>
 <meta name="description" content="The break-even math, with a calculator for your own numbers.">
 <link rel="canonical" href="https://welles-carbert.github.io/Local-setup/savings.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What you save | Local Setup">
+<meta property="og:description" content="The break-even math, with a calculator for your own numbers.">
 <meta property="og:url" content="https://welles-carbert.github.io/Local-setup/savings.html">
-<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/style.css?v=5">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -45,6 +48,43 @@
     "name": "Local Setup",
     "url": "https://welles-carbert.github.io/Local-setup/"
    }
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "How much electricity does running local AI consume?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "For typical desktop usage (a few hours of daily interaction), an Apple Silicon Mac adds around $1 to $2 per month to your electric bill. A desktop PC with a dedicated NVIDIA GPU running several hours daily adds approximately $3 to $7 per month depending on local utility rates."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is it financially smart to buy a new computer just to avoid a $20 subscription?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Spending $1,000 to $2,000 on new hardware takes 4 to 8 years to break even against a standard $20-per-month plan. New hardware only makes financial sense if you are upgrading for general computing needs or replacing heavy $100 to $200 per month plans."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Are there any hidden recurring fees with local AI?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Ollama, Open WebUI, and open-weight models are completely free to use. There are no monthly maintenance charges or recurring license fees."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How does pay-as-you-go API usage compare to subscriptions?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "If you occasionally need frontier cloud models, paying per token through an API provider often costs $1 to $5 per month for light use, compared to a flat $20 subscription."
+     }
+    }
+   ]
   }
  ]
 }
@@ -56,6 +96,8 @@
     <a class="brand" href="index.html">Local Setup</a>
     <nav class="site-nav" aria-label="Main">
       <a href="get-ready.html">Guide</a>
+      <a href="what-can-i-run.html">Can I run it?</a>
+      <a href="cost-calculator.html">Calculator</a>
       <a href="savings.html">Savings</a>
       <a href="home-setup.html">Home setup</a>
       <a href="about.html">About</a>
@@ -64,87 +106,125 @@
 </header>
 <main class="wrap">
 <div class="page-head">
-  <p class="progress">Part 5 of 6</p>
+  <div class="progress-meta">
+    <span>Part 5 of 6</span>
+    <span>Analysis &amp; Math</span>
+  </div>
+  <div class="progress-track" aria-hidden="true"><div class="progress-fill" style="width: 83%;"></div></div>
   <h1>What you save</h1>
   <p class="lede">If you run local AI on a computer you already own, you save the whole subscription. If you buy hardware, here is how long it takes to pay for itself.</p>
 </div>
+
+<nav class="on-this-page" aria-label="Steps on this page">
+  <strong>On this page</strong>
+  <ol>
+    <li><a href="#rates">What people pay now</a></li>
+    <li><a href="#zero-dollar">The $0 route</a></li>
+    <li><a href="#hardware">If you buy hardware</a></li>
+    <li><a href="#calc">Break-even calculator</a></li>
+    <li><a href="#faq">Frequently asked questions</a></li>
+  </ol>
+</nav>
+
 <!-- AD SPOT 1 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-1"></div>
-    <p><strong>The short answer:</strong> if you run local AI on a computer you already own, you save the full subscription from the first month. If you buy hardware for it, you save money only after the hardware pays for itself, and that can take years if you are replacing a $20 plan.</p>
 
-    <h2>What people pay now</h2>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Plan</th><th>Per month</th><th>Per year</th></tr></thead>
-        <tbody>
-          <tr><td>Claude Pro, billed monthly</td><td>$20</td><td>$240</td></tr>
-          <tr><td>Claude Pro, billed annually</td><td>about $17</td><td>$200</td></tr>
-          <tr><td>Claude Max 5x</td><td>$100</td><td>$1,200</td></tr>
-          <tr><td>Claude Max 20x</td><td>$200</td><td>$2,400</td></tr>
-          <tr><td>ChatGPT Plus</td><td>$20</td><td>$240</td></tr>
-          <tr><td>ChatGPT Pro, lowest tier</td><td>$100</td><td>$1,200</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="meta">US list prices, checked October 2026. Prices change, so check the provider's own pricing page.</p>
+<section>
+  <p><strong>The short answer:</strong> if you run local AI on a computer you already own, you save the full subscription from the first month. If you buy hardware for it, you save money only after the hardware pays for itself, and that can take years if you are replacing a standard $20-a-month plan.</p>
 
-    <h2>The $0 route</h2>
-    <p>Everything in <a href="get-ready.html">the guide above</a> is free: Ollama, the models, Docker Desktop for personal use, and every workspace app. If your current computer has 16 GB of memory or more, you can run a useful model today, and your only costs are your setup time and a little electricity.</p>
+  <h2 id="rates">What people pay now</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Subscription Plan</th><th>Billed Monthly</th><th>Annual Cost</th></tr></thead>
+      <tbody>
+        <tr><td>Claude Pro (monthly)</td><td>$20</td><td>$240</td></tr>
+        <tr><td>Claude Pro (annual)</td><td>about $17</td><td>$200</td></tr>
+        <tr><td>Claude Team / Max (5x tier)</td><td>$100</td><td>$1,200</td></tr>
+        <tr><td>Claude Max (20x tier)</td><td>$200</td><td>$2,400</td></tr>
+        <tr><td>ChatGPT Plus</td><td>$20</td><td>$240</td></tr>
+        <tr><td>ChatGPT Pro (power user tier)</td><td>$200</td><td>$2,400</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="meta">US pricing references checked October 2026. Verify current rates on provider pricing pages.</p>
+</section>
 
-    <!-- AD SPOT 2 of 3: paste ad code inside this div -->
+<section id="zero-dollar">
+  <h2>The $0 route</h2>
+  <p>Every tool in this guide is free: Ollama, the model weights, Docker Desktop for personal use, and Open WebUI. If your computer has 16 GB of RAM, you can run a competent model today. Your only marginal cost is setup time and a few cents of daily electricity.</p>
+</section>
+
+<!-- AD SPOT 2 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-2"></div>
-<h2>If you buy hardware</h2>
-    <p>Months to break even is the hardware cost divided by the monthly plan you cancel. The hardware amounts below are examples, not product quotes, and they leave out electricity and your time.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Scenario</th><th>Hardware</th><th>Plan replaced</th><th>Break even</th></tr></thead>
-        <tbody>
-          <tr><td>Use the computer you own</td><td>$0</td><td>$20 a month</td><td>Right away</td></tr>
-          <tr><td>Modest upgrade</td><td>$600</td><td>$20 a month</td><td>30 months</td></tr>
-          <tr><td>Modest upgrade</td><td>$600</td><td>$100 a month</td><td>6 months</td></tr>
-          <tr><td>AI desktop</td><td>$2,000</td><td>$200 a month</td><td>10 months</td></tr>
-          <tr><td>AI desktop</td><td>$2,000</td><td>$20 a month</td><td>100 months</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p>The last row is the honest one. Buying an expensive machine to replace a $20 plan does not pay off. Hardware makes sense for heavy users on the $100 and $200 plans, or for people who want privacy and no limits more than they want the savings.</p>
 
-    <div class="calc" id="calc">
-      <h3 style="margin-top:0">Work out your own break-even</h3>
-      <div class="calc-grid">
-        <div>
-          <label for="calc-plan">Your current plan</label>
-          <select id="calc-plan">
-            <option value="">Choose, or type below</option>
-            <option value="20">$20 a month (Pro or Plus)</option>
-            <option value="17">$17 a month (Pro, annual)</option>
-            <option value="100">$100 a month</option>
-            <option value="200">$200 a month</option>
-          </select>
-        </div>
-        <div>
-          <label for="calc-monthly">You pay each month ($)</label>
-          <input id="calc-monthly" type="number" min="0" step="1" value="20" inputmode="decimal">
-        </div>
-        <div>
-          <label for="calc-hw">Hardware you will buy ($)</label>
-          <input id="calc-hw" type="number" min="0" step="50" value="0" inputmode="decimal">
-        </div>
-        <div>
-          <label for="calc-power">Extra electricity a month ($)</label>
-          <input id="calc-power" type="number" min="0" step="1" value="3" inputmode="decimal">
-        </div>
+<section id="hardware">
+  <h2>If you buy hardware</h2>
+  <p>The time required to break even equals the hardware cost divided by your monthly subscription savings. The hardware numbers below represent typical market figures, excluding power and sales tax.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Scenario</th><th>Hardware Investment</th><th>Replaced Plan</th><th>Time to Break Even</th></tr></thead>
+      <tbody>
+        <tr><td>Current computer</td><td>$0</td><td>$20 / month</td><td>Immediate (Month 1)</td></tr>
+        <tr><td>Used mini PC / RAM upgrade</td><td>$600</td><td>$20 / month</td><td>30 months (2.5 years)</td></tr>
+        <tr><td>Used mini PC / RAM upgrade</td><td>$600</td><td>$100 / month</td><td>6 months</td></tr>
+        <tr><td>High-end AI desktop</td><td>$2,000</td><td>$200 / month</td><td>10 months</td></tr>
+        <tr><td>High-end AI desktop</td><td>$2,000</td><td>$20 / month</td><td>100 months (over 8 years)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The bottom row is the honest takeaway: spending $2,000 on hardware simply to stop paying $20 a month does not make financial sense. Buying hardware is justified only if you are replacing expensive $100 or $200 power-user subscriptions, or if privacy and offline autonomy matter more to you than cost.</p>
+
+  <div class="calc" id="calc">
+    <h3 style="margin-top:0">Calculate your personal break-even timeline</h3>
+    <div class="calc-grid">
+      <div>
+        <label for="calc-plan">Select your current plan</label>
+        <select id="calc-plan">
+          <option value="">Choose a plan, or enter below</option>
+          <option value="20">$20 a month (Claude Pro / ChatGPT Plus)</option>
+          <option value="17">$17 a month (Annual Pro plan)</option>
+          <option value="100">$100 a month (Heavy tier / Team)</option>
+          <option value="200">$200 a month (Max / Pro tier)</option>
+        </select>
       </div>
-      <p class="calc-out" id="calc-out" aria-live="polite">Turn on JavaScript to use the calculator.</p>
-      <p class="meta" style="margin:0">Electricity depends on your power rates and how many hours a day you use it. The $3 default is an example; check your own bill.</p>
+      <div>
+        <label for="calc-monthly">Monthly subscription cost ($)</label>
+        <input id="calc-monthly" type="number" min="0" step="1" value="20" inputmode="decimal">
+      </div>
+      <div>
+        <label for="calc-hw">Hardware purchase cost ($)</label>
+        <input id="calc-hw" type="number" min="0" step="50" value="0" inputmode="decimal">
+      </div>
+      <div>
+        <label for="calc-power">Estimated extra electricity per month ($)</label>
+        <input id="calc-power" type="number" min="0" step="1" value="3" inputmode="decimal">
+      </div>
     </div>
+    <p class="calc-out" id="calc-out" aria-live="polite">Turn on JavaScript to use the calculator.</p>
+    <p style="margin:16px 0 0; font-size:.92rem;"><a href="cost-calculator.html">Looking for full 1-year and 2-year cost comparisons? Open the dedicated cost calculator →</a></p>
+  </div>
+</section>
 
-    <h2>What you give up</h2>
-    <p>A local model is not Claude or GPT, so the saving only counts if the local model does the work you need. That is why the guide ends with a test before you cancel. If it handles your everyday tasks, keep a free cloud account for the hard ones and pocket the difference.</p>
+<section id="faq">
+  <h2>Frequently asked questions</h2>
+  <h3>How much electricity does running local AI consume?</h3>
+  <p>For typical desktop usage (a few hours of daily interaction), an Apple Silicon Mac adds around $1 to $2 per month to your electric bill. A desktop PC with a dedicated NVIDIA GPU running several hours daily adds approximately $3 to $7 per month depending on local utility rates.</p>
+
+  <h3>Is it financially smart to buy a new computer just to avoid a $20 subscription?</h3>
+  <p>No. Spending $1,000 to $2,000 on new hardware takes 4 to 8 years to break even against a standard $20-per-month plan. New hardware only makes financial sense if you are upgrading for general computing needs or replacing heavy $100 to $200 per month plans.</p>
+
+  <h3>Are there any hidden recurring fees with local AI?</h3>
+  <p>No. Ollama, Open WebUI, and open-weight models are completely free to use. There are no monthly maintenance charges or recurring license fees.</p>
+
+  <h3>How does pay-as-you-go API usage compare to subscriptions?</h3>
+  <p>If you occasionally need frontier cloud models, paying per token through an API provider often costs $1 to $5 per month for light use, compared to a flat $20 subscription.</p>
+</section>
+
 <!-- AD SPOT 3 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-3"></div>
+
 <nav class="pager" aria-label="Guide pages">
-  <a class="next" href="home-setup.html"><span>Next</span>Build your own home setup →</a>
+  <a class="next" href="home-setup.html"><span>Next part</span>Build your own home setup →</a>
   <a class="back" href="move-project.html">← Back: Move your project and test it</a>
 </nav>
 </main>
@@ -161,6 +241,6 @@
 </footer>
 <!-- AD SPOT 4 (sticky bottom banner): paste ad code inside this div -->
 <div class="ad-sticky" data-ad-slot="banner-sticky"></div>
-<script src="assets/app.js?v=4"></script>
+<script src="assets/app.js?v=5"></script>
 </body>
 </html>

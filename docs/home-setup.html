@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The hardware: NVIDIA for local AI | Local Setup</title>
-<meta name="description" content="NVIDIA hardware for running local AI models: RTX 5090, 5080 and 5070 Ti, RTX PRO 6000 and DGX Spark, picked by graphics memory, with who each is for.">
+<title>The hardware: premium machines for local AI | Local Setup</title>
+<meta name="description" content="Premium hardware for running local AI: NVIDIA RTX 5090 and RTX PRO 6000, AMD Radeon AI PRO, DGX Spark, Mac Studio and Framework Desktop, picked by memory, with who each is for.">
 <link rel="canonical" href="https://welles-carbert.github.io/Local-setup/home-setup.html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="The hardware: NVIDIA for local AI | Local Setup">
-<meta property="og:description" content="NVIDIA hardware for running local AI models: RTX 5090, 5080 and 5070 Ti, RTX PRO 6000 and DGX Spark, picked by graphics memory, with who each is for.">
+<meta property="og:title" content="The hardware: premium machines for local AI | Local Setup">
+<meta property="og:description" content="Premium hardware for running local AI: NVIDIA RTX 5090 and RTX PRO 6000, AMD Radeon AI PRO, DGX Spark, Mac Studio and Framework Desktop, picked by memory, with who each is for.">
 <meta property="og:url" content="https://welles-carbert.github.io/Local-setup/home-setup.html">
 <link rel="stylesheet" href="assets/style.css?v=6">
 <script type="application/ld+json">
@@ -34,8 +34,8 @@
   },
   {
    "@type": "Article",
-   "headline": "The hardware: NVIDIA for local AI",
-   "description": "NVIDIA hardware for running local AI models: RTX 5090, 5080 and 5070 Ti, RTX PRO 6000 and DGX Spark, picked by graphics memory, with who each is for.",
+   "headline": "The hardware: premium machines for local AI",
+   "description": "Premium hardware for running local AI: NVIDIA RTX 5090 and RTX PRO 6000, AMD Radeon AI PRO, DGX Spark, Mac Studio and Framework Desktop, picked by memory, with who each is for.",
    "url": "https://welles-carbert.github.io/Local-setup/home-setup.html",
    "dateModified": "2026-11-17",
    "author": {
@@ -78,10 +78,18 @@
     },
     {
      "@type": "Question",
-     "name": "What about a Mac?",
+     "name": "Mac Studio or an NVIDIA PC?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Apple Silicon Macs with lots of unified memory run large models quietly and work fine with this guide. This page covers NVIDIA hardware. If you're on a Mac, the guide works as written, and the checker covers Macs too."
+      "text": "A Mac Studio holds much bigger models (up to 512 GB of memory) and stays quiet. An RTX 5090 PC answers faster on models that fit in its 32 GB. If the models you want are bigger than 32 GB, the Mac Studio is the simpler machine."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I use an AMD graphics card?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, on cards Ollama supports through AMD's ROCm software. It takes more setup than NVIDIA, especially on Windows, so check Ollama's supported list first."
      }
     }
    ]
@@ -112,7 +120,7 @@
   </div>
   <div class="progress-track" aria-hidden="true"><div class="progress-fill" style="width: 100%;"></div></div>
   <h1>The hardware</h1>
-  <p class="lede">If you're past testing and want local AI that keeps up with you, the graphics memory is what you're really buying. Here is NVIDIA hardware that runs local models well, from a single card to a desktop AI box.</p>
+  <p class="lede">If you're past testing and want local AI that keeps up with you, the graphics memory is what you're really buying. Here is premium hardware that runs local models well, from NVIDIA, AMD and Apple: a single card, a workstation, or a big-memory desktop.</p>
 </div>
 
 <nav class="on-this-page" aria-label="Sections on this page">
@@ -121,7 +129,7 @@
     <li><a href="#vram">What actually matters: graphics memory</a></li>
     <li><a href="#cards">One graphics card for the PC you have</a></li>
     <li><a href="#workstation">Workstation: 96 GB on one card</a></li>
-    <li><a href="#spark">Desktop AI box: DGX Spark</a></li>
+    <li><a href="#spark">Big-memory desktops: DGX Spark, Mac Studio, Framework</a></li>
     <li><a href="#rest">The rest of the build</a></li>
     <li><a href="#faq">Frequently asked questions</a></li>
   </ol>
@@ -137,11 +145,12 @@
     <li><strong>16 GB of VRAM</strong> runs 14B-class models fully on the card. For example, <code>qwen3:14b</code> is about 9 GB.</li>
     <li><strong>32 GB</strong> runs the 30B-class models that come close to paid chat quality for everyday work. For example, <code>gemma4:31b</code> is about 20 GB.</li>
     <li><strong>96 GB to 128 GB</strong> runs 70B-class models and larger on a single machine.</li>
+    <li><strong>Unified memory</strong> (Apple Silicon, AMD Ryzen AI Max, DGX Spark) is shared between processor and graphics, so most of it counts as graphics memory. Speed then depends on memory bandwidth, which is listed for each pick.</li>
   </ul>
   <p>Not sure what you need yet? Run the guide on the computer you already own first, then use <a href="what-can-i-run.html">What can my computer run?</a> to see where you hit the ceiling. Buying is optional, and nothing in this guide needs new hardware.</p>
 </section>
 
-<div class="disclosure"><strong>How this site earns money:</strong> the price links on this page are affiliate links. If you buy through one, this site earns a commission at no extra cost to you. Specs come from NVIDIA's own pages, linked under each pick. Prices are not listed here because they change daily. <a href="disclosure.html">Read the full disclosure</a>.</div>
+<div class="disclosure"><strong>How this site earns money:</strong> the price links on this page are affiliate links. If you buy through one, this site earns a commission at no extra cost to you. Specs come from each maker's own pages, linked under each pick. Prices are not listed here because they change daily. <a href="disclosure.html">Read the full disclosure</a>.</div>
 
 <section id="cards">
   <h2>One graphics card for the PC you have</h2>
@@ -168,8 +177,15 @@
       <p class="meta"><strong>Power:</strong> 360 W for the card, with an 850 W system power supply listed. <strong>Who it's for:</strong> a mixed-use PC where AI is one job of several. <strong>Who should skip it:</strong> anyone buying only for local AI. The 5070 Ti runs the same models.</p>
       <div class="slot"><!-- AFFILIATE LINK (rtx-5080, Amazon or B&H): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="rtx-5080">Check current RTX 5080 price</a></div>
     </div>
+    <div class="card">
+      <span class="tag">AMD option</span>
+      <h4>AMD Radeon AI PRO R9700: 32 GB</h4>
+      <p>32 GB of graphics memory, the same amount as an RTX 5090, on a card built for AI work. Ollama's GPU docs list it as supported on Linux through AMD's ROCm software. It isn't on their Windows list, so plan on Linux for this card.</p>
+      <p class="meta"><strong>Who it's for:</strong> 30B-class models on one card, for people running Linux. <strong>Who should skip it:</strong> anyone who wants the simplest setup. NVIDIA is still the easier path.</p>
+      <div class="slot"><!-- AFFILIATE LINK (radeon-r9700, Amazon or Newegg): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="radeon-r9700">Check current Radeon AI PRO R9700 price</a></div>
+    </div>
   </div>
-  <p class="meta">Specs: <a href="https://www.nvidia.com/en-us/geforce/graphics-cards/compare/" rel="noopener">NVIDIA GeForce compare page</a> (memory and power figures are for NVIDIA's Founders Edition. Partner cards can differ, so check the listing).</p>
+  <p class="meta">Specs: <a href="https://www.nvidia.com/en-us/geforce/graphics-cards/compare/" rel="noopener">NVIDIA GeForce compare page</a> (memory and power figures are for NVIDIA's Founders Edition. Partner cards can differ, so check the listing), <a href="https://www.amd.com/en/products/graphics/workstations/radeon-ai-pro.html" rel="noopener">AMD Radeon AI PRO page</a>, <a href="https://docs.ollama.com/gpu" rel="noopener">Ollama supported GPUs</a>.</p>
 </section>
 
 <!-- AD SPOT 2 of 3: paste ad code inside this div -->
@@ -185,12 +201,20 @@
       <p class="meta"><strong>Power:</strong> up to 600 W. <strong>Who it's for:</strong> people running the largest open models daily, or serving a small team from one machine. <strong>Who should skip it:</strong> anyone who isn't sure they need more than 32 GB. Start with an RTX 5090 or DGX Spark.</p>
       <div class="slot"><!-- AFFILIATE LINK (rtx-pro-6000, B&H): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="rtx-pro-6000">Check current RTX PRO 6000 price</a></div>
     </div>
+    <div class="card">
+      <span class="tag">Prebuilt</span>
+      <h4>A prebuilt RTX 5090 or RTX PRO desktop</h4>
+      <p>If you'd rather not build, buy a desktop that ships with the card, a matched power supply and cooling already fitted. Check the listing for the exact graphics card, the power supply wattage (match NVIDIA's figure above) and at least 64 GB of system memory.</p>
+      <p class="meta"><strong>Who it's for:</strong> anyone who wants it working on day one. <strong>Who should skip it:</strong> anyone with a PC that can take a new card.</p>
+      <div class="slot"><!-- AFFILIATE LINK (prebuilt-workstation, B&H or Newegg): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="prebuilt-workstation">Check current prebuilt workstation prices</a></div>
+    </div>
   </div>
   <p class="meta">Specs: <a href="https://www.nvidia.com/rtx-pro-6000" rel="noopener">NVIDIA RTX PRO 6000 page</a>.</p>
 </section>
 
 <section id="spark">
-  <h2>Desktop AI box: DGX Spark</h2>
+  <h2>Big-memory desktops</h2>
+  <p>These keep the model in a large pool of shared memory instead of a graphics card. They fit far bigger models than any single consumer card, and answer more slowly per word than an RTX card on models that fit both.</p>
   <div class="cards">
     <div class="card">
       <span class="tag">Compact</span>
@@ -201,6 +225,23 @@
     </div>
   </div>
   <p class="meta">Specs: <a href="https://docs.nvidia.com/dgx/dgx-spark/hardware.html" rel="noopener">NVIDIA DGX Spark hardware overview</a>.</p>
+  <div class="cards">
+    <div class="card pick">
+      <span class="tag">Most memory</span>
+      <h4>Apple Mac Studio: up to 512 GB unified memory</h4>
+      <p>The M5 Max model goes up to 128 GB with 614 GB/s of bandwidth (on the 40-core GPU version). The M5 Ultra model starts at 96 GB, goes up to 512 GB and runs at 1.2 TB/s. That's enough to run the largest open models on one quiet desk machine, and more bandwidth than DGX Spark. This guide works on it as written.</p>
+      <p class="meta"><strong>Who it's for:</strong> people who want the biggest models in silence, or who already work on a Mac. <strong>Who should skip it:</strong> anyone who wants NVIDIA's software ecosystem, or only runs 14B to 30B models.</p>
+      <div class="slot"><!-- AFFILIATE LINK (mac-studio, B&H or Amazon; Apple's own program does not pay on Macs): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="mac-studio">Check current Mac Studio price</a></div>
+    </div>
+    <div class="card">
+      <span class="tag">AMD mini PC</span>
+      <h4>Framework Desktop: AMD Ryzen AI Max, up to 192 GB</h4>
+      <p>A small, quiet PC built around AMD's Ryzen AI Max chips, with up to 128 GB of shared memory on the Ryzen AI Max+ 395, or 192 GB on the Ryzen AI Max+ PRO 495. It runs 70B-class models on Windows or Linux.</p>
+      <p class="meta"><strong>Who it's for:</strong> people who want big-model memory in a PC rather than a Mac, at a lower cost than a workstation. <strong>Who should skip it:</strong> anyone who wants the fastest replies on 30B-class models. An RTX 5090 is quicker there.</p>
+      <div class="slot"><!-- AFFILIATE LINK (framework-desktop, Framework direct; affiliate program not confirmed yet): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="framework-desktop">Check current Framework Desktop price</a></div>
+    </div>
+  </div>
+  <p class="meta">Specs: <a href="https://www.apple.com/mac-studio/specs/" rel="noopener">Apple Mac Studio tech specs</a>, <a href="https://frame.work/products/desktop" rel="noopener">Framework Desktop</a>.</p>
 </section>
 
 <section id="rest">
@@ -245,8 +286,11 @@
   <h3>Can I use two graphics cards together?</h3>
   <p>Ollama can split a model across more than one NVIDIA card, but you need a motherboard, case and power supply built for it. For most people a single card with more memory is simpler.</p>
 
-  <h3>What about a Mac?</h3>
-  <p>Apple Silicon Macs with lots of unified memory run large models quietly and work fine with this guide. This page covers NVIDIA hardware. If you're on a Mac, the guide works as written, and <a href="what-can-i-run.html">the checker</a> covers Macs too.</p>
+  <h3>Mac Studio or an NVIDIA PC?</h3>
+  <p>A Mac Studio holds much bigger models (up to 512 GB of memory) and stays quiet. An RTX 5090 PC answers faster on models that fit in its 32 GB. If the models you want are bigger than 32 GB, the Mac Studio is the simpler machine.</p>
+
+  <h3>Can I use an AMD graphics card?</h3>
+  <p>Yes, on cards Ollama supports through AMD's ROCm software. It takes more setup than NVIDIA, especially on Windows, so check Ollama's supported list first.</p>
 </section>
 
 <!-- AD SPOT 3 of 3: paste ad code inside this div -->

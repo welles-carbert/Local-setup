@@ -7,7 +7,7 @@ This file sits outside `docs/`, so GitHub Pages does not publish it.
 | What | Where | Search for |
 |---|---|---|
 | Contact email (a site-specific address is better than a personal one) | contact.html, privacy.html | `CONTACT_EMAIL` |
-| 9 affiliate links | home-setup.html | `AFFILIATE LINK` comments |
+| 9 affiliate links (NVIDIA cards, DGX Spark, PSU, NVMe, monitor, cloud GPU; each comment names the retailer to apply to) | home-setup.html | `AFFILIATE LINK` comments |
 | 4 ad spots per guide page (3 in content, 1 sticky bottom) | every guide page + tool pages | `AD SPOT` comments |
 | Domain: when you buy one, find-and-replace `https://welles-carbert.github.io/Local-setup/` with your domain in every file in docs/ (canonical tags, schema, robots.txt, sitemap.xml), then add a CNAME file | all of docs/ | `welles-carbert.github.io/Local-setup` |
 | Site name: Local Setup (chosen by Welles) | every page header, footer, titles | `Local Setup` |
@@ -31,3 +31,6 @@ Ad slots are empty boxes with reserved height so the layout does not jump. When 
 10. Electricity default of $3/month in the calculators is an estimated example based on ~150W active generation for 1-2 hours daily at average US kWh rates.
 11. LM Studio and AnythingLLM being free desktop apps that skip Docker: verify current licensing terms.
 12. Add a "last tested" line (OS versions, Ollama, Docker, Open WebUI) once Welles has run through all steps on physical hardware.
+13. Hardware page specs (checked Nov 17, 2026 on nvidia.com): RTX 5090 32 GB GDDR7, 575 W card / 1000 W system; RTX 5080 16 GB, 360 W / 850 W; RTX 5070 Ti 16 GB, 300 W / 750 W (Founders Edition figures from NVIDIA's compare page); RTX PRO 6000 Blackwell Workstation 96 GB GDDR7 ECC, 600 W; DGX Spark 128 GB LPDDR5x, 273 GB/s, 1 or 4 TB, "up to 200B parameters, 405B with two" (NVIDIA DGX Spark hardware docs). Not verified: that the RTX 5090 is faster per word than DGX Spark on models that fit both (inferred from memory bandwidth), that Ollama splits models across multiple NVIDIA cards, and the "16 GB runs 14B / 32 GB runs 30B / 96-128 GB runs 70B-class" sizing rule (rule of thumb from 4-bit model file sizes).
+14. New "If this goes wrong" items merged from the AI Studio draft (Nov 17, 2026): the Open WebUI context-length menu path (Chat Controls > Advanced Params > Context Length) and the Windows Task Manager "More details" path are from that draft, not re-checked.
+15. What-can-I-run tool: new 32 GB and 96 GB VRAM options; the 96 GB result ("70B-class models entirely on the card") is a rule of thumb.

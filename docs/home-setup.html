@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Build your own home setup | Local Setup</title>
-<meta name="description" content="The gear and software for a dedicated local AI workspace, free options first.">
+<title>The hardware: NVIDIA for local AI | Local Setup</title>
+<meta name="description" content="NVIDIA hardware for running local AI models: RTX 5090, 5080 and 5070 Ti, RTX PRO 6000 and DGX Spark, picked by graphics memory, with who each is for.">
 <link rel="canonical" href="https://welles-carbert.github.io/Local-setup/home-setup.html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Build your own home setup | Local Setup">
-<meta property="og:description" content="The gear and software for a dedicated local AI workspace, free options first.">
+<meta property="og:title" content="The hardware: NVIDIA for local AI | Local Setup">
+<meta property="og:description" content="NVIDIA hardware for running local AI models: RTX 5090, 5080 and 5070 Ti, RTX PRO 6000 and DGX Spark, picked by graphics memory, with who each is for.">
 <meta property="og:url" content="https://welles-carbert.github.io/Local-setup/home-setup.html">
-<link rel="stylesheet" href="assets/style.css?v=5">
+<link rel="stylesheet" href="assets/style.css?v=6">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -27,17 +27,17 @@
     {
      "@type": "ListItem",
      "position": 2,
-     "name": "Build your own home setup",
+     "name": "The hardware",
      "item": "https://welles-carbert.github.io/Local-setup/home-setup.html"
     }
    ]
   },
   {
    "@type": "Article",
-   "headline": "Build your own home setup",
-   "description": "The gear and software for a dedicated local AI workspace, free options first.",
+   "headline": "The hardware: NVIDIA for local AI",
+   "description": "NVIDIA hardware for running local AI models: RTX 5090, 5080 and 5070 Ti, RTX PRO 6000 and DGX Spark, picked by graphics memory, with who each is for.",
    "url": "https://welles-carbert.github.io/Local-setup/home-setup.html",
-   "dateModified": "2026-11-10",
+   "dateModified": "2026-11-17",
    "author": {
     "@type": "Organization",
     "name": "Local Setup",
@@ -54,34 +54,34 @@
    "mainEntity": [
     {
      "@type": "Question",
-     "name": "Is a Mac or a Windows PC better for running local AI at home?",
+     "name": "Is the RTX 5090 worth it over the RTX 5080 for local AI?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Apple Silicon Macs offer unified memory, meaning a 36 GB or 64 GB Mac can run large 30b models at low power without a loud graphics card. Windows PCs with dedicated NVIDIA cards run smaller 8b to 14b models faster, but VRAM is capped by the GPU price."
+      "text": "For local AI, yes, if you want 30B-class models. The 5090 has 32 GB of VRAM against 16 GB on the 5080, and memory decides which models fit. If you'll stay at 14B-class models, the 5070 Ti runs the same sizes as the 5080 for less."
      }
     },
     {
      "@type": "Question",
-     "name": "Is 16 GB of RAM enough for the future?",
+     "name": "DGX Spark or an RTX 5090?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "16 GB of RAM is plenty for running efficient 7b to 9b parameter models today. If you plan to run larger 27b to 32b models or deep context analysis, 32 GB or 64 GB is recommended for future-proofing."
+      "text": "An RTX 5090 is faster on any model that fits in its 32 GB. DGX Spark's 128 GB lets you run much larger models that a 5090 can't hold at all, but more slowly per word. Pick by the biggest model you actually plan to run."
      }
     },
     {
      "@type": "Question",
-     "name": "Can I use an AMD graphics card for local AI?",
+     "name": "Can I use two graphics cards together?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Ollama supports ROCm on select AMD Radeon GPUs on Linux and Windows. However, NVIDIA remains much simpler to set up with broader software support across open-source tools."
+      "text": "Ollama can split a model across more than one NVIDIA card, but you need a motherboard, case and power supply built for it. For most people a single card with more memory is simpler."
      }
     },
     {
      "@type": "Question",
-     "name": "Why is the Mac mini so popular for local AI?",
+     "name": "What about a Mac?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "The Mac mini with 24 GB or 32 GB of unified memory offers a quiet, compact, low-power desktop that can run 14b models smoothly without the heat, noise, or electrical draw of a gaming tower."
+      "text": "Apple Silicon Macs with lots of unified memory run large models quietly and work fine with this guide. This page covers NVIDIA hardware. If you're on a Mac, the guide works as written, and the checker covers Macs too."
      }
     }
    ]
@@ -99,7 +99,7 @@
       <a href="what-can-i-run.html">Can I run it?</a>
       <a href="cost-calculator.html">Calculator</a>
       <a href="savings.html">Savings</a>
-      <a href="home-setup.html">Home setup</a>
+      <a href="home-setup.html">Hardware</a>
       <a href="about.html">About</a>
     </nav>
   </div>
@@ -108,21 +108,21 @@
 <div class="page-head">
   <div class="progress-meta">
     <span>Part 6 of 6</span>
-    <span>Hardware &amp; Workspace Gear</span>
+    <span>The hardware</span>
   </div>
   <div class="progress-track" aria-hidden="true"><div class="progress-fill" style="width: 100%;"></div></div>
-  <h1>Build your own home setup</h1>
-  <p class="lede">Everything you need for a local AI workspace at home. Each category starts with the free option, then lists paid hardware upgrades.</p>
+  <h1>The hardware</h1>
+  <p class="lede">If you're past testing and want local AI that keeps up with you, the graphics memory is what you're really buying. Here is NVIDIA hardware that runs local models well, from a single card to a desktop AI box.</p>
 </div>
 
-<nav class="on-this-page" aria-label="Steps on this page">
+<nav class="on-this-page" aria-label="Sections on this page">
   <strong>On this page</strong>
   <ol>
-    <li><a href="#computers">Computers to run your models</a></li>
-    <li><a href="#monitors">Monitors and arms</a></li>
-    <li><a href="#input">Keyboards and mice</a></li>
-    <li><a href="#storage">Storage for models</a></li>
-    <li><a href="#software">Software and cloud fallbacks</a></li>
+    <li><a href="#vram">What actually matters: graphics memory</a></li>
+    <li><a href="#cards">One graphics card for the PC you have</a></li>
+    <li><a href="#workstation">Workstation: 96 GB on one card</a></li>
+    <li><a href="#spark">Desktop AI box: DGX Spark</a></li>
+    <li><a href="#rest">The rest of the build</a></li>
     <li><a href="#faq">Frequently asked questions</a></li>
   </ol>
 </nav>
@@ -130,169 +130,131 @@
 <!-- AD SPOT 1 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-1"></div>
 
-<section>
-  <h2>Why build your own setup</h2>
-  <p>You can run everything in this guide on the computer you already have. A dedicated home setup is worth it if you use AI every day: a machine with enough memory for bigger models, a second screen so the chat sits next to your work, and a comfortable keyboard and mouse for long sessions. Start with what you own, and upgrade one piece at a time when something slows you down.</p>
-  <p>You do not need to buy anything to follow this guide. Each category below starts with the free option, then lists paid upgrades for people who want a dedicated setup. Paid items are labeled as paid.</p>
+<section id="vram">
+  <h2>What actually matters: graphics memory</h2>
+  <p>A model runs fast when its whole file fits in the graphics card's own memory (VRAM), with some room left over for your conversation. When the model doesn't fit, part of it spills into regular memory and speed drops sharply. So pick hardware by VRAM first and by speed second.</p>
+  <ul>
+    <li><strong>16 GB of VRAM</strong> runs 14B-class models fully on the card. For example, <code>qwen3:14b</code> is about 9 GB.</li>
+    <li><strong>32 GB</strong> runs the 30B-class models that come close to paid chat quality for everyday work. For example, <code>gemma4:31b</code> is about 20 GB.</li>
+    <li><strong>96 GB to 128 GB</strong> runs 70B-class models and larger on a single machine.</li>
+  </ul>
+  <p>Not sure what you need yet? Run the guide on the computer you already own first, then use <a href="what-can-i-run.html">What can my computer run?</a> to see where you hit the ceiling. Buying is optional, and nothing in this guide needs new hardware.</p>
+</section>
 
-  <div class="disclosure"><strong>How this site earns money:</strong> some links in this section are affiliate links. If you buy through them, I earn a commission at no extra cost to you. I only list products I would use myself, and the free option is always listed first. <a href="disclosure.html">Read the full disclosure</a>.</div>
+<div class="disclosure"><strong>How this site earns money:</strong> the price links on this page are affiliate links. If you buy through one, this site earns a commission at no extra cost to you. Specs come from NVIDIA's own pages, linked under each pick. Prices are not listed here because they change daily. <a href="disclosure.html">Read the full disclosure</a>.</div>
 
-  <div class="gear-cat" id="computers">
-    <h2>Computers to run your models</h2>
-    <div class="cards">
-      <div class="card">
-        <span class="tag">Free</span>
-        <h4>The computer you own</h4>
-        <p>Any Mac with Apple Silicon or a PC with 16 GB of memory runs a useful model. Start here, and buy only if <a href="move-project.html#step-9">Step 9</a> shows you need more.</p>
-        <p class="meta"><strong>Who needs it:</strong> Everyone starting out. <strong>Who can skip upgrades:</strong> Anyone whose daily writing and summarizing tasks run smoothly on their existing machine.</p>
-      </div>
-      <div class="card">
-        <span class="tag paid">Paid</span>
-        <h4>Mac with unified memory (Mac mini or Studio)</h4>
-        <p>On Apple Silicon, unified memory is shared between the CPU and graphics cores. Aim for 32 GB or 64 GB to run 14b and 32b models with whisper-quiet fan operation.</p>
-        <p class="meta"><strong>Who needs it:</strong> People who want a low-power, quiet desktop capable of running 30b models without heat. <strong>Who can skip it:</strong> Anyone with a functioning modern laptop.</p>
-        <div class="slot"><!-- AFFILIATE LINK (mac): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="mac">Check Mac mini and Mac Studio pricing</a></div>
-      </div>
-      <div class="card">
-        <span class="tag paid">Paid</span>
-        <h4>PC with an NVIDIA graphics card</h4>
-        <p>An NVIDIA GPU with 12 GB to 16 GB of dedicated VRAM provides fast token generation speeds for 8b and 14b models.</p>
-        <p class="meta"><strong>Who needs it:</strong> Users who demand the fastest token-generation speeds or who already use a Windows PC for work and gaming. <strong>Who can skip it:</strong> Mac users or anyone satisfied with standard generation speeds.</p>
-        <div class="slot"><!-- AFFILIATE LINK (pc): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="pc">Check NVIDIA desktop and mini PC pricing</a></div>
-      </div>
+<section id="cards">
+  <h2>One graphics card for the PC you have</h2>
+  <p>This is the most direct upgrade if you already have a desktop PC with room for a full-size card and a big enough power supply.</p>
+  <div class="cards">
+    <div class="card pick">
+      <span class="tag">Top pick</span>
+      <h4>GeForce RTX 5090: 32 GB GDDR7</h4>
+      <p>The most VRAM on any GeForce card. It runs 30B-class models entirely on the card at full speed, with room for long documents.</p>
+      <p class="meta"><strong>Power:</strong> 575 W for the card. NVIDIA lists a 1000 W power supply for the whole system. <strong>Who it's for:</strong> people who want the best single-card local setup. <strong>Who should skip it:</strong> anyone whose case or power supply can't take it, and anyone who only runs 8B to 14B models.</p>
+      <div class="slot"><!-- AFFILIATE LINK (rtx-5090, Amazon or B&H): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="rtx-5090">Check current RTX 5090 price</a></div>
+    </div>
+    <div class="card">
+      <span class="tag">Value pick</span>
+      <h4>GeForce RTX 5070 Ti: 16 GB GDDR7</h4>
+      <p>It has the same 16 GB as the RTX 5080, so it runs the same model sizes. It's slower per word, but for most people it's the smarter buy.</p>
+      <p class="meta"><strong>Power:</strong> 300 W for the card, with a 750 W system power supply listed. <strong>Who it's for:</strong> 14B-class models at good speed, without RTX 5090 power and heat. <strong>Who should skip it:</strong> anyone set on 30B-class models, who needs 32 GB.</p>
+      <div class="slot"><!-- AFFILIATE LINK (rtx-5070-ti, Amazon or B&H): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="rtx-5070-ti">Check current RTX 5070 Ti price</a></div>
+    </div>
+    <div class="card">
+      <span class="tag">Also good</span>
+      <h4>GeForce RTX 5080: 16 GB GDDR7</h4>
+      <p>It's faster than the 5070 Ti, but it has the same memory ceiling. Buy it if you also game or edit video on the same machine.</p>
+      <p class="meta"><strong>Power:</strong> 360 W for the card, with an 850 W system power supply listed. <strong>Who it's for:</strong> a mixed-use PC where AI is one job of several. <strong>Who should skip it:</strong> anyone buying only for local AI. The 5070 Ti runs the same models.</p>
+      <div class="slot"><!-- AFFILIATE LINK (rtx-5080, Amazon or B&H): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="rtx-5080">Check current RTX 5080 price</a></div>
     </div>
   </div>
-
-  <div class="gear-cat" id="monitors">
-    <h2>Monitors and arms</h2>
-    <div class="cards">
-      <div class="card">
-        <span class="tag">Free</span>
-        <h4>Your laptop screen or a TV</h4>
-        <p>Your laptop screen or an existing television connected over HDMI gives you dual-screen productivity for zero cost.</p>
-        <p class="meta"><strong>Who needs it:</strong> Anyone working from a home desk on a budget. <strong>Who can skip new screens:</strong> Anyone with a working 14-inch or larger laptop display.</p>
-      </div>
-      <div class="card">
-        <span class="tag paid">Paid</span>
-        <h4>A 27-inch 1440p monitor</h4>
-        <p>Provides side-by-side space for Open WebUI on one half and your document or code editor on the other.</p>
-        <p class="meta"><strong>Who needs it:</strong> Knowledge workers spending 4+ hours a day cross-referencing text between windows. <strong>Who can skip it:</strong> Mobile laptop workers.</p>
-        <div class="slot"><!-- AFFILIATE LINK (monitor): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="monitor">Check 27-inch 1440p monitor pricing</a></div>
-      </div>
-      <div class="card">
-        <span class="tag paid">Paid</span>
-        <h4>Monitor arm</h4>
-        <p>Elevates your monitor to ergonomic eye level and frees up usable desk surface.</p>
-        <p class="meta"><strong>Who needs it:</strong> People with compact desks needing extra space beneath their screen. <strong>Who can skip it:</strong> Anyone whose screen already has an adjustable height stand.</p>
-        <div class="slot"><!-- AFFILIATE LINK (arm): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="arm">Check monitor arm pricing</a></div>
-      </div>
-    </div>
-  </div>
+  <p class="meta">Specs: <a href="https://www.nvidia.com/en-us/geforce/graphics-cards/compare/" rel="noopener">NVIDIA GeForce compare page</a> (memory and power figures are for NVIDIA's Founders Edition. Partner cards can differ, so check the listing).</p>
 </section>
 
 <!-- AD SPOT 2 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-2"></div>
 
-<section>
-  <div class="gear-cat" id="input">
-    <h2>Keyboards and mice</h2>
-    <div class="cards">
-      <div class="card">
-        <span class="tag">Free</span>
-        <h4>Built-in keyboard and trackpad</h4>
-        <p>Your laptop's built-in keyboard and trackpad are completely adequate for running this entire guide.</p>
-        <p class="meta"><strong>Who needs it:</strong> Anyone getting started without spending a dollar. <strong>Who can skip upgrades:</strong> Casual prompt writers.</p>
-      </div>
-      <div class="card">
-        <span class="tag paid">Paid</span>
-        <h4>Comfortable mechanical or low-profile keyboard</h4>
-        <p>A keyboard with proper key travel reduces wrist strain when drafting extensive prompts and system instructions.</p>
-        <p class="meta"><strong>Who needs it:</strong> Writers, researchers, and coders typing prompts all day. <strong>Who can skip it:</strong> Anyone comfortable on their standard laptop keys.</p>
-        <div class="slot"><!-- AFFILIATE LINK (keyboard): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="keyboard">Check ergonomic keyboard pricing</a></div>
-      </div>
-      <div class="card">
-        <span class="tag paid">Paid</span>
-        <h4>Ergonomic vertical mouse</h4>
-        <p>Keeps your forearm in a neutral handshake posture during long research sessions.</p>
-        <p class="meta"><strong>Who needs it:</strong> Anyone experiencing wrist fatigue from extended mouse use. <strong>Who can skip it:</strong> Anyone satisfied with a standard trackpad or mouse.</p>
-        <div class="slot"><!-- AFFILIATE LINK (mouse): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="mouse">Check ergonomic vertical mouse pricing</a></div>
-      </div>
+<section id="workstation">
+  <h2>Workstation: 96 GB on one card</h2>
+  <div class="cards">
+    <div class="card">
+      <span class="tag">Workstation</span>
+      <h4>RTX PRO 6000 Blackwell Workstation Edition: 96 GB GDDR7 with ECC</h4>
+      <p>Three times the memory of an RTX 5090 on one card. It runs 70B-class models without splitting them across cards, with room left for long context.</p>
+      <p class="meta"><strong>Power:</strong> up to 600 W. <strong>Who it's for:</strong> people running the largest open models daily, or serving a small team from one machine. <strong>Who should skip it:</strong> anyone who isn't sure they need more than 32 GB. Start with an RTX 5090 or DGX Spark.</p>
+      <div class="slot"><!-- AFFILIATE LINK (rtx-pro-6000, B&H): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="rtx-pro-6000">Check current RTX PRO 6000 price</a></div>
     </div>
   </div>
+  <p class="meta">Specs: <a href="https://www.nvidia.com/rtx-pro-6000" rel="noopener">NVIDIA RTX PRO 6000 page</a>.</p>
+</section>
 
-  <div class="gear-cat" id="storage">
-    <h2>Storage for models</h2>
-    <div class="cards">
-      <div class="card">
-        <span class="tag">Free</span>
-        <h4>Internal solid state drive</h4>
-        <p>Use your built-in drive. Remove unused models with <code>ollama rm</code> to keep storage footprint low.</p>
-        <p class="meta"><strong>Who needs it:</strong> Anyone with at least 50 GB of free internal disk space. <strong>Who can skip external drives:</strong> Users keeping only one or two primary models.</p>
-      </div>
-      <div class="card">
-        <span class="tag paid">Paid</span>
-        <h4>Fast external USB-C SSD (1 TB or 2 TB)</h4>
-        <p>A fast NVMe-based external drive stores a full library of models and serves as an offline backup for project knowledge bases.</p>
-        <p class="meta"><strong>Who needs it:</strong> Users with small 256 GB laptop internal drives who want to experiment with multiple large models. <strong>Who can skip it:</strong> Users with 512 GB or larger internal drives.</p>
-        <div class="slot"><!-- AFFILIATE LINK (ssd): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="ssd">Check external USB-C SSD pricing</a></div>
-      </div>
+<section id="spark">
+  <h2>Desktop AI box: DGX Spark</h2>
+  <div class="cards">
+    <div class="card">
+      <span class="tag">Compact</span>
+      <h4>NVIDIA DGX Spark: 128 GB unified memory</h4>
+      <p>A small desktop box built for AI, with 128 GB of memory shared between the processor and the graphics side. NVIDIA says it handles models of up to 200 billion parameters, or 405 billion with two linked together. The trade-off is memory bandwidth: 273 GB/s is far lower than a desktop RTX card, so a model that fits on both answers faster on the RTX card. The Spark is for running models too big for any GeForce card.</p>
+      <p class="meta"><strong>Storage:</strong> 1 TB or 4 TB. <strong>Who it's for:</strong> people who want very large models in a quiet box on the desk, without building a PC. <strong>Who should skip it:</strong> anyone mainly running 14B to 30B models, where an RTX card is faster.</p>
+      <div class="slot"><!-- AFFILIATE LINK (dgx-spark, B&H): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="dgx-spark">Check current DGX Spark price</a></div>
     </div>
   </div>
+  <p class="meta">Specs: <a href="https://docs.nvidia.com/dgx/dgx-spark/hardware.html" rel="noopener">NVIDIA DGX Spark hardware overview</a>.</p>
+</section>
 
-  <div class="gear-cat" id="software">
-    <h2>Software and cloud fallbacks</h2>
-    <div class="cards">
-      <div class="card">
-        <span class="tag">Free</span>
-        <h4>The tools in this guide</h4>
-        <p>Ollama, Open WebUI, LibreChat, and Hermes Agent are 100% free open-source software.</p>
-        <p class="meta"><strong>Who needs it:</strong> Everyone following this guide. <strong>Who can skip paid tools:</strong> Almost everyone.</p>
-      </div>
-      <div class="card">
-        <span class="tag">Free</span>
-        <h4>VS Code or plain text editor</h4>
-        <p>Free editors make viewing Markdown notes, Modelfiles, and configuration YAML files straightforward.</p>
-        <p class="meta"><strong>Who needs it:</strong> Anyone managing project instructions and config files. <strong>Who can skip it:</strong> Users using basic built-in text apps.</p>
-      </div>
-      <div class="card">
-        <span class="tag paid">Paid</span>
-        <h4>Hourly cloud GPU rental</h4>
-        <p>Rent a powerful cloud graphics card for $0.50 to $1.50 per hour when you occasionally need to test a massive 70b model.</p>
-        <p class="meta"><strong>Who needs it:</strong> Users who rarely need heavy compute without spending $2,000 on physical hardware. <strong>Who can skip it:</strong> Standard everyday desktop users.</p>
-        <div class="slot"><!-- AFFILIATE LINK (gpu-cloud): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="gpu-cloud">Explore hourly GPU rental options</a></div>
-      </div>
-      <div class="card">
-        <span class="tag paid">Paid</span>
-        <h4>Pay-as-you-go API credits</h4>
-        <p>Direct API keys connected inside LibreChat let you call top frontier models on rare occasions for pennies instead of paying $20 every month.</p>
-        <p class="meta"><strong>Who needs it:</strong> Users wanting an occasional cloud safety net for hard math or coding. <strong>Who can skip it:</strong> Anyone getting 100% of their work done locally.</p>
-        <div class="slot"><!-- AFFILIATE LINK (api): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="api">Explore pay-as-you-go API options</a></div>
-      </div>
+<section id="rest">
+  <h2>The rest of the build</h2>
+  <div class="cards">
+    <div class="card">
+      <h4>Power supply</h4>
+      <p>Match or beat NVIDIA's listed system power for your card (750 W, 850 W or 1000 W above), and use the power connector the card needs. An underpowered supply is the most common cause of crashes under load.</p>
+      <p class="meta"><strong>Who needs it:</strong> anyone adding an RTX 5080 or 5090 to an older PC. <strong>Who can skip it:</strong> DGX Spark buyers, since it ships with its own power.</p>
+      <div class="slot"><!-- AFFILIATE LINK (psu, Amazon): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="psu">Check current power supply prices</a></div>
+    </div>
+    <div class="card">
+      <h4>A 2 TB NVMe drive for models</h4>
+      <p>Large models are tens of gigabytes each, and a fast internal drive makes switching between them quick. You can point Ollama at it with the <code>OLLAMA_MODELS</code> setting.</p>
+      <p class="meta"><strong>Who needs it:</strong> anyone keeping several 20 GB+ models. <strong>Who can skip it:</strong> anyone with 500 GB or more free already.</p>
+      <div class="slot"><!-- AFFILIATE LINK (nvme, Amazon): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="nvme">Check current 2 TB NVMe prices</a></div>
+    </div>
+    <div class="card">
+      <h4>A 27-inch 1440p monitor</h4>
+      <p>It fits your chat window and your work side by side without squinting.</p>
+      <p class="meta"><strong>Who needs it:</strong> anyone working with AI for hours a day. <strong>Who can skip it:</strong> anyone happy with their current screen.</p>
+      <div class="slot"><!-- AFFILIATE LINK (monitor, Amazon): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="monitor">Check current 27-inch monitor prices</a></div>
+    </div>
+    <div class="card">
+      <h4>Hourly cloud GPU</h4>
+      <p>Rent a large GPU by the hour to try a big model before you buy hardware for it.</p>
+      <p class="meta"><strong>Who needs it:</strong> anyone deciding between 32 GB and 96 GB. <strong>Who can skip it:</strong> anyone who has already decided.</p>
+      <div class="slot"><!-- AFFILIATE LINK (gpu-cloud, RunPod): replace # with your link --><a href="#" rel="sponsored noopener" data-aff="gpu-cloud">See hourly GPU rental options</a></div>
     </div>
   </div>
+  <p>The software stays free whatever you buy: Ollama, Open WebUI, LibreChat, Hermes Agent and the models carry no affiliate links.</p>
 </section>
 
 <section id="faq">
   <h2>Frequently asked questions</h2>
-  <h3>Is a Mac or a Windows PC better for running local AI at home?</h3>
-  <p>Apple Silicon Macs offer unified memory, meaning a 36 GB or 64 GB Mac can run large 30b models at low power without a loud graphics card. Windows PCs with dedicated NVIDIA cards run smaller 8b to 14b models faster, but VRAM is capped by the GPU price.</p>
+  <h3>Is the RTX 5090 worth it over the RTX 5080 for local AI?</h3>
+  <p>For local AI, yes, if you want 30B-class models. The 5090 has 32 GB of VRAM against 16 GB on the 5080, and memory decides which models fit. If you'll stay at 14B-class models, the 5070 Ti runs the same sizes as the 5080 for less.</p>
 
-  <h3>Is 16 GB of RAM enough for the future?</h3>
-  <p>16 GB of RAM is plenty for running efficient 7b to 9b parameter models today. If you plan to run larger 27b to 32b models or deep context analysis, 32 GB or 64 GB is recommended for future-proofing.</p>
+  <h3>DGX Spark or an RTX 5090?</h3>
+  <p>An RTX 5090 is faster on any model that fits in its 32 GB. DGX Spark's 128 GB lets you run much larger models that a 5090 can't hold at all, but more slowly per word. Pick by the biggest model you actually plan to run.</p>
 
-  <h3>Can I use an AMD graphics card for local AI?</h3>
-  <p>Ollama supports ROCm on select AMD Radeon GPUs on Linux and Windows. However, NVIDIA remains much simpler to set up with broader software support across open-source tools.</p>
+  <h3>Can I use two graphics cards together?</h3>
+  <p>Ollama can split a model across more than one NVIDIA card, but you need a motherboard, case and power supply built for it. For most people a single card with more memory is simpler.</p>
 
-  <h3>Why is the Mac mini so popular for local AI?</h3>
-  <p>The Mac mini with 24 GB or 32 GB of unified memory offers a quiet, compact, low-power desktop that can run 14b models smoothly without the heat, noise, or electrical draw of a gaming tower.</p>
+  <h3>What about a Mac?</h3>
+  <p>Apple Silicon Macs with lots of unified memory run large models quietly and work fine with this guide. This page covers NVIDIA hardware. If you're on a Mac, the guide works as written, and <a href="what-can-i-run.html">the checker</a> covers Macs too.</p>
 </section>
 
 <!-- AD SPOT 3 of 3: paste ad code inside this div -->
 <div class="ad-slot" data-ad-slot="banner-3"></div>
 
 <nav class="pager" aria-label="Guide pages">
+  <a class="next" href="index.html"><span>You're done</span>Back to the overview →</a>
   <a class="back" href="savings.html">← Back: What you save</a>
-  <a class="back" href="index.html">← Back to the overview</a>
 </nav>
 </main>
 <footer class="site-footer">
@@ -308,6 +270,6 @@
 </footer>
 <!-- AD SPOT 4 (sticky bottom banner): paste ad code inside this div -->
 <div class="ad-sticky" data-ad-slot="banner-sticky"></div>
-<script src="assets/app.js?v=5"></script>
+<script src="assets/app.js?v=6"></script>
 </body>
 </html>

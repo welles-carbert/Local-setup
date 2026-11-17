@@ -10,7 +10,7 @@
 <meta property="og:title" content="Get ready | Local Setup">
 <meta property="og:description" content="Save your current AI setup and check your computer before you install anything.">
 <meta property="og:url" content="https://welles-carbert.github.io/Local-setup/get-ready.html">
-<link rel="stylesheet" href="assets/style.css?v=5">
+<link rel="stylesheet" href="assets/style.css?v=6">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -118,7 +118,7 @@
       <a href="what-can-i-run.html">Can I run it?</a>
       <a href="cost-calculator.html">Calculator</a>
       <a href="savings.html">Savings</a>
-      <a href="home-setup.html">Home setup</a>
+      <a href="home-setup.html">Hardware</a>
       <a href="about.html">About</a>
     </nav>
   </div>
@@ -165,8 +165,13 @@
   </ol>
   <p><strong>What normal looks like:</strong> inside your <code>ai-migration</code> folder, you see cleanly named folders for each project. Inside each project folder sits an <code>instructions.md</code> text file and a <code>files/</code> folder containing your PDFs, notes, or spreadsheets.</p>
 
-  <div class="note">
-    <p><strong>If this goes wrong:</strong> if an export link from Anthropic or OpenAI never arrives, check your spam folder. If attachments cannot be downloaded in bulk from a project screen, open the file preview and save them individually.</p>
+  <div class="trouble">
+    <p class="trouble-title">If this goes wrong</p>
+    <ul>
+      <li>If an export link from Anthropic or OpenAI never arrives, check your spam folder. If attachments cannot be downloaded in bulk from a project screen, open the file preview and save them individually.</li>
+      <li><strong>You can't re-download a file you uploaded to a project:</strong> find the original on your computer first. If it only exists inside the project, ask the chat to print the file's full text and paste that into a new document.</li>
+      <li><strong>The export email takes a while:</strong> big histories can take hours to package. Carry on and download the file as soon as the email lands, because the link expires.</li>
+    </ul>
   </div>
   <div class="check"><p><strong>Check:</strong> every project subfolder has an <code>instructions.md</code> and a <code>files</code> folder with every document you want the new setup to know about.</p></div>
 </section>
@@ -217,8 +222,12 @@
 
   <p>Free up disk space too. You need at least <strong>20 GB of free drive space</strong> for Docker, Ollama, and your first model. Check this in Finder on Mac, File Explorer on Windows, or using <code>df -h</code> on Linux.</p>
 
-  <div class="note">
-    <p><strong>If this goes wrong:</strong> if your disk has less than 20 GB free, empty your Downloads and Trash or run your system's built-in storage clean-up tool before continuing. Trying to download a 5 GB model on a drive with 3 GB free will freeze the installation midway.</p>
+  <div class="trouble">
+    <p class="trouble-title">If this goes wrong</p>
+    <ul>
+      <li>If your disk has less than 20 GB free, empty your Downloads and Trash or run your system's built-in storage clean-up tool before continuing. Trying to download a 5 GB model on a drive with 3 GB free will freeze the installation midway.</li>
+      <li><strong>Task Manager on Windows only shows a small list of apps:</strong> click <strong>More details</strong> at the bottom, then open the <strong>Performance</strong> tab.</li>
+    </ul>
   </div>
   <div class="check"><p><strong>Check:</strong> you wrote down your total RAM (and dedicated GPU memory if on PC), and verified you have 20 GB or more of free disk space.</p></div>
 </section>
@@ -259,6 +268,6 @@
 </footer>
 <!-- AD SPOT 4 (sticky bottom banner): paste ad code inside this div -->
 <div class="ad-sticky" data-ad-slot="banner-sticky"></div>
-<script src="assets/app.js?v=5"></script>
+<script src="assets/app.js?v=6"></script>
 </body>
 </html>

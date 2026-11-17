@@ -460,11 +460,16 @@
           runsSlowly = '30B to 32B models (will split a few layers into system RAM).';
           willNotFit = '70B models.';
           startingModel = '<code>qwen3:14b</code> (fastest) or <code>gemma4:26b</code>.';
-        } else {
+        } else if (vram <= 32) {
           runsWell = '30B to 32B models running entirely on the graphics card.';
           runsSlowly = '70B models (split with 64 GB system RAM).';
           willNotFit = 'Models exceeding your combined VRAM and RAM.';
           startingModel = '<code>gemma4:31b</code> (around 20 GB download).';
+        } else {
+          runsWell = '70B-class models entirely on the graphics card, and every smaller size.';
+          runsSlowly = 'The very largest open models (well over 100B parameters).';
+          willNotFit = 'Models bigger than your VRAM plus system RAM.';
+          startingModel = '<code>gemma4:31b</code> for speed, then a 70B-class model from the Ollama library.';
         }
       } else {
         if (ram <= 8) {

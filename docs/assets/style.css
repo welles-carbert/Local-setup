@@ -663,3 +663,22 @@ tr:last-child td {
     padding-top: 48px;
   }
 }
+
+.trouble {
+  margin: 24px 0;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-left: 3px solid #b26b00;
+  border-radius: 0 6px 6px 0;
+  font-size: .95rem;
+}
+.trouble p { margin: 8px 0; }
+.trouble .trouble-title {
+  margin: 0 0 4px;
+  font-size: .78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #8a5300;
+}
+.trouble .code { margin: 8px 0 12px; }

@@ -10,7 +10,7 @@
 <meta property="og:title" content="Set up your workspace app | Local Setup">
 <meta property="og:description" content="Pick Open WebUI, LibreChat or Hermes Agent, install it, and connect it to your model.">
 <meta property="og:url" content="https://welles-carbert.github.io/Local-setup/workspace.html">
-<link rel="stylesheet" href="assets/style.css?v=5">
+<link rel="stylesheet" href="assets/style.css?v=6">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -123,7 +123,7 @@
       <a href="what-can-i-run.html">Can I run it?</a>
       <a href="cost-calculator.html">Calculator</a>
       <a href="savings.html">Savings</a>
-      <a href="home-setup.html">Home setup</a>
+      <a href="home-setup.html">Hardware</a>
       <a href="about.html">About</a>
     </nav>
   </div>
@@ -218,13 +218,12 @@
   <div class="code"><pre><code>docker --version</code></pre></div>
   <p><strong>What normal looks like:</strong> the command prints <code>Docker version 27.x.x</code> (or newer) and exits cleanly.</p>
 
-  <div class="note">
-    <p><strong>If this goes wrong:</strong></p>
+  <div class="trouble">
+    <p class="trouble-title">If this goes wrong</p>
     <ul>
       <li><strong>Windows WSL 2 error ("WSL 2 installation is incomplete"):</strong> open PowerShell as Administrator and run <code>wsl --update</code>, then restart your computer.</li>
       <li><strong>"Cannot connect to the Docker daemon":</strong> Docker Desktop is not fully booted. Open the Docker Desktop application and wait 30 seconds for the engine to initialize.</li>
-    </ul>
-  </div>
+    </ul></div>
   <div class="check"><p><strong>Check:</strong> running <code>docker --version</code> returns a version number, and Docker Desktop shows the engine is running.</p></div>
 </section>
 
@@ -264,14 +263,13 @@
     <li>Type a message into the chat bar and hit send.</li>
   </ol>
 
-  <div class="note">
-    <p><strong>If this goes wrong:</strong></p>
+  <div class="trouble">
+    <p class="trouble-title">If this goes wrong</p>
     <ul>
       <li><strong>The browser says "Unable to connect" or "Site can't be reached":</strong> Open Docker Desktop, click <strong>Containers</strong>, and check if <code>open-webui</code> is green. If it is yellow or stopped, wait a minute or click the Play icon.</li>
       <li><strong>Model menu is empty:</strong> Ollama is either closed or unreachable. Make sure the Ollama menu icon is visible. In Open WebUI, go to <strong>User Profile (bottom left)</strong> → <strong>Admin Panel</strong> → <strong>Settings</strong> → <strong>Connections</strong>. Verify the Ollama URL is set to <code>http://host.docker.internal:11434</code> (or <code>http://localhost:11434</code> on Linux) and click the refresh icon.</li>
       <li><strong>Port 3000 is already in use:</strong> change <code>-p 3000:8080</code> in the run command to <code>-p 3005:8080</code>, then open <code>http://localhost:3005</code>.</li>
-    </ul>
-  </div>
+    </ul></div>
   <div class="check"><p><strong>Check:</strong> you can open Open WebUI in your browser and receive a generated response from your model.</p></div>
 
   <h3>Option B: LibreChat</h3>
@@ -367,6 +365,6 @@ hermes setup</code></pre></div>
 </footer>
 <!-- AD SPOT 4 (sticky bottom banner): paste ad code inside this div -->
 <div class="ad-sticky" data-ad-slot="banner-sticky"></div>
-<script src="assets/app.js?v=5"></script>
+<script src="assets/app.js?v=6"></script>
 </body>
 </html>

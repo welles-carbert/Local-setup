@@ -10,7 +10,7 @@
 <meta property="og:title" content="Move your project and test it | Local Setup">
 <meta property="og:description" content="Rebuild your old project in the new workspace and test it before you cancel.">
 <meta property="og:url" content="https://welles-carbert.github.io/Local-setup/move-project.html">
-<link rel="stylesheet" href="assets/style.css?v=5">
+<link rel="stylesheet" href="assets/style.css?v=6">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -118,7 +118,7 @@
       <a href="what-can-i-run.html">Can I run it?</a>
       <a href="cost-calculator.html">Calculator</a>
       <a href="savings.html">Savings</a>
-      <a href="home-setup.html">Home setup</a>
+      <a href="home-setup.html">Hardware</a>
       <a href="about.html">About</a>
     </nav>
   </div>
@@ -184,14 +184,15 @@
 
   <p><strong>What normal looks like:</strong> click <strong>New Chat</strong> in the sidebar. In the model selector at the top of the chat, your custom project model appears with its custom name. When selected, it automatically applies your instructions and has access to your reference files.</p>
 
-  <div class="note">
-    <p><strong>If this goes wrong:</strong></p>
+  <div class="trouble">
+    <p class="trouble-title">If this goes wrong</p>
     <ul>
       <li><strong>File upload fails or hangs:</strong> very large PDFs (over 50 MB) can choke the local embedding parser. Convert large PDFs to clean plain text or Markdown files first, then re-upload.</li>
       <li><strong>Model ignores the knowledge documents:</strong> in Open WebUI, you can force document retrieval by typing <code>#</code> followed by the knowledge base name in your chat prompt.</li>
       <li><strong>Old instructions cause errors:</strong> review your pasted instructions and remove lines referencing proprietary cloud features like Claude Artifacts, Code Interpreter, or OpenAI DALL-E image generation.</li>
-    </ul>
-  </div>
+          <li><strong>A scanned PDF uploads but the model says it's empty:</strong> scanned pages are pictures with no text in them. Upload a version where you can select the words, or a .txt or .md copy.</li>
+      <li><strong>The model ignores parts of a long instruction prompt:</strong> smaller local models follow short numbered rules far better than long paragraphs. Cut your instructions down to the 5 to 8 rules that matter most.</li>
+    </ul></div>
   <div class="check"><p><strong>Check:</strong> start a new chat with your project preset. Ask it: "Summarize the primary purpose of this project and list three specific facts from the attached reference documents." It should cite your files accurately.</p></div>
 </section>
 
@@ -221,6 +222,12 @@
     <li><strong>What you lose:</strong> automatic cloud synchronization across your phone and tablet, proprietary artifact sandboxes, and the raw reasoning depth of the largest frontier models.</li>
     <li><strong>The hybrid approach:</strong> many people downgrade to the free tiers of Claude or ChatGPT. They use their local setup for 90% of daily private work, and fall back to free cloud chats only when they hit a tough math or coding problem.</li>
   </ul>
+  <div class="trouble">
+    <p class="trouble-title">If this goes wrong</p>
+    <ul>
+      <li><strong>The model forgets the start of a long document or conversation:</strong> raise the context length. In Open WebUI, open <strong>Chat Controls</strong> (the sliders icon, top right), then <strong>Advanced Params</strong>, and set <strong>Context Length</strong> to 8192 or 16384. Longer context uses more memory.</li>
+    </ul>
+  </div>
   <div class="check"><p><strong>Check:</strong> your daily workflow passes testing. You can now visit your provider's account page and safely cancel your paid subscription.</p></div>
 </section>
 
@@ -282,6 +289,6 @@ docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-
 </footer>
 <!-- AD SPOT 4 (sticky bottom banner): paste ad code inside this div -->
 <div class="ad-sticky" data-ad-slot="banner-sticky"></div>
-<script src="assets/app.js?v=5"></script>
+<script src="assets/app.js?v=6"></script>
 </body>
 </html>

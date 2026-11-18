@@ -10,7 +10,7 @@
 <meta property="og:title" content="Install Ollama and a model | Local Setup">
 <meta property="og:description" content="Install the free model runner and download a model that fits your memory.">
 <meta property="og:url" content="https://welles-carbert.github.io/Local-setup/install-ollama.html">
-<link rel="stylesheet" href="assets/style.css?v=5">
+<link rel="stylesheet" href="assets/style.css?v=6">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -118,7 +118,7 @@
       <a href="what-can-i-run.html">Can I run it?</a>
       <a href="cost-calculator.html">Calculator</a>
       <a href="savings.html">Savings</a>
-      <a href="home-setup.html">Home setup</a>
+      <a href="home-setup.html">Hardware</a>
       <a href="about.html">About</a>
     </nav>
   </div>
@@ -186,14 +186,14 @@
   <div class="code"><pre><code>ollama --version</code></pre></div>
   <p><strong>What normal looks like:</strong> the terminal immediately prints something like <code>ollama version is 0.5.x</code> (or newer).</p>
 
-  <div class="note">
-    <p><strong>If this goes wrong:</strong></p>
+  <div class="trouble">
+    <p class="trouble-title">If this goes wrong</p>
     <ul>
       <li><strong>"Command not found" or "not recognized":</strong> completely close your terminal window and open a fresh one so your system reloads its path.</li>
       <li><strong>Mac security warning ("Cannot open because developer cannot be verified"):</strong> right-click the Ollama app in Applications, select <strong>Open</strong>, and click <strong>Open</strong> in the confirmation box.</li>
       <li><strong>Linux permission issues:</strong> ensure your user has permissions or run <code>sudo systemctl status ollama</code> to see if the service is active.</li>
-    </ul>
-  </div>
+          <li><strong><code>http://localhost:11434</code> says the site can't be reached:</strong> Ollama is installed but not running. Open the Ollama app once from Applications (Mac) or the Start menu (Windows), then reload the page.</li>
+    </ul></div>
   <div class="check"><p><strong>Check:</strong> running <code>ollama --version</code> prints a version number without any error message.</p></div>
 </section>
 
@@ -215,6 +215,7 @@
       </tbody>
     </table>
   </div>
+  <p class="meta">Want the bigger rows to run fast? Graphics memory decides it. <a href="home-setup.html">See the hardware page</a>.</p>
   <p class="meta">Sizes from Ollama library listings. Check <a href="https://ollama.com/library" rel="noopener">ollama.com/library</a> for the full catalog.</p>
 
   <p>Now download and run your model. Type the run command for your memory tier into your terminal. For example, if you have 16 GB of RAM:</p>
@@ -228,14 +229,13 @@
   <div class="code"><pre><code>ollama list
 ollama ps</code></pre></div>
 
-  <div class="note">
-    <p><strong>If this goes wrong:</strong></p>
+  <div class="trouble">
+    <p class="trouble-title">If this goes wrong</p>
     <ul>
       <li><strong>Download freezes or fails:</strong> if your connection drops, press <code>Ctrl + C</code> and run the exact same <code>ollama run</code> command again. Ollama resumes from where it paused.</li>
       <li><strong>"Error: out of disk space":</strong> you don't have enough drive storage to extract the model weights. Free up space and try again.</li>
       <li><strong>Generation is painfully slow (less than 2 words per second):</strong> the model is too big for your machine and has spilled into disk swap. Type <code>/bye</code>, run <code>ollama rm &lt;model-name&gt;</code>, and try a smaller model like <code>qwen3:4b</code>.</li>
-    </ul>
-  </div>
+    </ul></div>
   <div class="check"><p><strong>Check:</strong> the model replied to your prompt in the terminal, and typing <code>/bye</code> returned you to your regular command line.</p></div>
 </section>
 
@@ -275,6 +275,6 @@ ollama ps</code></pre></div>
 </footer>
 <!-- AD SPOT 4 (sticky bottom banner): paste ad code inside this div -->
 <div class="ad-sticky" data-ad-slot="banner-sticky"></div>
-<script src="assets/app.js?v=5"></script>
+<script src="assets/app.js?v=6"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@
 <meta property="og:title" content="What AI model can my computer run? | Local Setup">
 <meta property="og:description" content="Check which open AI models will run fast on your computer, which will run slowly, and which will not fit.">
 <meta property="og:url" content="https://welles-carbert.github.io/Local-setup/what-can-i-run.html">
-<link rel="stylesheet" href="assets/style.css?v=5">
+<link rel="stylesheet" href="assets/style.css?v=6">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -86,7 +86,7 @@
       <a href="what-can-i-run.html">Can I run it?</a>
       <a href="cost-calculator.html">Calculator</a>
       <a href="savings.html">Savings</a>
-      <a href="home-setup.html">Home setup</a>
+      <a href="home-setup.html">Hardware</a>
       <a href="about.html">About</a>
     </nav>
   </div>
@@ -131,6 +131,8 @@
         <option value="12">12 GB VRAM</option>
         <option value="16">16 GB VRAM</option>
         <option value="24">24 GB VRAM</option>
+        <option value="32">32 GB VRAM (RTX 5090)</option>
+        <option value="96">96 GB VRAM (RTX PRO 6000)</option>
       </select>
     </div>
   </div>
@@ -142,6 +144,11 @@
   <div class="note" style="margin-top:20px;">
     <p><strong>How this rule works:</strong> an AI model must fit into your computer's fastest memory alongside the text of your conversation. If a model fits completely in memory with room to spare, it runs fast. If it slightly exceeds memory, your computer offloads layers to slower RAM or disk swap. Sizing your download to roughly half your available memory leaves comfortable space for your operating system and conversation context.</p>
   </div>
+</section>
+
+<section id="go-bigger">
+  <h2>Want to run bigger models?</h2>
+  <p>Graphics memory is the ceiling. 16 GB runs 14B-class models, 32 GB runs 30B-class models, and 96 GB to 128 GB runs 70B-class models and up. <a href="home-setup.html">See the hardware page</a> for graphics cards, workstations and big-memory desktops (NVIDIA, AMD and Apple) at each size, with who each one is for.</p>
 </section>
 
 <!-- AD SPOT 2 of 3: paste ad code inside this div -->
@@ -180,6 +187,6 @@
 </footer>
 <!-- AD SPOT 4 (sticky bottom banner): paste ad code inside this div -->
 <div class="ad-sticky" data-ad-slot="banner-sticky"></div>
-<script src="assets/app.js?v=5"></script>
+<script src="assets/app.js?v=6"></script>
 </body>
 </html>
